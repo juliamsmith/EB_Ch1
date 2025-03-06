@@ -14,8 +14,8 @@ sex <- args[5]              # Sex, e.g., "F" or "M"
 output_dir <- args[6]       # Output directory
 
 # Set working directory to the script location
-script_dir <- dirname(sys.frame(1)$ofile)
-setwd(file.path(script_dir, ".."))
+#script_dir <- dirname(sys.frame(1)$ofile)
+#setwd(file.path(script_dir, ".."))
 
 # Load functions
 source("R/setup.R")
