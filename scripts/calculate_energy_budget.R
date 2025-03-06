@@ -6,13 +6,12 @@
 
 # Parse command line arguments
 args <- commandArgs(trailingOnly = TRUE)
-species <- args[1]         # e.g., "MB"
-year <- as.numeric(args[2]) # e.g., 2011
-site_orig <- args[3]       # Original site, e.g., "A1"
-site_clim <- args[4]       # Climate site, e.g., "B1" 
-height <- as.numeric(args[5])    # Height above ground, e.g., 0.03
-shade <- as.numeric(args[6])     # Shade level, e.g., 0.1
-output_dir <- args[7]      # Output directory
+species <- args[1]          # e.g., "MB"
+year <- as.numeric(args[2]) # e.g., 2022
+site_orig <- args[3]        # Original site, e.g., "A1"
+site_clim <- args[4]        # Climate site, e.g., "B1" 
+sex <- args[5]              # Sex, e.g., "F" or "M"
+output_dir <- args[6]       # Output directory
 
 # Set working directory to the script location
 script_dir <- dirname(sys.frame(1)$ofile)
@@ -34,13 +33,13 @@ surface_roughness <- get_surface_roughness()
 # Load climate data
 climate_data <- load_climate_data(site_clim, year)
 
-cat(sprintf("Processing: Species=%s, Year=%d, Origin=%s, Climate=%s, Height=%.2f, Shade=%.2f\n",
-            species, year, site_orig, site_clim, height, shade))
+cat(sprintf("Processing: Species=%s, Year=%d, Origin=%s, Climate=%s, Sex=%s\n",
+            species, year, site_orig, site_clim, sex))
 
 # Calculate energy budget
 result <- calculate_energy_budget(
-  climate_data, height, shade, surface_roughness, pops,
-  species, "F", site_orig, site_clim, year
+  climate_data, surface_roughness, pops,
+  species, sex, site_orig, site_clim, year
 )
 
 # Save results with metadata
@@ -51,9 +50,8 @@ metadata <- list(
   species = species,
   year = year,
   site_orig = site_orig,
-  site_clim = site_clim,
-  height = height,
-  shade = shade
+  site_clim = site_clim, 
+  sex = sex
 )
 
 output_file <- save_results(result, output_dir, job_id, metadata)

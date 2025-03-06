@@ -70,9 +70,14 @@ get_psi <- function(dt, site){
   } else if(site=="B1") {
     lat <- 40.019
     lon <- -105.455
-  } else {
+  } else if(site=="C1") {
     lat <- 40.0301
     lon <- -105.541
+  } else if(site=="D1") {
+    lat <- 40.0401  # Estimated values for D1
+    lon <- -105.600
+  } else {
+    stop(paste("Unknown site:", site))
   }
   date <- as.POSIXct(dt, format= "%Y-%m-%d")
   hour <- as.numeric(format(as.POSIXct(dt), format="%H"))

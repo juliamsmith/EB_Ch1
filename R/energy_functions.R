@@ -14,30 +14,125 @@ get_mr_losses <- function(mrs){
   return(loss.kJ)
 }
 
-# Calculate thermal performance curve for feeding
-get_tpc_gains <- function(tbs, q10, a, b, c, assim.rate=.40){ # assimilation assumption
-  dry.fec.mg.hr <- rezende_2019(tbs, q10, a, b, c)
-  dry.fec.mg.hr[dry.fec.mg.hr<0] = 0
-  dry.wga.mg.hr <- dry.fec.mg.hr*12.8/14.8*assim.rate/(1-assim.rate) # see harrison & fewell
-  kcal.hr <- dry.wga.mg.hr*14.8/1000 # from Fewell & Harrison
-  kJ.hr <- kcal.hr*4.184
-  return(kJ.hr)
+# LRF function for thermal performance curves
+lrf_function <- function(temp, Tmin, Tmax, Topt, Ropt) {
+  if (temp <= Tmin || temp >= Tmax || Topt <= Tmin || Topt >= Tmax) {
+    return(1e-10)  # Return a small number for invalid temperatures
+  }
+  
+  # Calculate phi
+  phi <- (Tmax - Topt) / (Topt - Tmin)
+  
+  # Calculate the main function
+  numerator <- Ropt * ((Tmax - temp) / (Tmax - Topt)) * exp(phi * (temp - Topt) / (Tmax - Topt))
+  denominator <- 1 + exp(phi * (temp - Topt) / (Tmax - Topt))
+  
+  return(numerator / denominator)
 }
 
-# Calculate energy gains based on TPC and temperatures
-get_energy_gains <- function(sppi, sitei, sexi, tbs, pops, dts){
+# Function to calculate feeding rate for MS using LRF model
+get_ms_feeding_rate <- function(temp, site, sex) {
+  # Parameters for MS from the model output
+  site_params <- list(
+    Eldo = list(Tmin = 14.74, Topt = 39.88, Above = 9.56, Ropt = 3.50),
+    A1 = list(Tmin = 11.67, Topt = 39.89, Above = 6.68, Ropt = 3.63),
+    B1 = list(Tmin = 10.96, Topt = 39.78, Above = 8.20, Ropt = 4.30)
+  )
+  
+  # For D1, use A1 parameters as a placeholder
+  if (site == "D1") {
+    site_params$D1 <- site_params$A1
+  }
+  
+  # Sex effect
+  sex_effect <- -0.37
+  
+  # Get parameters for this site
+  params <- site_params[[site]]
+  
+  # Calculate Tmax (Topt + Above)
+  Tmax <- params$Topt + params$Above
+  
+  # Calculate base feeding rate using LRF
+  base_rate <- lrf_function(temp, params$Tmin, Tmax, params$Topt, params$Ropt)
+  
+  # Apply sex effect if male
+  if (sex == "M") {
+    base_rate <- exp(log(base_rate) + sex_effect)
+  }
+  
+  return(base_rate)
+}
+
+# Function to calculate feeding rate for MB using LRF model
+get_mb_feeding_rate <- function(temp, site, sex) {
+  # Parameters for MB from the model output
+  site_params <- list(
+    A1 = list(Tmin = 13.57, Topt = 37.54, Above = 11.70, Ropt = 2.64),
+    B1 = list(Tmin = 12.80, Topt = 41.76, Above = 10.74, Ropt = 3.29),
+    C1 = list(Tmin = 13.79, Topt = 41.03, Above = 11.77, Ropt = 3.93)
+  )
+  
+  # For Eldo and D1, use A1 and C1 parameters respectively as placeholders
+  site_params$Eldo <- site_params$A1
+  site_params$D1 <- list(Tmin = 14.0, Topt = 42.0, Above = 12.0, Ropt = 4.0)  # Made-up values for D1
+  
+  # Sex effect
+  sex_effect <- -0.06
+  
+  # Get parameters for this site
+  params <- site_params[[site]]
+  
+  # Calculate Tmax (Topt + Above)
+  Tmax <- params$Topt + params$Above
+  
+  # Calculate base feeding rate using LRF
+  base_rate <- lrf_function(temp, params$Tmin, Tmax, params$Topt, params$Ropt)
+  
+  # Apply sex effect if male
+  if (sex == "M") {
+    base_rate <- exp(log(base_rate) + sex_effect)
+  }
+  
+  return(base_rate)
+}
+
+# Calculate feeding gains for a temperature series
+calculate_feeding_gains <- function(tbs, species, site, sex, assim.rate=0.40) {
+  # Choose the appropriate model based on species
+  if (species == "MS") {
+    dry_fec_mg_hr <- sapply(tbs, function(tb) get_ms_feeding_rate(tb, site, sex))
+  } else if (species == "MB") {
+    dry_fec_mg_hr <- sapply(tbs, function(tb) get_mb_feeding_rate(tb, site, sex))
+  } else {
+    stop(paste("Unknown species:", species))
+  }
+  
+  # Convert to energy gains (adapted from get_tpc_gains)
+  dry_fec_mg_hr[dry_fec_mg_hr < 0] = 0
+  dry_wga_mg_hr <- dry_fec_mg_hr * 12.8/14.8 * assim.rate/(1-assim.rate) # see Harrison & Fewell
+  kcal_hr <- dry_wga_mg_hr * 14.8/1000 # from Fewell & Harrison
+  kJ_hr <- kcal_hr * 4.184
+  
+  return(kJ_hr)
+}
+
+# Get energy gains based on body temperatures
+get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts){
   # Calculate time intervals in hours
   dt_ints <- as.numeric(difftime(dts$dtuse, lag(dts$dtuse), units = "hours"))
   dt_ints[1] <- dt_ints[2]  # Handle the first interval
   
-  pop_dat <- pops %>% filter(spp==sppi & site==sitei & sex==sexi)
+  # Find population data
+  pop_dat <- pops %>% filter(spp == species & site == site_orig & sex == sex)
+  
+  if (nrow(pop_dat) == 0) {
+    stop(paste("No population data found for species =", species, 
+               ", site =", site_orig, ", sex =", sex))
+  }
   
   # Get hourly rates
-  gains_per_hour <- get_tpc_gains(tbs, 
-                                  pop_dat$tpc_q10, 
-                                  pop_dat$tpc_a, 
-                                  pop_dat$tpc_b, 
-                                  pop_dat$tpc_c)
+  gains_per_hour <- calculate_feeding_gains(tbs, species, site_orig, sex)
   
   mrs <- get_mrs(tbs, pop_dat$mass[1], pop_dat$elev[1], pop_dat$rmr_b0[1], 
                  pop_dat$rmr_b1[1], pop_dat$rmr_b2[1], pop_dat$rmr_b3[1])
@@ -58,30 +153,21 @@ get_energy_gains <- function(sppi, sitei, sexi, tbs, pops, dts){
 }
 
 # Calculate body temperatures and energy budget for a given scenario
-calculate_energy_budget <- function(climate_data, height, shade_level, surface_roughness, pops, 
+calculate_energy_budget <- function(climate_data, surface_roughness, pops, 
                                     species, sex, site_orig, site_clim, year) {
   
-  # Filter climate data for the specific site
-  site_climate <- climate_data %>%
-    filter(site == site_clim, 
-           height == height, 
-           shade == shade_level)
-  
   # Add zenith angle if not already present
-  if(!("psi" %in% colnames(site_climate))) {
-    site_climate <- add_psi_to_climate(site_climate)
+  if (!("psi" %in% colnames(climate_data))) {
+    climate_data <- add_psi_to_climate(climate_data)
   }
   
-  # Convert shade level to sun level (1 - shade)
-  sun_level <- 1 - shade_level
-  
-  # Calculate body temperature
-  site_climate <- site_climate %>%
+  # Calculate body temperature for each row
+  climate_data <- climate_data %>%
     mutate(Tb = Tb_grasshopper2.5(
-      T_a = T_specified_height,
-      T_g = T_soilest,
-      u = wind_speed_profile_neutral(ifelse(wsuse==0, .001, wsuse), 1, surface_roughness, height),
-      S = sun_level * ifelse(psi!=90 & psi!= -90, sruse, 0),
+      T_a = Tair,
+      T_g = Tsoil,
+      u = wind_speed_profile_neutral(ifelse(wind == 0, 0.001, wind), 1, surface_roughness, height),
+      S = (1 - shade) * ifelse(psi != 90 & psi != -90, rad, 0),  # Convert shade to sun level
       K_t = 0.7,
       psi = psi,
       l = 0.03,
@@ -89,32 +175,19 @@ calculate_energy_budget <- function(climate_data, height, shade_level, surface_r
       Acondfact = 0.25
     ))
   
-  # Get population parameters for the specific species and site
-  pop_idx <- which(pops$spp == species & pops$site == site_orig & pops$sex == sex)[1]
-  
-  if(length(pop_idx) == 0) {
-    stop(paste("No population data found for species =", species, 
-               ", site =", site_orig, ", sex =", sex))
-  }
-  
   # Calculate energy budget
   energy_data <- get_energy_gains(species, site_orig, sex, 
-                                  site_climate$Tb, pops, 
-                                  site_climate)
+                                  climate_data$Tb, pops, 
+                                  climate_data)
   
   # Combine results
-  result <- cbind(
-    site_climate,
-    energy_data
-  ) %>%
+  result <- cbind(climate_data, energy_data) %>%
     mutate(
       species = species,
       sex = sex,
       site_orig = site_orig,
       site_clim = site_clim,
-      year = year,
-      height = height,
-      shade = shade_level
+      year_period = ifelse(year >= 2005, "recent", "historical")
     )
   
   return(result)

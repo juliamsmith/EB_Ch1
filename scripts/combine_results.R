@@ -59,10 +59,9 @@ dir.create(dirname(output_file), recursive = TRUE, showWarnings = FALSE)
 saveRDS(combined_results, output_file)
 cat(sprintf("Combined results saved to %s\n", output_file))
 
-# Optional: Create a summary of the results
-summary_file <- file.path(dirname(output_file), "results_summary.csv")
+# Create summary statistics
 summary_data <- combined_results %>%
-  group_by(species, year, site_orig, site_clim, height, shade) %>%
+  group_by(species, sex, site_orig, site_clim, year, year_period, shade, height) %>%
   summarize(
     mean_tb = mean(Tb, na.rm = TRUE),
     max_tb = max(Tb, na.rm = TRUE),
@@ -75,5 +74,23 @@ summary_data <- combined_results %>%
   )
 
 # Save summary
+summary_file <- file.path(dirname(output_file), "results_summary.csv")
 write_csv(summary_data, summary_file)
 cat(sprintf("Summary saved to %s\n", summary_file))
+
+# Also create a period comparison summary
+period_summary <- combined_results %>%
+  group_by(species, sex, site_orig, site_clim, year_period) %>%
+  summarize(
+    mean_tb = mean(Tb, na.rm = TRUE),
+    max_tb = max(Tb, na.rm = TRUE),
+    total_net_gain = sum(net_gains, na.rm = TRUE),
+    avg_daily_net_gain = sum(net_gains, na.rm = TRUE) / n_distinct(as.Date(dtuse)),
+    n_days = n_distinct(as.Date(dtuse)),
+    .groups = "drop"
+  )
+
+# Save period summary
+period_file <- file.path(dirname(output_file), "period_comparison.csv")
+write_csv(period_summary, period_file)
+cat(sprintf("Period comparison saved to %s\n", period_file))

@@ -1,9 +1,9 @@
 # R/data_functions.R
 
 # Load climate data from RDS files
-load_climate_data <- function(site, year, base_path = "../multi_microclimate") {
+load_climate_data <- function(site, year, base_path = "../targeted_microclimate") {
   # Construct file path
-  file_path <- file.path(base_path, site, sprintf("climateuse_combined_%s_%d_6_7_8.rds", site, year))
+  file_path <- file.path(base_path, site, sprintf("simplified_targeted_%s_%d.rds", site, year))
   
   # Check if file exists
   if (!file.exists(file_path)) {
@@ -47,10 +47,9 @@ save_results <- function(results, output_path, job_id, metadata) {
   
   # Create filename with relevant information
   filename <- file.path(output_path, 
-                        sprintf("eb_results_%s_%s_%s_%s_%s_%s_%s.rds", 
+                        sprintf("eb_results_%s_%s_%s_%s_%s.rds", 
                                 metadata$species, metadata$year,
                                 metadata$site_orig, metadata$site_clim,
-                                metadata$height, metadata$shade,
                                 job_id))
   
   # Add metadata to results
