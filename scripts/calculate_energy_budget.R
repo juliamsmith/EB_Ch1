@@ -13,10 +13,6 @@ site_clim <- args[4]        # Climate site, e.g., "B1"
 sex <- args[5]              # Sex, e.g., "F" or "M"
 output_dir <- args[6]       # Output directory
 
-# Set working directory to the script location
-#script_dir <- dirname(sys.frame(1)$ofile)
-#setwd(file.path(script_dir, ".."))
-
 # Load functions
 source("R/setup.R")
 setup_packages()
@@ -27,18 +23,22 @@ source("R/data_functions.R")
 # Load population data
 pops <- load_pops_data()
 
-# Get surface roughness
-surface_roughness <- get_surface_roughness()
-
-# Load climate data
+# Load climate data for the entire period
 climate_data <- load_climate_data(site_clim, year)
+
+# Filter climate data to summer months (Jun-Aug) if not already filtered
+climate_data <- climate_data %>%
+  filter(month %in% c(6, 7, 8))
 
 cat(sprintf("Processing: Species=%s, Year=%d, Origin=%s, Climate=%s, Sex=%s\n",
             species, year, site_orig, site_clim, sex))
+cat(sprintf("Time period: %s to %s\n",
+            format(min(climate_data$dtuse), "%Y-%m-%d"),
+            format(max(climate_data$dtuse), "%Y-%m-%d")))
 
 # Calculate energy budget
 result <- calculate_energy_budget(
-  climate_data, surface_roughness, pops,
+  climate_data, pops,
   species, sex, site_orig, site_clim, year
 )
 

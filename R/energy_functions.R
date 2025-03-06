@@ -117,7 +117,7 @@ calculate_feeding_gains <- function(tbs, species, site, sex, assim.rate=0.40) {
   return(kJ_hr)
 }
 
-# Get energy gains based on body temperatures
+# Update to get_energy_gains function to use LRF parameters
 get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts){
   # Calculate time intervals in hours
   dt_ints <- as.numeric(difftime(dts$dtuse, lag(dts$dtuse), units = "hours"))
@@ -131,11 +131,33 @@ get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts){
                ", site =", site_orig, ", sex =", sex))
   }
   
-  # Get hourly rates
-  gains_per_hour <- calculate_feeding_gains(tbs, species, site_orig, sex)
+  # Get hourly rates using LRF function
+  gains_per_hour <- sapply(tbs, function(tb) {
+    # Apply sex effect (-0.37 for MS males, -0.06 for MB males)
+    sex_effect <- ifelse(species == "MS", -0.37, -0.06)
+    
+    # Calculate base rate
+    Tmax <- pop_dat$Topt + pop_dat$Above
+    base_rate <- lrf_function(tb, pop_dat$Tmin, Tmax, pop_dat$Topt, pop_dat$Ropt)
+    
+    # Apply sex effect if male
+    if (sex == "M") {
+      base_rate <- exp(log(base_rate) + sex_effect)
+    }
+    
+    # Convert to energy gain (simplified from previous conversion)
+    # Assimilation rate of 0.40
+    dry_fec_mg_hr <- max(0, base_rate)
+    dry_wga_mg_hr <- dry_fec_mg_hr * 12.8/14.8 * 0.40/(1-0.40)
+    kcal_hr <- dry_wga_mg_hr * 14.8/1000
+    kJ_hr <- kcal_hr * 4.184
+    
+    return(kJ_hr)
+  })
   
-  mrs <- get_mrs(tbs, pop_dat$mass[1], pop_dat$elev[1], pop_dat$rmr_b0[1], 
-                 pop_dat$rmr_b1[1], pop_dat$rmr_b2[1], pop_dat$rmr_b3[1])
+  # Calculate metabolic rates and losses
+  mrs <- get_mrs(tbs, pop_dat$mass, pop_dat$elev, pop_dat$rmr_b0, 
+                 pop_dat$rmr_b1, pop_dat$rmr_b2, pop_dat$rmr_b3)
   losses_per_hour <- get_mr_losses(mrs)
   
   # Convert to interval amounts
