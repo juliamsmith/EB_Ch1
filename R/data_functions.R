@@ -56,18 +56,17 @@ get_surface_roughness <- function(file_path = "data/surface_roughness.rds") {
 # Save results to RDS file
 save_results <- function(results, output_path, job_id, metadata) {
   # Create directory if it doesn't exist
-  dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
+  dir.create(output_path, recursive = TRUE, showWarnings = FALSE)
   
-  # Create filename with relevant information
+  # Create filename with relevant information (without job_id)
   filename <- file.path(output_path, 
-                        sprintf("eb_results_%s_%s_%s_%s_%s.rds", 
-                                metadata$species, metadata$year,
-                                metadata$site_orig, metadata$site_clim,
-                                job_id))
+                       sprintf("eb_results_%s_%s_%s_%s.rds", 
+                               metadata$species, metadata$year,
+                               metadata$site_orig, metadata$site_clim))
   
   # Add metadata to results
   results <- results %>%
-    mutate(job_id = job_id)
+    mutate(job_id = job_id)  # Still add job_id to the data, just not in filename
   
   # Save the results
   saveRDS(results, filename)
