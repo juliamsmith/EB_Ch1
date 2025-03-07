@@ -1,0 +1,918 @@
+Arguments received:
+Species: MB
+Years: 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964
+Origin site: C1
+Climate site: C1
+Sex: F
+Output directory: output/results/C1
+Library paths:
+[1] "/gscratch/biology/jmsmith/R"                          
+[2] "/mmfs1/home/smithju/R/x86_64-pc-linux-gnu-library/4.4"
+[3] "/usr/local/lib/R/site-library"                        
+[4] "/usr/local/lib/R/library"                             
+Package tidyverse loaded successfully
+Package TrenchR loaded successfully
+Package rTPC loaded successfully
+Package lubridate loaded successfully
+
+Processing: Species=MB, Year=1945, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1945.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1945/F/eb_results_MB_1945_C1_C1.rds
+
+Processing: Species=MB, Year=1946, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1946.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1946/F/eb_results_MB_1946_C1_C1.rds
+
+Processing: Species=MB, Year=1947, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1947.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1947/F/eb_results_MB_1947_C1_C1.rds
+
+Processing: Species=MB, Year=1948, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1948.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1948/F/eb_results_MB_1948_C1_C1.rds
+
+Processing: Species=MB, Year=1949, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1949.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1949/F/eb_results_MB_1949_C1_C1.rds
+
+Processing: Species=MB, Year=1950, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1950.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1950/F/eb_results_MB_1950_C1_C1.rds
+
+Processing: Species=MB, Year=1951, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1951.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1951/F/eb_results_MB_1951_C1_C1.rds
+
+Processing: Species=MB, Year=1952, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1952.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1952/F/eb_results_MB_1952_C1_C1.rds
+
+Processing: Species=MB, Year=1953, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1953.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1953/F/eb_results_MB_1953_C1_C1.rds
+
+Processing: Species=MB, Year=1954, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1954.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1954/F/eb_results_MB_1954_C1_C1.rds
+
+Processing: Species=MB, Year=1955, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1955.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1955/F/eb_results_MB_1955_C1_C1.rds
+
+Processing: Species=MB, Year=1956, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1956.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1956/F/eb_results_MB_1956_C1_C1.rds
+
+Processing: Species=MB, Year=1957, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1957.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1957/F/eb_results_MB_1957_C1_C1.rds
+
+Processing: Species=MB, Year=1958, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1958.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1958/F/eb_results_MB_1958_C1_C1.rds
+
+Processing: Species=MB, Year=1959, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1959.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1959/F/eb_results_MB_1959_C1_C1.rds
+
+Processing: Species=MB, Year=1960, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1960.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1960/F/eb_results_MB_1960_C1_C1.rds
+
+Processing: Species=MB, Year=1961, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1961.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1961/F/eb_results_MB_1961_C1_C1.rds
+
+Processing: Species=MB, Year=1962, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1962.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1962/F/eb_results_MB_1962_C1_C1.rds
+
+Processing: Species=MB, Year=1963, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1963.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1963/F/eb_results_MB_1963_C1_C1.rds
+
+Processing: Species=MB, Year=1964, Origin=C1, Climate=C1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1/simplified_targeted_C1_1964.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/C1 exists. Contents:
+simplified_targeted_C1_1945.rds
+simplified_targeted_C1_1946.rds
+simplified_targeted_C1_1947.rds
+simplified_targeted_C1_1948.rds
+simplified_targeted_C1_1949.rds
+simplified_targeted_C1_1950.rds
+simplified_targeted_C1_1951.rds
+simplified_targeted_C1_1952.rds
+simplified_targeted_C1_1953.rds
+simplified_targeted_C1_1954.rds
+simplified_targeted_C1_1955.rds
+simplified_targeted_C1_1956.rds
+simplified_targeted_C1_1957.rds
+simplified_targeted_C1_1958.rds
+simplified_targeted_C1_1959.rds
+simplified_targeted_C1_1960.rds
+simplified_targeted_C1_1961.rds
+simplified_targeted_C1_1962.rds
+simplified_targeted_C1_1963.rds
+simplified_targeted_C1_1964.rds
+simplified_targeted_C1_2005.rds
+simplified_targeted_C1_2006.rds
+simplified_targeted_C1_2007.rds
+simplified_targeted_C1_2008.rds
+simplified_targeted_C1_2009.rds
+simplified_targeted_C1_2010.rds
+simplified_targeted_C1_2011.rds
+simplified_targeted_C1_2012.rds
+simplified_targeted_C1_2013.rds
+simplified_targeted_C1_2014.rds
+simplified_targeted_C1_2015.rds
+simplified_targeted_C1_2016.rds
+simplified_targeted_C1_2017.rds
+simplified_targeted_C1_2018.rds
+simplified_targeted_C1_2019.rds
+simplified_targeted_C1_2020.rds
+simplified_targeted_C1_2021.rds
+simplified_targeted_C1_2022.rds
+simplified_targeted_C1_2023.rds
+simplified_targeted_C1_2024.rds
+Saved results to output/results/C1/1964/F/eb_results_MB_1964_C1_C1.rds
+
+All years processed.
