@@ -5,6 +5,20 @@ load_climate_data <- function(site, year, base_path = "../targeted_microclimate"
   # Construct file path
   file_path <- file.path(base_path, site, sprintf("simplified_targeted_%s_%d.rds", site, year))
   
+  # Print the path for debugging
+  cat(sprintf("Looking for climate data at: %s\n", file_path))
+  
+  # List the directory contents for debugging
+  parent_dir <- dirname(file_path)
+  if (dir.exists(parent_dir)) {
+    cat(sprintf("Directory %s exists. Contents:\n", parent_dir))
+    files_in_dir <- list.files(parent_dir, pattern = "\\.rds$")
+    cat(paste(files_in_dir, collapse = "\n"))
+    cat("\n")
+  } else {
+    cat(sprintf("Directory %s does not exist.\n", parent_dir))
+  }
+  
   # Check if file exists
   if (!file.exists(file_path)) {
     stop(paste("Climate data file not found:", file_path))
@@ -15,7 +29,6 @@ load_climate_data <- function(site, year, base_path = "../targeted_microclimate"
   
   return(climate_data)
 }
-
 # Load population data
 load_pops_data <- function(file_path = "data/pops.rds") {
   # Check if file exists

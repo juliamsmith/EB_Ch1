@@ -12,6 +12,12 @@ site_orig <- args[3]        # Original site, e.g., "A1"
 site_clim <- args[4]        # Climate site, e.g., "B1" 
 sex <- args[5]              # Sex, e.g., "F" or "M"
 output_dir <- args[6]       # Output directory
+microclim_path <- if(length(args) > 6) args[7] else "/mmfs1/gscratch/biology/jmsmith/targeted_microclimate"
+
+# Print command line args for debugging
+cat("Command line arguments:\n")
+print(args)
+cat(sprintf("microclim_path: %s\n", microclim_path))
 
 # Load functions
 source("R/setup.R")
@@ -24,12 +30,9 @@ source("R/data_functions.R")
 pops <- load_pops_data()
 
 # Load climate data for the entire period
-climate_data <- load_climate_data(site_clim, year)
+climate_data <- load_climate_data(site_clim, year, microclim_path)
 
-# Filter climate data to summer months (Jun-Aug) if not already filtered
-climate_data <- climate_data %>%
-  filter(month %in% c(6, 7, 8))
-
+# No filtering - use all data in the file
 cat(sprintf("Processing: Species=%s, Year=%d, Origin=%s, Climate=%s, Sex=%s\n",
             species, year, site_orig, site_clim, sex))
 cat(sprintf("Time period: %s to %s\n",

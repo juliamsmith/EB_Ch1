@@ -117,37 +117,56 @@ calculate_feeding_gains <- function(tbs, species, site, sex, assim.rate=0.40) {
   return(kJ_hr)
 }
 
-# Update to get_energy_gains function to use LRF parameters
+# Update to get_energy_gains function to use lrf_1991 from rTPC
 get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts){
   # Calculate time intervals in hours
   dt_ints <- as.numeric(difftime(dts$dtuse, lag(dts$dtuse), units = "hours"))
   dt_ints[1] <- dt_ints[2]  # Handle the first interval
   
-  # Find population data
-  pop_dat <- pops %>% filter(spp == species & site == site_orig & sex == sex)
+  # Find population data - take just the first row if multiple rows exist
+  pop_dat <- pops %>% 
+    filter(spp == species & site == site_orig & sex == sex) %>%
+    slice(1)  # Take only the first row
   
   if (nrow(pop_dat) == 0) {
     stop(paste("No population data found for species =", species, 
                ", site =", site_orig, ", sex =", sex))
   }
   
-  # Get hourly rates using LRF function
+  # Extract parameters as single values (not vectors)
+  Tmin <- pop_dat$Tmin[1]
+  Topt <- pop_dat$Topt[1]
+  Above <- pop_dat$Above[1]
+  Tmax <- Topt + Above
+  Ropt <- pop_dat$Ropt[1]
+  
+  # Apply sex effect (-0.37 for MS males, -0.06 for MB males)
+  sex_effect <- ifelse(species == "MS", -0.37, -0.06)
+  
+  # Get hourly rates using rTPC's lrf_1991 function
   gains_per_hour <- sapply(tbs, function(tb) {
-    # Apply sex effect (-0.37 for MS males, -0.06 for MB males)
-    sex_effect <- ifelse(species == "MS", -0.37, -0.06)
-    
-    # Calculate base rate
-    Tmax <- pop_dat$Topt + pop_dat$Above
-    base_rate <- lrf_function(tb, pop_dat$Tmin, Tmax, pop_dat$Topt, pop_dat$Ropt)
+    # Set rate to 0 for temperatures outside the valid range
+    if (tb <= Tmin || tb >= Tmax) {
+      base_rate <- 0
+    } else {
+      # Use the lrf_1991 function for temperatures within range
+      base_rate <- tryCatch({
+        lrf_1991(tb, Ropt, Topt, Tmin, Tmax)
+      }, error = function(e) {
+        # Return zero for any errors
+        cat(sprintf("Error in lrf_1991 at temp %.2f: %s\n", tb, e$message))
+        return(0)
+      })
+    }
     
     # Apply sex effect if male
-    if (sex == "M") {
+    if (sex == "M" && base_rate > 0) {
       base_rate <- exp(log(base_rate) + sex_effect)
     }
     
-    # Convert to energy gain (simplified from previous conversion)
+    # Convert to energy gain
     # Assimilation rate of 0.40
-    dry_fec_mg_hr <- max(0, base_rate)
+    dry_fec_mg_hr <- base_rate
     dry_wga_mg_hr <- dry_fec_mg_hr * 12.8/14.8 * 0.40/(1-0.40)
     kcal_hr <- dry_wga_mg_hr * 14.8/1000
     kJ_hr <- kcal_hr * 4.184
@@ -156,8 +175,14 @@ get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts){
   })
   
   # Calculate metabolic rates and losses
-  mrs <- get_mrs(tbs, pop_dat$mass, pop_dat$elev, pop_dat$rmr_b0, 
-                 pop_dat$rmr_b1, pop_dat$rmr_b2, pop_dat$rmr_b3)
+  mass <- pop_dat$mass[1]
+  elev <- pop_dat$elev[1]
+  rmr_b0 <- pop_dat$rmr_b0[1]
+  rmr_b1 <- pop_dat$rmr_b1[1]
+  rmr_b2 <- pop_dat$rmr_b2[1]
+  rmr_b3 <- pop_dat$rmr_b3[1]
+  
+  mrs <- get_mrs(tbs, mass, elev, rmr_b0, rmr_b1, rmr_b2, rmr_b3)
   losses_per_hour <- get_mr_losses(mrs)
   
   # Convert to interval amounts
@@ -175,7 +200,7 @@ get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts){
 }
 
 # Calculate body temperatures and energy budget for a given scenario
-calculate_energy_budget <- function(climate_data, surface_roughness, pops, 
+calculate_energy_budget <- function(climate_data, pops, 
                                     species, sex, site_orig, site_clim, year) {
   
   # Add zenith angle if not already present
@@ -186,15 +211,15 @@ calculate_energy_budget <- function(climate_data, surface_roughness, pops,
   # Calculate body temperature for each row
   climate_data <- climate_data %>%
     mutate(Tb = Tb_grasshopper2.5(
-      T_a = Tair,
-      T_g = Tsoil,
-      u = wind_speed_profile_neutral(ifelse(wind == 0, 0.001, wind), 1, surface_roughness, height),
+      T_a = Tair,              # Use the height-specific air temperature directly
+      T_g = Tsoil,             # Ground temperature
+      u = ifelse(wind == 0, 0.001, wind),  # Use height-specific wind directly
       S = (1 - shade) * ifelse(psi != 90 & psi != -90, rad, 0),  # Convert shade to sun level
-      K_t = 0.7,
-      psi = psi,
-      l = 0.03,
-      z = height,
-      Acondfact = 0.25
+      K_t = 0.7,               # Clearness index
+      psi = psi,               # Solar zenith angle
+      l = 0.03,                # Grasshopper length (3cm)
+      z = height,              # Height above ground
+      Acondfact = 0.25         # Area conduction factor
     ))
   
   # Calculate energy budget
