@@ -201,20 +201,34 @@ calculate_energy_budget <- function(climate_data, pops,
     end_idx <- min(batch * batch_size, nrow(climate_data))
     batch_rows <- start_idx:end_idx
     
+    cat(sprintf("Processing batch %d/%d (rows %d-%d)\n", 
+                batch, num_batches, start_idx, end_idx))
+    
     tryCatch({
       climate_data$Tb[batch_rows] <- Tb_grasshopper2.5(
-        T_a = climate_data$Tair[batch_rows],              # Use air temperature
-        T_g = climate_data$Tsoil[batch_rows],             # Ground temperature
-        u = ifelse(climate_data$wind[batch_rows] == 0, 0.001, climate_data$wind[batch_rows]),  # Ensure positive wind
-        S = ifelse(psi != 90 & psi != -90, rad, 0),
-        K_t = 0.7,               # Clearness index
-        psi = climate_data$psi[batch_rows],               # Solar zenith angle
-        l = 0.03,                # Grasshopper length (3cm)
-        z = climate_data$height[batch_rows],              # Height above ground
-        Acondfact = 0.25         # Area conduction factor
+        T_a = climate_data$Tair[batch_rows],              
+        T_g = climate_data$Tsoil[batch_rows],             
+        u = ifelse(climate_data$wind[batch_rows] == 0, 0.001, climate_data$wind[batch_rows]),
+        S = ifelse(climate_data$psi[batch_rows] != 90 & climate_data$psi[batch_rows] != -90, 
+                   climate_data$rad[batch_rows], 0),
+        K_t = 0.7,               
+        psi = climate_data$psi[batch_rows],               
+        l = 0.03,                
+        z = climate_data$height[batch_rows],              
+        Acondfact = 0.25         
       )
+      
+      # Print summary statistics of calculated temperatures
+      cat(sprintf("  Calculated %d temperatures. Range: %.2f to %.2f\n", 
+                  sum(!is.na(climate_data$Tb[batch_rows])),
+                  min(climate_data$Tb[batch_rows], na.rm=TRUE),
+                  max(climate_data$Tb[batch_rows], na.rm=TRUE)))
+      
     }, error = function(e) {
       warning(paste("Error calculating body temperatures for batch", batch, ":", e$message))
+      # Print details about the data that caused the error
+      cat("Data summary for problematic batch:\n")
+      print(summary(climate_data[batch_rows, c("Tair", "Tsoil", "wind", "psi", "height")]))
       climate_data$Tb[batch_rows] <- NA
     })
   }
