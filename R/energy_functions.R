@@ -2,19 +2,33 @@
 
 # Calculate metabolic rate based on temperature and other factors
 get_mrs <- function(tb, mass, elev, b0, b1, b2, b3, k=8.62*10^-5) {
+  # Print parameter summary
+  cat(sprintf("MR parameters: mass=%.2f, elev=%.1f, b0=%.2f, b1=%.2f, b2=%.2f, b3=%.6f\n",
+              mass, elev, b0, b1, b2, b3))
+  
   # Convert temperatures to Kelvin for Arrhenius equation
   tb_K <- tb + 273.15
   
-  # Ensure parameters are numeric
-  mass <- as.numeric(mass)
-  elev <- as.numeric(elev)
-  b0 <- as.numeric(b0)
-  b1 <- as.numeric(b1)
-  b2 <- as.numeric(b2)
-  b3 <- as.numeric(b3)
+  # Compute raw components for a sample of temperatures
+  sample_indices <- sample(1:length(tb), min(5, length(tb)))
+  for(i in sample_indices) {
+    if(!is.na(tb[i])) {
+      log_mass <- log(mass)
+      temp_term <- 1/(k*tb_K[i])
+      exponent <- b0 + b1*log_mass + b2*temp_term + b3*elev
+      rmr_value <- exp(exponent)
+      
+      cat(sprintf("Sample tb=%.2f K, log(mass)=%.4f, 1/(kT)=%.6f, exponent=%.4f, rmr=%.6f\n",
+                  tb_K[i], log_mass, temp_term, exponent, rmr_value))
+    }
+  }
   
   # Compute metabolic rate with input validation
   rmr <- exp(b0 + b1*log(mass) + b2*(1/(k*tb_K)) + b3*elev)
+  
+  # Print summary of results
+  cat(sprintf("MR results: %d NA, %d infinite, %d negative, %d zero\n",
+              sum(is.na(rmr)), sum(is.infinite(rmr)), sum(rmr < 0, na.rm=TRUE), sum(rmr == 0, na.rm=TRUE)))
   
   # Handle extreme values
   rmr[is.na(rmr) | is.infinite(rmr) | rmr < 0] <- NA
@@ -75,24 +89,22 @@ lrf_1991_correct <- function(temp, rmax, topt, tmin, tmax) {
 # Improved energy gains function with safer time interval handling
 get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts) {
   # Input validation
-  if(length(tbs) == 0 || length(dts$dtuse) == 0) {
+  if(length(tbs) == 0 || nrow(dts) == 0) {
     warning("Empty input data in get_energy_gains")
     return(data.frame(gains=numeric(0), losses=numeric(0), net_gains=numeric(0)))
   }
   
-  # Sort data by time first to ensure chronological order
-  time_order <- order(dts$dtuse)
-  dts <- dts[time_order,]
-  tbs <- tbs[time_order]
+  # Group by dtuse to identify unique timestamps
+  dts_grouped <- dts %>%
+    group_by(dtuse) %>%
+    summarize(count = n(), .groups = "drop")
   
-  # Calculate time intervals in hours - with safer handling
-  dt_ints <- as.numeric(difftime(dts$dtuse, lag(dts$dtuse), units = "hours"))
+  # Print time series info for debugging
+  cat(sprintf("Total observations: %d, Unique timestamps: %d\n", 
+              nrow(dts), nrow(dts_grouped)))
   
-  # For the first interval, use a reasonable default (1 hour is typical)
-  dt_ints[1] <- 1
-  
-  # Handle any negative or unreasonable intervals
-  dt_ints <- pmin(pmax(dt_ints, 0), 24)  # Limit to 0-24 hour range
+  # Calculate fixed 1-hour intervals
+  dt_ints <- rep(1, length(tbs))
   
   # Find population data
   pop_dat <- pops %>% 
@@ -155,10 +167,16 @@ get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts) {
   mrs <- get_mrs(tbs, mass, elev, rmr_b0, rmr_b1, rmr_b2, rmr_b3)
   losses_per_hour <- get_mr_losses(mrs)
   
-  # Convert to interval amounts
+  # Convert to interval amounts (using fixed 1-hour intervals)
   gains <- gains_per_hour * dt_ints
   losses <- losses_per_hour * dt_ints
   net_gains <- gains - losses
+  
+  # Print summary stats for debugging
+  cat(sprintf("Energy calculations: %d non-zero gains, %d non-zero losses out of %d observations\n",
+              sum(gains > 0, na.rm=TRUE),
+              sum(losses > 0, na.rm=TRUE),
+              length(gains)))
   
   # Ensure no negative values
   gains[is.na(gains) | gains < 0] <- 0
