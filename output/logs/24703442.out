@@ -1,0 +1,1398 @@
+Arguments received:
+Species: MS
+Years: 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964
+Origin site: Eldo
+Climate site: B1
+Sex: F
+Output directory: output/results/Eldo
+Library paths:
+[1] "/gscratch/biology/jmsmith/R"                          
+[2] "/mmfs1/home/smithju/R/x86_64-pc-linux-gnu-library/4.4"
+[3] "/usr/local/lib/R/site-library"                        
+[4] "/usr/local/lib/R/library"                             
+Package tidyverse loaded successfully
+Package TrenchR loaded successfully
+Package rTPC loaded successfully
+Package lubridate loaded successfully
+
+Processing: Species=MS, Year=1945, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1945.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -9.60 to 54.93
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 2.65 to 59.15
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -8.71 to 52.63
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.92 to 47.63
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -7.94 to 48.64
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 1.39 to 47.35
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -5.96 to 48.41
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: -6.08 to 17.72
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 0.46 to 18.59
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: -6.61 to 20.04
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.25 to 20.83
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 6.32 to 19.34
+Saved results to output/results/Eldo/1945/F/eb_results_MS_1945_Eldo_B1.rds
+
+Processing: Species=MS, Year=1946, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1946.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -3.49 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 3.55 to 59.02
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -2.56 to 49.14
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.56 to 49.12
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -1.95 to 46.44
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 0.75 to 48.49
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -0.10 to 43.21
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: -1.07 to 19.01
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 0.35 to 19.26
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: -1.06 to 22.47
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.02 to 21.17
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 3.81 to 15.02
+Saved results to output/results/Eldo/1946/F/eb_results_MS_1946_Eldo_B1.rds
+
+Processing: Species=MS, Year=1947, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1947.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -8.28 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 2.79 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -7.54 to 53.41
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.76 to 49.08
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -7.66 to 45.51
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 1.57 to 49.62
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -6.53 to 43.14
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 0.57 to 17.83
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 0.79 to 18.88
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: -6.70 to 20.73
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.39 to 21.76
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 6.64 to 17.73
+Saved results to output/results/Eldo/1947/F/eb_results_MS_1947_Eldo_B1.rds
+
+Processing: Species=MS, Year=1948, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1948.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 0.03 to 59.87
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.18 to 58.05
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 1.29 to 51.10
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.87 to 47.10
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 1.71 to 48.44
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 1.84 to 47.20
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 2.65 to 46.98
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 1.78 to 17.44
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 2.26 to 19.39
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.53 to 20.57
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.66 to 21.87
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 5.25 to 21.60
+Saved results to output/results/Eldo/1948/F/eb_results_MS_1948_Eldo_B1.rds
+
+Processing: Species=MS, Year=1949, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1949.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -4.04 to 54.83
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 0.94 to 59.49
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -2.29 to 53.76
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 4.13 to 47.43
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -2.15 to 47.97
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.62 to 47.53
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -1.18 to 48.09
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 2.46 to 18.10
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -0.65 to 17.57
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 3.65 to 21.04
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.76 to 21.59
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 4.22 to 14.95
+Saved results to output/results/Eldo/1949/F/eb_results_MS_1949_Eldo_B1.rds
+
+Processing: Species=MS, Year=1950, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1950.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -8.27 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.57 to 57.46
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -7.17 to 54.66
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.97 to 47.34
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -6.81 to 48.49
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 1.98 to 47.53
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -4.24 to 45.12
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 2.26 to 17.44
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -4.75 to 19.87
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: -2.28 to 20.38
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 2.08 to 19.78
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 3.42 to 19.87
+Saved results to output/results/Eldo/1950/F/eb_results_MS_1950_Eldo_B1.rds
+
+Processing: Species=MS, Year=1951, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1951.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -7.24 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 2.63 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -7.10 to 47.66
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.88 to 51.76
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -6.31 to 43.48
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.00 to 51.73
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -6.18 to 43.69
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 1.47 to 19.88
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -6.17 to 19.24
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: -0.55 to 23.28
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.50 to 22.80
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 4.74 to 17.24
+Saved results to output/results/Eldo/1951/F/eb_results_MS_1951_Eldo_B1.rds
+
+Processing: Species=MS, Year=1952, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1952.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -3.92 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 3.62 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -1.39 to 56.95
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 1.72 to 50.78
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -1.16 to 53.71
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 1.94 to 50.65
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 0.04 to 47.10
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 1.06 to 18.17
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 1.31 to 20.31
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 1.55 to 21.62
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 5.28 to 22.27
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 2.32 to 17.54
+Saved results to output/results/Eldo/1952/F/eb_results_MS_1952_Eldo_B1.rds
+
+Processing: Species=MS, Year=1953, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1953.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -3.38 to 59.86
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.77 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -0.78 to 50.21
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 4.54 to 48.74
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -0.95 to 45.26
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.98 to 49.24
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 0.00 to 49.68
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 1.93 to 18.79
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 1.20 to 18.11
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.25 to 21.64
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.78 to 21.76
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 5.54 to 18.77
+Saved results to output/results/Eldo/1953/F/eb_results_MS_1953_Eldo_B1.rds
+
+Processing: Species=MS, Year=1954, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1954.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -5.78 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.46 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -4.17 to 58.92
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.72 to 51.75
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -3.46 to 49.93
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 3.78 to 51.06
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -1.75 to 48.68
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 2.71 to 20.07
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -1.39 to 19.02
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: -0.89 to 25.35
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.28 to 22.30
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 5.26 to 20.74
+Saved results to output/results/Eldo/1954/F/eb_results_MS_1954_Eldo_B1.rds
+
+Processing: Species=MS, Year=1955, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1955.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -5.04 to 57.24
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -0.07 to 58.06
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -2.76 to 54.28
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.52 to 47.42
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -1.15 to 45.99
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 1.14 to 47.17
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -0.73 to 45.72
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 1.32 to 18.01
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -0.26 to 18.06
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 0.60 to 23.45
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.67 to 21.55
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 3.51 to 18.73
+Saved results to output/results/Eldo/1955/F/eb_results_MS_1955_Eldo_B1.rds
+
+Processing: Species=MS, Year=1956, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1956.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -0.20 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.67 to 57.60
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -2.97 to 56.10
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.09 to 46.94
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -1.84 to 51.29
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 3.39 to 47.17
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -1.26 to 46.63
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 1.42 to 17.56
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -0.18 to 19.17
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 3.26 to 20.99
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.79 to 20.88
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: -0.22 to 14.78
+Saved results to output/results/Eldo/1956/F/eb_results_MS_1956_Eldo_B1.rds
+
+Processing: Species=MS, Year=1957, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1957.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -2.22 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 2.96 to 59.79
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -0.83 to 58.99
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.90 to 49.51
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -0.55 to 48.37
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 3.03 to 48.89
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 0.65 to 47.69
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: -0.35 to 17.93
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 2.03 to 18.86
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 0.18 to 22.17
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.22 to 21.45
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 5.12 to 14.73
+Saved results to output/results/Eldo/1957/F/eb_results_MS_1957_Eldo_B1.rds
+
+Processing: Species=MS, Year=1958, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1958.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -0.71 to 56.75
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.79 to 59.81
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 0.80 to 49.27
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.45 to 48.83
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 1.22 to 43.53
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.25 to 48.72
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 1.41 to 48.55
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 2.03 to 17.11
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 2.80 to 20.03
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.09 to 21.07
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.49 to 22.01
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 3.48 to 17.90
+Saved results to output/results/Eldo/1958/F/eb_results_MS_1958_Eldo_B1.rds
+
+Processing: Species=MS, Year=1959, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1959.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -2.36 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 3.66 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -1.53 to 50.58
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.25 to 50.14
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -0.69 to 51.43
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.27 to 50.19
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 0.93 to 49.80
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 2.08 to 18.84
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 0.51 to 21.15
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 3.31 to 21.15
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.85 to 22.14
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 4.88 to 18.93
+Saved results to output/results/Eldo/1959/F/eb_results_MS_1959_Eldo_B1.rds
+
+Processing: Species=MS, Year=1960, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1960.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -0.51 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -1.93 to 59.96
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -0.70 to 57.05
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.39 to 50.63
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -0.08 to 48.31
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 3.32 to 50.77
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -0.08 to 46.31
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 0.86 to 18.19
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 0.20 to 19.48
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 1.80 to 21.95
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 1.15 to 22.38
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 4.20 to 22.11
+Saved results to output/results/Eldo/1960/F/eb_results_MS_1960_Eldo_B1.rds
+
+Processing: Species=MS, Year=1961, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1961.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -3.30 to 58.03
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.80 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -1.85 to 51.92
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.13 to 50.77
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -1.55 to 46.77
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.59 to 51.02
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -0.21 to 48.31
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 2.21 to 18.49
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -0.09 to 18.20
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.44 to 21.22
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 2.36 to 21.81
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 6.39 to 16.14
+Saved results to output/results/Eldo/1961/F/eb_results_MS_1961_Eldo_B1.rds
+
+Processing: Species=MS, Year=1962, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1962.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -4.06 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.07 to 58.05
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -2.85 to 59.01
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.16 to 49.34
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -1.58 to 48.16
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 3.56 to 49.02
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -0.78 to 48.04
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: -0.07 to 17.90
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 0.06 to 17.58
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: -0.36 to 21.01
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 2.61 to 22.35
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 1.95 to 13.99
+Saved results to output/results/Eldo/1962/F/eb_results_MS_1962_Eldo_B1.rds
+
+Processing: Species=MS, Year=1963, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1963.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -1.41 to 58.96
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 3.45 to 59.59
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -0.19 to 56.65
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.98 to 48.61
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 0.26 to 47.56
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.99 to 48.80
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 1.20 to 45.99
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 2.45 to 19.34
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 1.70 to 18.98
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 1.97 to 23.23
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.87 to 23.40
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 5.93 to 16.46
+Saved results to output/results/Eldo/1963/F/eb_results_MS_1963_Eldo_B1.rds
+
+Processing: Species=MS, Year=1964, Origin=Eldo, Climate=B1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1/simplified_B1_1964.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/B1 exists. Contents:
+simplified_B1_1945.rds
+simplified_B1_1946.rds
+simplified_B1_1947.rds
+simplified_B1_1948.rds
+simplified_B1_1949.rds
+simplified_B1_1950.rds
+simplified_B1_1951.rds
+simplified_B1_1952.rds
+simplified_B1_1953.rds
+simplified_B1_1954.rds
+simplified_B1_1955.rds
+simplified_B1_1956.rds
+simplified_B1_1957.rds
+simplified_B1_1958.rds
+simplified_B1_1959.rds
+simplified_B1_1960.rds
+simplified_B1_1961.rds
+simplified_B1_1962.rds
+simplified_B1_1963.rds
+simplified_B1_1964.rds
+simplified_B1_2005.rds
+simplified_B1_2006.rds
+simplified_B1_2007.rds
+simplified_B1_2008.rds
+simplified_B1_2009.rds
+simplified_B1_2010.rds
+simplified_B1_2011.rds
+simplified_B1_2012.rds
+simplified_B1_2013.rds
+simplified_B1_2014.rds
+simplified_B1_2015.rds
+simplified_B1_2016.rds
+simplified_B1_2017.rds
+simplified_B1_2018.rds
+simplified_B1_2019.rds
+simplified_B1_2020.rds
+simplified_B1_2021.rds
+simplified_B1_2022.rds
+simplified_B1_2023.rds
+simplified_B1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -4.76 to 60.00
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -1.88 to 58.58
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -3.43 to 50.34
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.05 to 48.74
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: -3.61 to 47.41
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.40 to 50.20
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: -4.39 to 47.48
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: -0.28 to 18.72
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: -3.31 to 19.77
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 0.36 to 22.07
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 0.29 to 21.85
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 0.71 to 18.83
+Saved results to output/results/Eldo/1964/F/eb_results_MS_1964_Eldo_B1.rds
+
+All years processed.
