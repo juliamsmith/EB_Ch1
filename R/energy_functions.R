@@ -206,7 +206,7 @@ calculate_energy_budget <- function(climate_data, pops,
         T_a = climate_data$Tair[batch_rows],              # Use air temperature
         T_g = climate_data$Tsoil[batch_rows],             # Ground temperature
         u = ifelse(climate_data$wind[batch_rows] == 0, 0.001, climate_data$wind[batch_rows]),  # Ensure positive wind
-        S = ifelse(psi != 90 & psi != -90, rad, 0)
+        S = ifelse(psi != 90 & psi != -90, rad, 0),
         K_t = 0.7,               # Clearness index
         psi = climate_data$psi[batch_rows],               # Solar zenith angle
         l = 0.03,                # Grasshopper length (3cm)
