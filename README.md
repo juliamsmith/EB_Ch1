@@ -6,28 +6,42 @@ This repository contains code for calculating the energy budget of grasshoppers 
 
 apptainer exec   --bind $PWD:$PWD   --bind /gscratch/biology/jmsmith/R:/gscratch/biology/jmsmith/R   --bind /mmfs1/gscratch/biology/jmsmith/targeted_microclimate:/mmfs1/gscratch/biology/jmsmith/targeted_microclimate   tidyverse_latest.sif   Rscript scripts/submit_bundled_jobs.R both --dry-run
 
-I'll print one for you to show you what they look like:
-printing bundle_job_MB_recent_D1_D1_M.sh...
+*I'll print one for you to show you what they look like:*
+
+*printing bundle_job_MB_recent_D1_D1_M.sh...*
+
 #!/bin/bash
+
 #SBATCH --job-name=eb_MB_recent_D1_D1_M
+
 #SBATCH --output=output/logs/%j.out
+
 #SBATCH --error=output/logs/%j.err
+
 #SBATCH --time=00:10:00
+
 #SBATCH -p ckpt
+
 #SBATCH --cpus-per-task=1
+
 #SBATCH --mem=8G
 
+
 #Set working directory
+
 WORKDIR=/mmfs1/gscratch/biology/jmsmith/EB_Ch1
+
 cd $WORKDIR
 
 module load apptainer/1.1.5
+
 apptainer exec \
   --bind $WORKDIR:$WORKDIR \
   --bind /gscratch/biology/jmsmith/R:/gscratch/biology/jmsmith/R \
   --bind /mmfs1/gscratch/biology/jmsmith/targeted_microclimate:/mmfs1/gscratch/biology/jmsmith/targeted_microclimate \
   tidyverse_latest.sif \
   Rscript $WORKDIR/scripts/calculate_energy_bundle.R MB "2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024" D1 D1 M output/results/D1
+
 
 *Then run this to submit them to the cluster (not really important if you are not using the cluster):*
 
