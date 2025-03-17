@@ -1,5 +1,7 @@
 library(tidyverse)
 
+#might need to set wd to source file location
+
 # Function to extract info from file path
 extract_filename_info <- function(filepath) {
   # Extract components from filename (assumes filename pattern: eb_results_SPECIES_YEAR_SITE-ORIG_SITE-CLIM.rds)
@@ -100,6 +102,8 @@ create_wide_format <- function(summary_df) {
   return(wide_df)
 }
 
+#sorry for hardcoding of my own folder locations
+
 # Main function to run the analysis
 summarize_eb_results <- function(base_dir = "C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output/results") {
   # Find all RDS files
@@ -137,7 +141,7 @@ results <- summarize_eb_results()
 
 # # Save the outputs -- FIRST SET WD
 # write_csv(results$long, "eb_results_summary_long.csv")
-# write_csv(results$wide, "eb_results_summary_wide.csv")
+# write_csv(results$wide, "eb_results_summary_wide.csv") #could uncomment
 
 # Preview the results
 cat("\nSummary of long format results:\n")
