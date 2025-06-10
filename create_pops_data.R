@@ -42,19 +42,19 @@ pops <- data.frame(
 # MB parameters
 mb_params <- data.frame(
   site = c("A1", "B1", "C1", "D1"),
-  Tmin = c(13.57, 12.80, 13.79, 14.0),   # D1 is estimated
-  Topt = c(37.54, 41.76, 41.03, 42.0),   # D1 is estimated
-  Above = c(11.70, 10.74, 11.77, 12.0),  # D1 is estimated
-  Ropt = c(2.64, 3.29, 3.93, 4.0)        # D1 is estimated
+  Tmin = c(10.73, 11.31, 11.07, 10.86),   
+  Topt = c(39.52, 40.86, 40.76, 40.08),   
+  Above = c(16.73, 12.30, 12.91, 13.84),  
+  Ropt = c(2.99, 3.93, 4.09, 4.20)        
 )
 
 # MS parameters
 ms_params <- data.frame(
   site = c("Eldo", "A1", "B1"),
-  Tmin = c(14.74, 11.67, 10.96),
-  Topt = c(39.88, 39.89, 39.78),
-  Above = c(9.56, 6.68, 8.20),
-  Ropt = c(3.50, 3.63, 4.30)
+  Tmin = c(12.63, 12.37, 11.57),
+  Topt = c(40.69, 42.17, 39.68),
+  Above = c(10.07, 9.02, 7.56),
+  Ropt = c(3.40, 4.13, 4.89)
 )
 
 # Merge LRF parameters into pops dataframe

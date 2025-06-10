@@ -124,7 +124,7 @@ get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts) {
   Ropt <- pop_dat$Ropt[1]
   
   # Get sex effect coefficient
-  sex_effect <- ifelse(species == "MS", -0.37, -0.06)
+  sex_effect <- ifelse(species == "MS", -0.415, 0.123)
   
   # Calculate sex multiplier based on coding (M=0.5, F=-0.5)
   sex_multiplier <- if(sex == "M") {
