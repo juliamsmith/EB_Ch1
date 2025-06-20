@@ -1,0 +1,598 @@
+Arguments received:
+Species: MS
+Years: 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959
+Origin site: Eldo
+Climate site: Eldo
+Sex: M
+Output directory: output/results/Eldo
+Library paths:
+[1] "/gscratch/biology/jmsmith/R"                          
+[2] "/mmfs1/home/smithju/R/x86_64-pc-linux-gnu-library/4.4"
+[3] "/usr/local/lib/R/site-library"                        
+[4] "/usr/local/lib/R/library"                             
+Package tidyverse loaded successfully
+Package TrenchR loaded successfully
+Package rTPC loaded successfully
+Package lubridate loaded successfully
+
+Processing: Species=MS, Year=1950, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1950.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -10.84 to 46.19
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -5.60 to 52.42
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 2.13 to 49.75
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.13 to 53.19
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 4.59 to 47.05
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 3.63 to 48.37
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 3.71 to 42.08
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 3.85 to 51.38
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 3.82 to 53.83
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.98 to 42.60
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 0.86 to 46.37
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 14.27 to 39.08
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=286.72 K, log(mass)=-1.1712, 1/(kT)=40.460699, exponent=-3.3241, rmr=0.036004
+Sample tb=276.41 K, log(mass)=-1.1712, 1/(kT)=41.970187, exponent=-4.0336, rmr=0.017711
+Sample tb=286.49 K, log(mass)=-1.1712, 1/(kT)=40.493369, exponent=-3.3395, rmr=0.035456
+Sample tb=292.14 K, log(mass)=-1.1712, 1/(kT)=39.710656, exponent=-2.9716, rmr=0.051222
+Sample tb=283.00 K, log(mass)=-1.1712, 1/(kT)=40.992440, exponent=-3.5740, rmr=0.028043
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5142 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1950/M/eb_results_MS_1950_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1951, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1951.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -7.91 to 19.88
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -5.00 to 55.19
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 0.99 to 53.56
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.11 to 53.24
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 3.24 to 57.37
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 5.39 to 59.29
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 4.71 to 41.42
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 8.16 to 47.71
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 4.29 to 55.49
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 3.36 to 52.31
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.64 to 48.01
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 12.61 to 34.84
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=285.40 K, log(mass)=-1.1712, 1/(kT)=40.647681, exponent=-3.4120, rmr=0.032975
+Sample tb=301.77 K, log(mass)=-1.1712, 1/(kT)=38.443155, exponent=-2.3759, rmr=0.092934
+Sample tb=283.72 K, log(mass)=-1.1712, 1/(kT)=40.888590, exponent=-3.5252, rmr=0.029445
+Sample tb=270.53 K, log(mass)=-1.1712, 1/(kT)=42.882585, exponent=-4.4624, rmr=0.011535
+Sample tb=273.64 K, log(mass)=-1.1712, 1/(kT)=42.395484, exponent=-4.2335, rmr=0.014502
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 4991 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1951/M/eb_results_MS_1951_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1952, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1952.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 2.08 to 56.22
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -1.55 to 60.00
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 2.62 to 60.00
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.89 to 47.03
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 2.30 to 53.15
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 4.41 to 54.95
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 5.26 to 54.28
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 6.32 to 52.78
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 5.47 to 51.26
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 5.48 to 50.31
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 1.47 to 55.28
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 11.37 to 42.71
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=277.43 K, log(mass)=-1.1712, 1/(kT)=41.815501, exponent=-3.9609, rmr=0.019047
+Sample tb=286.25 K, log(mass)=-1.1712, 1/(kT)=40.527060, exponent=-3.3553, rmr=0.034899
+Sample tb=311.64 K, log(mass)=-1.1712, 1/(kT)=37.224826, exponent=-1.8033, rmr=0.164762
+Sample tb=282.11 K, log(mass)=-1.1712, 1/(kT)=41.121343, exponent=-3.6346, rmr=0.026394
+Sample tb=290.83 K, log(mass)=-1.1712, 1/(kT)=39.889481, exponent=-3.0556, rmr=0.047092
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5884 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1952/M/eb_results_MS_1952_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1953, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1953.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -2.93 to 45.39
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 0.75 to 56.10
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 2.65 to 52.30
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.05 to 52.19
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 4.12 to 43.16
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 4.66 to 46.71
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 4.40 to 56.84
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.08 to 53.13
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 3.64 to 51.37
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.66 to 41.66
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.00 to 48.27
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 14.78 to 34.27
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=275.02 K, log(mass)=-1.1712, 1/(kT)=42.182369, exponent=-4.1333, rmr=0.016030
+Sample tb=284.78 K, log(mass)=-1.1712, 1/(kT)=40.736915, exponent=-3.4539, rmr=0.031621
+Sample tb=282.24 K, log(mass)=-1.1712, 1/(kT)=41.102706, exponent=-3.6259, rmr=0.026626
+Sample tb=285.63 K, log(mass)=-1.1712, 1/(kT)=40.615190, exponent=-3.3967, rmr=0.033483
+Sample tb=304.95 K, log(mass)=-1.1712, 1/(kT)=38.042108, exponent=-2.1874, rmr=0.112211
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5871 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1953/M/eb_results_MS_1953_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1954, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1954.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -4.16 to 39.99
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -0.20 to 50.32
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 5.06 to 50.02
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 4.97 to 52.93
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 7.53 to 56.61
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 8.61 to 45.26
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 7.58 to 44.12
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.55 to 51.24
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 4.90 to 48.83
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.83 to 45.24
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 2.67 to 50.33
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 15.63 to 39.88
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=285.25 K, log(mass)=-1.1712, 1/(kT)=40.669060, exponent=-3.4220, rmr=0.032646
+Sample tb=300.16 K, log(mass)=-1.1712, 1/(kT)=38.649273, exponent=-2.4727, rmr=0.084353
+Sample tb=288.90 K, log(mass)=-1.1712, 1/(kT)=40.155980, exponent=-3.1809, rmr=0.041548
+Sample tb=276.54 K, log(mass)=-1.1712, 1/(kT)=41.950764, exponent=-4.0244, rmr=0.017873
+Sample tb=289.49 K, log(mass)=-1.1712, 1/(kT)=40.073465, exponent=-3.1421, rmr=0.043191
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 6221 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1954/M/eb_results_MS_1954_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1955, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1955.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -5.18 to 47.22
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 0.22 to 52.15
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 1.65 to 52.78
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 1.24 to 50.42
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 2.62 to 52.21
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.99 to 53.63
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 6.88 to 47.02
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 6.91 to 55.28
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 5.86 to 45.66
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.95 to 40.85
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 1.64 to 53.33
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 13.97 to 38.14
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=289.32 K, log(mass)=-1.1712, 1/(kT)=40.097808, exponent=-3.1536, rmr=0.042700
+Sample tb=278.19 K, log(mass)=-1.1712, 1/(kT)=41.700998, exponent=-3.9071, rmr=0.020100
+Sample tb=280.48 K, log(mass)=-1.1712, 1/(kT)=41.361637, exponent=-3.7476, rmr=0.023575
+Sample tb=288.61 K, log(mass)=-1.1712, 1/(kT)=40.195805, exponent=-3.1996, rmr=0.040778
+Sample tb=288.73 K, log(mass)=-1.1712, 1/(kT)=40.179778, exponent=-3.1921, rmr=0.041086
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5757 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1955/M/eb_results_MS_1955_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1956, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1956.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 2.06 to 52.44
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.54 to 52.52
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 2.27 to 49.04
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 4.04 to 44.34
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 3.67 to 56.22
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 4.09 to 49.16
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 4.00 to 42.23
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 3.05 to 46.28
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 3.02 to 49.91
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 1.73 to 46.71
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: -0.43 to 49.18
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 7.86 to 34.41
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=278.66 K, log(mass)=-1.1712, 1/(kT)=41.631667, exponent=-3.8745, rmr=0.020765
+Sample tb=280.89 K, log(mass)=-1.1712, 1/(kT)=41.300026, exponent=-3.7186, rmr=0.024268
+Sample tb=292.61 K, log(mass)=-1.1712, 1/(kT)=39.646888, exponent=-2.9416, rmr=0.052780
+Sample tb=292.72 K, log(mass)=-1.1712, 1/(kT)=39.631980, exponent=-2.9346, rmr=0.053151
+Sample tb=278.70 K, log(mass)=-1.1712, 1/(kT)=41.624526, exponent=-3.8711, rmr=0.020835
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5585 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1956/M/eb_results_MS_1956_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1957, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1957.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 0.04 to 50.49
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -1.43 to 48.37
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -1.73 to 50.03
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 4.53 to 50.87
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 3.39 to 48.51
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 7.25 to 46.53
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 6.30 to 45.99
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 7.76 to 48.54
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 6.17 to 51.94
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.44 to 51.83
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.49 to 46.88
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 11.65 to 34.80
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=279.36 K, log(mass)=-1.1712, 1/(kT)=41.527275, exponent=-3.8254, rmr=0.021810
+Sample tb=283.09 K, log(mass)=-1.1712, 1/(kT)=40.979812, exponent=-3.5681, rmr=0.028209
+Sample tb=294.78 K, log(mass)=-1.1712, 1/(kT)=39.354487, exponent=-2.8042, rmr=0.060556
+Sample tb=283.85 K, log(mass)=-1.1712, 1/(kT)=40.869480, exponent=-3.5162, rmr=0.029711
+Sample tb=281.94 K, log(mass)=-1.1712, 1/(kT)=41.146237, exponent=-3.6463, rmr=0.026087
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5787 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1957/M/eb_results_MS_1957_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1958, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1958.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 1.45 to 51.04
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.08 to 51.01
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 3.21 to 53.01
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.09 to 55.32
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 3.02 to 53.83
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 4.15 to 56.38
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 4.49 to 51.63
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.63 to 50.31
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 5.26 to 50.71
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 6.94 to 45.39
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.06 to 49.93
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 13.52 to 39.96
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=289.36 K, log(mass)=-1.1712, 1/(kT)=40.091614, exponent=-3.1506, rmr=0.042825
+Sample tb=278.85 K, log(mass)=-1.1712, 1/(kT)=41.603473, exponent=-3.8612, rmr=0.021042
+Sample tb=289.37 K, log(mass)=-1.1712, 1/(kT)=40.090471, exponent=-3.1501, rmr=0.042848
+Sample tb=306.80 K, log(mass)=-1.1712, 1/(kT)=37.812416, exponent=-2.0794, rmr=0.125003
+Sample tb=281.03 K, log(mass)=-1.1712, 1/(kT)=41.280565, exponent=-3.7095, rmr=0.024491
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5586 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1958/M/eb_results_MS_1958_Eldo_Eldo.rds
+
+Processing: Species=MS, Year=1959, Origin=Eldo, Climate=Eldo, Sex=M
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo/simplified_Eldo_1959.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/Eldo exists. Contents:
+simplified_Eldo_1950.rds
+simplified_Eldo_1951.rds
+simplified_Eldo_1952.rds
+simplified_Eldo_1953.rds
+simplified_Eldo_1954.rds
+simplified_Eldo_1955.rds
+simplified_Eldo_1956.rds
+simplified_Eldo_1957.rds
+simplified_Eldo_1958.rds
+simplified_Eldo_1959.rds
+simplified_Eldo_2015.rds
+simplified_Eldo_2016.rds
+simplified_Eldo_2017.rds
+simplified_Eldo_2018.rds
+simplified_Eldo_2019.rds
+simplified_Eldo_2020.rds
+simplified_Eldo_2021.rds
+simplified_Eldo_2022.rds
+simplified_Eldo_2023.rds
+simplified_Eldo_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -1.75 to 51.37
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 2.88 to 52.78
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 5.58 to 51.90
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.41 to 48.38
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 1.45 to 51.00
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 5.46 to 52.55
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 5.01 to 48.57
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 6.12 to 54.38
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 5.36 to 57.52
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.67 to 51.82
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.09 to 53.17
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 13.51 to 48.75
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.31, elev=1740.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=294.74 K, log(mass)=-1.1712, 1/(kT)=39.359847, exponent=-2.8067, rmr=0.060403
+Sample tb=281.42 K, log(mass)=-1.1712, 1/(kT)=41.222825, exponent=-3.6823, rmr=0.025165
+Sample tb=281.09 K, log(mass)=-1.1712, 1/(kT)=41.270899, exponent=-3.7049, rmr=0.024602
+Sample tb=287.85 K, log(mass)=-1.1712, 1/(kT)=40.302335, exponent=-3.2497, rmr=0.038787
+Sample tb=281.79 K, log(mass)=-1.1712, 1/(kT)=41.169418, exponent=-3.6572, rmr=0.025804
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5826 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/Eldo/1959/M/eb_results_MS_1959_Eldo_Eldo.rds
+
+All years processed.
