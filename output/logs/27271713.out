@@ -1,0 +1,598 @@
+Arguments received:
+Species: MS
+Years: 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024
+Origin site: A1
+Climate site: A1
+Sex: F
+Output directory: output/results/A1
+Library paths:
+[1] "/gscratch/biology/jmsmith/R"                          
+[2] "/mmfs1/home/smithju/R/x86_64-pc-linux-gnu-library/4.4"
+[3] "/usr/local/lib/R/site-library"                        
+[4] "/usr/local/lib/R/library"                             
+Package tidyverse loaded successfully
+Package TrenchR loaded successfully
+Package rTPC loaded successfully
+Package lubridate loaded successfully
+
+Processing: Species=MS, Year=2015, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2015.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 1.40 to 44.39
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 2.04 to 45.98
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 4.45 to 45.91
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 6.14 to 48.53
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 3.74 to 45.43
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 4.50 to 46.54
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 4.04 to 51.48
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.21 to 44.43
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 4.63 to 46.70
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 1.89 to 47.74
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 1.95 to 44.65
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 10.81 to 38.29
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=302.17 K, log(mass)=-1.1087, 1/(kT)=38.391470, exponent=-2.2493, rmr=0.105474
+Sample tb=284.16 K, log(mass)=-1.1087, 1/(kT)=40.825026, exponent=-3.3931, rmr=0.033605
+Sample tb=293.14 K, log(mass)=-1.1087, 1/(kT)=39.574956, exponent=-2.8055, rmr=0.060475
+Sample tb=284.07 K, log(mass)=-1.1087, 1/(kT)=40.838652, exponent=-3.3995, rmr=0.033391
+Sample tb=283.06 K, log(mass)=-1.1087, 1/(kT)=40.984215, exponent=-3.4679, rmr=0.031183
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5708 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2015/F/eb_results_MS_2015_A1_A1.rds
+
+Processing: Species=MS, Year=2016, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2016.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 0.76 to 45.27
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.97 to 48.65
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 5.09 to 49.67
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 4.35 to 45.95
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 3.64 to 47.91
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 2.93 to 46.08
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 6.42 to 47.58
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 6.40 to 46.38
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 3.46 to 45.08
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.47 to 40.57
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 1.33 to 41.83
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 12.18 to 32.57
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=287.06 K, log(mass)=-1.1087, 1/(kT)=40.413333, exponent=-3.1996, rmr=0.040780
+Sample tb=315.69 K, log(mass)=-1.1087, 1/(kT)=36.747597, exponent=-1.4767, rmr=0.228396
+Sample tb=282.32 K, log(mass)=-1.1087, 1/(kT)=41.090729, exponent=-3.5179, rmr=0.029660
+Sample tb=287.20 K, log(mass)=-1.1087, 1/(kT)=40.393088, exponent=-3.1901, rmr=0.041170
+Sample tb=290.41 K, log(mass)=-1.1087, 1/(kT)=39.947286, exponent=-2.9805, rmr=0.050766
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5868 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2016/F/eb_results_MS_2016_A1_A1.rds
+
+Processing: Species=MS, Year=2017, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2017.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 1.01 to 44.67
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 0.06 to 42.96
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 4.42 to 43.80
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 1.81 to 46.04
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 5.12 to 47.81
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 5.02 to 47.09
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 7.24 to 45.97
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.77 to 41.98
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 3.96 to 41.80
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 3.63 to 44.25
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.23 to 46.17
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 13.15 to 43.43
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=283.37 K, log(mass)=-1.1087, 1/(kT)=40.939650, exponent=-3.4469, rmr=0.031843
+Sample tb=306.44 K, log(mass)=-1.1087, 1/(kT)=37.856826, exponent=-1.9980, rmr=0.135605
+Sample tb=291.44 K, log(mass)=-1.1087, 1/(kT)=39.805210, exponent=-2.9138, rmr=0.054272
+Sample tb=278.31 K, log(mass)=-1.1087, 1/(kT)=41.683693, exponent=-3.7966, rmr=0.022446
+Sample tb=295.58 K, log(mass)=-1.1087, 1/(kT)=39.247596, exponent=-2.6517, rmr=0.070533
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5744 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2017/F/eb_results_MS_2017_A1_A1.rds
+
+Processing: Species=MS, Year=2018, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2018.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -0.40 to 45.53
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.41 to 46.72
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 1.96 to 40.87
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.75 to 48.31
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 5.86 to 46.94
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 6.38 to 43.36
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 6.69 to 50.08
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.98 to 45.54
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 3.68 to 42.71
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 2.07 to 43.90
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 2.82 to 46.15
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 12.26 to 38.38
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=301.18 K, log(mass)=-1.1087, 1/(kT)=38.517694, exponent=-2.3086, rmr=0.099398
+Sample tb=297.47 K, log(mass)=-1.1087, 1/(kT)=38.998220, exponent=-2.5345, rmr=0.079304
+Sample tb=281.18 K, log(mass)=-1.1087, 1/(kT)=41.257748, exponent=-3.5964, rmr=0.027421
+Sample tb=284.06 K, log(mass)=-1.1087, 1/(kT)=40.839926, exponent=-3.4001, rmr=0.033371
+Sample tb=286.17 K, log(mass)=-1.1087, 1/(kT)=40.538932, exponent=-3.2586, rmr=0.038442
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5817 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2018/F/eb_results_MS_2018_A1_A1.rds
+
+Processing: Species=MS, Year=2019, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2019.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 0.08 to 43.34
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -1.56 to 44.17
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -0.82 to 36.52
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 1.69 to 51.13
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 3.87 to 49.60
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 5.89 to 52.04
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 6.15 to 47.03
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.88 to 46.51
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 4.61 to 46.17
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 3.68 to 47.98
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.19 to 41.45
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 14.16 to 36.29
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=281.28 K, log(mass)=-1.1087, 1/(kT)=41.243931, exponent=-3.5900, rmr=0.027600
+Sample tb=309.67 K, log(mass)=-1.1087, 1/(kT)=37.462276, exponent=-1.8126, rmr=0.163234
+Sample tb=302.75 K, log(mass)=-1.1087, 1/(kT)=38.318715, exponent=-2.2151, rmr=0.109143
+Sample tb=281.19 K, log(mass)=-1.1087, 1/(kT)=41.256118, exponent=-3.5957, rmr=0.027442
+Sample tb=282.17 K, log(mass)=-1.1087, 1/(kT)=41.112695, exponent=-3.5283, rmr=0.029356
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5694 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2019/F/eb_results_MS_2019_A1_A1.rds
+
+Processing: Species=MS, Year=2020, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2020.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 2.08 to 52.71
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: -1.29 to 45.06
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: -0.16 to 45.14
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 0.78 to 45.44
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 4.03 to 47.65
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 6.52 to 48.27
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 6.28 to 49.47
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.25 to 44.98
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 3.72 to 52.10
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.14 to 43.59
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 1.33 to 46.13
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 11.00 to 34.71
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=279.94 K, log(mass)=-1.1087, 1/(kT)=41.440097, exponent=-3.6821, rmr=0.025169
+Sample tb=292.57 K, log(mass)=-1.1087, 1/(kT)=39.651844, exponent=-2.8417, rmr=0.058328
+Sample tb=290.26 K, log(mass)=-1.1087, 1/(kT)=39.967724, exponent=-2.9901, rmr=0.050281
+Sample tb=297.31 K, log(mass)=-1.1087, 1/(kT)=39.019938, exponent=-2.5447, rmr=0.078499
+Sample tb=279.64 K, log(mass)=-1.1087, 1/(kT)=41.485023, exponent=-3.7033, rmr=0.024643
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5856 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2020/F/eb_results_MS_2020_A1_A1.rds
+
+Processing: Species=MS, Year=2021, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2021.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -3.27 to 48.98
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.05 to 53.93
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 2.90 to 49.18
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.61 to 47.36
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 5.42 to 49.64
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 4.78 to 47.76
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 5.32 to 44.66
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.44 to 43.96
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 4.16 to 48.48
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.49 to 45.18
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.59 to 46.62
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 14.30 to 42.96
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=289.45 K, log(mass)=-1.1087, 1/(kT)=40.079460, exponent=-3.0426, rmr=0.047708
+Sample tb=287.25 K, log(mass)=-1.1087, 1/(kT)=40.386106, exponent=-3.1868, rmr=0.041305
+Sample tb=280.69 K, log(mass)=-1.1087, 1/(kT)=41.330302, exponent=-3.6305, rmr=0.026502
+Sample tb=280.05 K, log(mass)=-1.1087, 1/(kT)=41.424393, exponent=-3.6748, rmr=0.025355
+Sample tb=281.63 K, log(mass)=-1.1087, 1/(kT)=41.192460, exponent=-3.5658, rmr=0.028276
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5980 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2021/F/eb_results_MS_2021_A1_A1.rds
+
+Processing: Species=MS, Year=2022, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2022.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: -4.58 to 41.09
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 0.20 to 45.36
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 0.30 to 48.63
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 3.44 to 49.01
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 6.33 to 50.68
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 7.04 to 49.27
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 6.47 to 48.29
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 6.10 to 49.04
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 6.84 to 43.59
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.19 to 36.16
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.51 to 40.83
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 14.62 to 37.39
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=283.80 K, log(mass)=-1.1087, 1/(kT)=40.876508, exponent=-3.4173, rmr=0.032802
+Sample tb=288.70 K, log(mass)=-1.1087, 1/(kT)=40.183742, exponent=-3.0917, rmr=0.045426
+Sample tb=290.92 K, log(mass)=-1.1087, 1/(kT)=39.877203, exponent=-2.9476, rmr=0.052466
+Sample tb=294.05 K, log(mass)=-1.1087, 1/(kT)=39.452580, exponent=-2.7480, rmr=0.064055
+Sample tb=277.83 K, log(mass)=-1.1087, 1/(kT)=41.756078, exponent=-3.8307, rmr=0.021695
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 6062 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2022/F/eb_results_MS_2022_A1_A1.rds
+
+Processing: Species=MS, Year=2023, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2023.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 1.28 to 39.64
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 1.01 to 40.14
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 0.74 to 45.42
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 2.56 to 46.00
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 5.08 to 48.16
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 4.45 to 47.02
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 5.02 to 48.54
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 5.38 to 47.51
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 2.91 to 46.57
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.02 to 47.70
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 4.34 to 41.93
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 14.80 to 37.50
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=274.95 K, log(mass)=-1.1087, 1/(kT)=42.192505, exponent=-4.0358, rmr=0.017672
+Sample tb=284.21 K, log(mass)=-1.1087, 1/(kT)=40.818124, exponent=-3.3898, rmr=0.033715
+Sample tb=286.82 K, log(mass)=-1.1087, 1/(kT)=40.447236, exponent=-3.2155, rmr=0.040135
+Sample tb=283.56 K, log(mass)=-1.1087, 1/(kT)=40.911699, exponent=-3.4338, rmr=0.032264
+Sample tb=283.13 K, log(mass)=-1.1087, 1/(kT)=40.973631, exponent=-3.4629, rmr=0.031338
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 5499 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2023/F/eb_results_MS_2023_A1_A1.rds
+
+Processing: Species=MS, Year=2024, Origin=A1, Climate=A1, Sex=F
+Looking for climate data at: /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1/simplified_A1_2024.rds
+Directory /mmfs1/gscratch/biology/jmsmith/targeted_microclimate/A1 exists. Contents:
+simplified_A1_1950.rds
+simplified_A1_1951.rds
+simplified_A1_1952.rds
+simplified_A1_1953.rds
+simplified_A1_1954.rds
+simplified_A1_1955.rds
+simplified_A1_1956.rds
+simplified_A1_1957.rds
+simplified_A1_1958.rds
+simplified_A1_1959.rds
+simplified_A1_2015.rds
+simplified_A1_2016.rds
+simplified_A1_2017.rds
+simplified_A1_2018.rds
+simplified_A1_2019.rds
+simplified_A1_2020.rds
+simplified_A1_2021.rds
+simplified_A1_2022.rds
+simplified_A1_2023.rds
+simplified_A1_2024.rds
+Processing batch 1/12 (rows 1-1000)
+  Calculated 1000 temperatures. Range: 0.58 to 44.08
+Processing batch 2/12 (rows 1001-2000)
+  Calculated 1000 temperatures. Range: 3.79 to 46.02
+Processing batch 3/12 (rows 2001-3000)
+  Calculated 1000 temperatures. Range: 0.19 to 50.91
+Processing batch 4/12 (rows 3001-4000)
+  Calculated 1000 temperatures. Range: 4.24 to 47.52
+Processing batch 5/12 (rows 4001-5000)
+  Calculated 1000 temperatures. Range: 2.66 to 43.00
+Processing batch 6/12 (rows 5001-6000)
+  Calculated 1000 temperatures. Range: 6.00 to 49.94
+Processing batch 7/12 (rows 6001-7000)
+  Calculated 1000 temperatures. Range: 3.38 to 45.53
+Processing batch 8/12 (rows 7001-8000)
+  Calculated 1000 temperatures. Range: 4.43 to 50.28
+Processing batch 9/12 (rows 8001-9000)
+  Calculated 1000 temperatures. Range: 7.06 to 48.57
+Processing batch 10/12 (rows 9001-10000)
+  Calculated 1000 temperatures. Range: 4.92 to 47.69
+Processing batch 11/12 (rows 10001-11000)
+  Calculated 1000 temperatures. Range: 3.46 to 42.56
+Processing batch 12/12 (rows 11001-11035)
+  Calculated 35 temperatures. Range: 13.12 to 35.07
+Total observations: 11035, Unique timestamps: 2207
+MR parameters: mass=0.33, elev=2195.0, b0=16.50, b1=0.85, b2=-0.47, b3=0.000108
+Sample tb=281.72 K, log(mass)=-1.1087, 1/(kT)=41.179479, exponent=-3.5597, rmr=0.028449
+Sample tb=287.98 K, log(mass)=-1.1087, 1/(kT)=40.283836, exponent=-3.1387, rmr=0.043339
+Sample tb=283.20 K, log(mass)=-1.1087, 1/(kT)=40.963736, exponent=-3.4583, rmr=0.031485
+Sample tb=278.65 K, log(mass)=-1.1087, 1/(kT)=41.632928, exponent=-3.7728, rmr=0.022988
+Sample tb=283.06 K, log(mass)=-1.1087, 1/(kT)=40.984429, exponent=-3.4680, rmr=0.031180
+MR results: 0 NA, 0 infinite, 0 negative, 0 zero
+Energy calculations: 6105 non-zero gains, 11035 non-zero losses out of 11035 observations
+Saved results to output/results/A1/2024/F/eb_results_MS_2024_A1_A1.rds
+
+All years processed.
