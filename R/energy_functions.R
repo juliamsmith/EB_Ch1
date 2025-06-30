@@ -122,6 +122,7 @@ get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts) {
   Above <- pop_dat$Above[1]
   Tmax <- Topt + Above
   Ropt <- pop_dat$Ropt[1]
+  mass <- pop_dat$mass[1]
   
   # Get sex effect coefficient
   sex_effect <- ifelse(species == "MS", -0.415, 0.123)
@@ -143,8 +144,8 @@ get_energy_gains <- function(species, site_orig, sex, tbs, pops, dts) {
     # Calculate base rate with correct LRF function
     base_rate <- lrf_1991_correct(tb, Ropt, Topt, Tmin, Tmax)
     
-    # Apply sex effect
-    adjusted_rate <- base_rate * sex_multiplier
+    # Apply sex effect and multiply by mass
+    adjusted_rate <- base_rate * sex_multiplier * mass
     
     # Convert to energy gain
     # Assimilation rate of 0.40
