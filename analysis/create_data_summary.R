@@ -140,8 +140,8 @@ summarize_eb_results <- function(base_dir = "C:/Users/jmsmi/OneDrive/Documents/G
 results <- summarize_eb_results()
 
 # # Save the outputs -- FIRST SET WD
-# write_csv(results$long, "eb_results_summary_long.csv")
-# write_csv(results$wide, "eb_results_summary_wide.csv") #could uncomment
+write_csv(results$long, "eb_results_summary_long.csv")
+write_csv(results$wide, "eb_results_summary_wide.csv") #could uncomment
 
 # Preview the results
 cat("\nSummary of long format results:\n")
