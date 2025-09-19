@@ -2,7 +2,7 @@
 #SBATCH --job-name=eb_{JOB_NAME}
 #SBATCH --output=output/logs/%j.out
 #SBATCH --error=output/logs/%j.err
-#SBATCH --time=6:00:00
+#SBATCH --time=00:10:00
 #SBATCH -p ckpt
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
