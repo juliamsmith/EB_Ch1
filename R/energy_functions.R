@@ -232,9 +232,9 @@ calculate_energy_budget <- function(climate_data, pops,
                    climate_data$rad[batch_rows], 0),
         K_t = 0.7,               
         psi = climate_data$psi[batch_rows],               
-        l = 0.03,                
+        l = 0.0225, #changed from 0.03                
         z = climate_data$height[batch_rows],              
-        Acondfact = 0.25         
+        Acondfact = 0 #changed from previously 0.25 (since not in contact with ground)         
       )
       
       # Print summary statistics of calculated temperatures

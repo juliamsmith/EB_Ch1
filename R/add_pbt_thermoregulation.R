@@ -8,8 +8,8 @@ library(tidyverse)
 
 # Define PBT values for each species
 PBT_VALUES <- list(
-  MB = 32.83,
-  MS = 30.63  # You'll need to define this based on your data
+  MB = 32.82804878,
+  MS = 30.62596154 
 )
 
 #' Add PBT thermoregulation to energy budget results

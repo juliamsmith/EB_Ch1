@@ -1,9 +1,101 @@
 # create_pops_data.R
 # Script to create the population parameters file (pops.rds) with LRF parameters
-
+# Using MAP (Maximum A Posteriori) + HDI (Highest Density Interval) at 90%
 library(tidyverse)
+library(bayestestR)
+library(coda)
 
-# Create population data frame with LRF parameters
+# Load the model fits
+ms_fit <- readRDS("~/GitHub/thermal_perf/ms_improved7_betterprior.rds")
+mb_fit <- readRDS("~/GitHub/thermal_perf/mb_both_years_with_yeareffect3betterpriors.rds")
+
+# ===== SET METHOD =====
+method <- "MAP"
+CI <- 0.9
+
+# ===== EXTRACT PARAMETERS FROM MB MODEL =====
+
+n_chains <- mb_fit$fit@sim$chains
+mb_posteriors <- c()
+for(i in 1:n_chains){
+  b <- as.data.frame(as.mcmc(mb_fit)[[i]])
+  b$chain <- i
+  mb_posteriors <- rbind(b, mb_posteriors)
+}
+
+pops_mb <- c("A1", "B1", "C1", "D1")
+mb_params <- data.frame()
+
+for(x in pops_mb){
+  Tmin_col <- parse(text = paste0('mb_posteriors$`b_Tmin_pop', x, '`'), keep.source = FALSE)[[1]]
+  Topt_col <- parse(text = paste0('mb_posteriors$`b_Topt_pop', x, '`'), keep.source = FALSE)[[1]]
+  Above_col <- parse(text = paste0('mb_posteriors$`b_Above_pop', x, '`'), keep.source = FALSE)[[1]]
+  Ropt_col <- parse(text = paste0('mb_posteriors$`b_Ropt_pop', x, '`'), keep.source = FALSE)[[1]]
+  Tmax_col <- parse(text = paste0('mb_posteriors$`b_Above_pop', x, '` + mb_posteriors$`b_Topt_pop', x, '`'), keep.source = FALSE)[[1]]
+  
+  mb_params <- rbind(mb_params, data.frame(
+    site = x,
+    Tmin = as.numeric(point_estimate(eval(Tmin_col), centrality = method)),
+    Tmin_lower = as.numeric(ci(eval(Tmin_col), ci = CI, method = "HDI")[2]),
+    Tmin_upper = as.numeric(ci(eval(Tmin_col), ci = CI, method = "HDI")[3]),
+    Topt = as.numeric(point_estimate(eval(Topt_col), centrality = method)),
+    Topt_lower = as.numeric(ci(eval(Topt_col), ci = CI, method = "HDI")[2]),
+    Topt_upper = as.numeric(ci(eval(Topt_col), ci = CI, method = "HDI")[3]),
+    Above = as.numeric(point_estimate(eval(Above_col), centrality = method)),
+    Above_lower = as.numeric(ci(eval(Above_col), ci = CI, method = "HDI")[2]),
+    Above_upper = as.numeric(ci(eval(Above_col), ci = CI, method = "HDI")[3]),
+    Ropt = as.numeric(point_estimate(eval(Ropt_col), centrality = method)),
+    Ropt_lower = as.numeric(ci(eval(Ropt_col), ci = CI, method = "HDI")[2]),
+    Ropt_upper = as.numeric(ci(eval(Ropt_col), ci = CI, method = "HDI")[3]),
+    Tmax = as.numeric(point_estimate(eval(Tmax_col), centrality = method)),
+    Tmax_lower = as.numeric(ci(eval(Tmax_col), ci = CI, method = "HDI")[2]),
+    Tmax_upper = as.numeric(ci(eval(Tmax_col), ci = CI, method = "HDI")[3])
+  ))
+}
+
+# ===== EXTRACT PARAMETERS FROM MS MODEL =====
+
+n_chains <- ms_fit$fit@sim$chains
+ms_posteriors <- c()
+for(i in 1:n_chains){
+  b <- as.data.frame(as.mcmc(ms_fit)[[i]])
+  b$chain <- i
+  ms_posteriors <- rbind(b, ms_posteriors)
+}
+
+pops_ms <- c("Eldo", "A1", "B1")
+ms_params <- data.frame()
+
+for(x in pops_ms){
+  Tmin_col <- parse(text = paste0('ms_posteriors$`b_Tmin_pop', x, '`'), keep.source = FALSE)[[1]]
+  Topt_col <- parse(text = paste0('ms_posteriors$`b_Topt_pop', x, '`'), keep.source = FALSE)[[1]]
+  Above_col <- parse(text = paste0('ms_posteriors$`b_Above_pop', x, '`'), keep.source = FALSE)[[1]]
+  Ropt_col <- parse(text = paste0('ms_posteriors$`b_Ropt_pop', x, '`'), keep.source = FALSE)[[1]]
+  Tmax_col <- parse(text = paste0('ms_posteriors$`b_Above_pop', x, '` + ms_posteriors$`b_Topt_pop', x, '`'), keep.source = FALSE)[[1]]
+  
+  ms_params <- rbind(ms_params, data.frame(
+    site = x,
+    Tmin = as.numeric(point_estimate(eval(Tmin_col), centrality = method)),
+    Tmin_lower = as.numeric(ci(eval(Tmin_col), ci = CI, method = "HDI")[2]),
+    Tmin_upper = as.numeric(ci(eval(Tmin_col), ci = CI, method = "HDI")[3]),
+    Topt = as.numeric(point_estimate(eval(Topt_col), centrality = method)),
+    Topt_lower = as.numeric(ci(eval(Topt_col), ci = CI, method = "HDI")[2]),
+    Topt_upper = as.numeric(ci(eval(Topt_col), ci = CI, method = "HDI")[3]),
+    Above = as.numeric(point_estimate(eval(Above_col), centrality = method)),
+    Above_lower = as.numeric(ci(eval(Above_col), ci = CI, method = "HDI")[2]),
+    Above_upper = as.numeric(ci(eval(Above_col), ci = CI, method = "HDI")[3]),
+    Ropt = as.numeric(point_estimate(eval(Ropt_col), centrality = method)),
+    Ropt_lower = as.numeric(ci(eval(Ropt_col), ci = CI, method = "HDI")[2]),
+    Ropt_upper = as.numeric(ci(eval(Ropt_col), ci = CI, method = "HDI")[3]),
+    Tmax = as.numeric(point_estimate(eval(Tmax_col), centrality = method)),
+    Tmax_lower = as.numeric(ci(eval(Tmax_col), ci = CI, method = "HDI")[2]),
+    Tmax_upper = as.numeric(ci(eval(Tmax_col), ci = CI, method = "HDI")[3])
+  ))
+}
+
+# ===== CREATE POPS DATAFRAME =====
+
+# Create population data frame with base information
 pops <- data.frame(
   spp = c(rep("MB", 8), 
           rep("MS", 6)),
@@ -38,25 +130,6 @@ pops <- data.frame(
              rep(1.08*10^(-4), 6))
 )
 
-# Add LRF parameters based on your model results
-# MB parameters
-mb_params <- data.frame(
-  site = c("A1", "B1", "C1", "D1"),
-  Tmin = c(10.73, 11.31, 11.07, 10.86),   
-  Topt = c(39.52, 40.86, 40.76, 40.08),   
-  Above = c(16.73, 12.30, 12.91, 13.84),  
-  Ropt = c(2.99, 3.93, 4.09, 4.20)        
-)
-
-# MS parameters
-ms_params <- data.frame(
-  site = c("Eldo", "A1", "B1"),
-  Tmin = c(12.63, 12.37, 11.57),
-  Topt = c(40.69, 42.17, 39.68),
-  Above = c(10.07, 9.02, 7.56),
-  Ropt = c(3.40, 4.13, 4.89)
-)
-
 # Merge LRF parameters into pops dataframe
 pops <- pops %>%
   left_join(
@@ -66,6 +139,8 @@ pops <- pops %>%
     ),
     by = c("spp", "site")
   )
+
+# ===== SAVE FILES =====
 
 # Create directory if it doesn't exist
 dir.create("data", showWarnings = FALSE)
@@ -77,9 +152,22 @@ saveRDS(pops, "data/pops.rds")
 write_csv(pops, "data/pops.csv")
 
 cat("Population data created and saved to data/pops.rds and data/pops.csv\n")
+cat(sprintf("Method used: MAP + HDI with %d%% credible intervals\n", CI * 100))
 
 # Print a summary of the data
 cat("\nPopulation data summary:\n")
 cat(sprintf("Number of populations: %d\n", nrow(pops)))
 cat(sprintf("Species: %s\n", paste(unique(pops$spp), collapse=", ")))
 cat(sprintf("Sites: %s\n", paste(unique(pops$site), collapse=", ")))
+
+# Show sample of the TPC parameters
+cat("\nSample of TPC parameters (first 3 rows):\n")
+print(pops[1:3, c("spp", "site", "Tmin", "Topt", "Above", "Ropt", "Tmax", 
+                  "Tmin_lower", "Tmin_upper", "Tmax_lower", "Tmax_upper")])
+
+# Also print the full parameter table for each species
+cat("\n=== MB TPC Parameters (MAP + 90% HDI) ===\n")
+print(mb_params)
+
+cat("\n=== MS TPC Parameters (MAP + 90% HDI) ===\n")
+print(ms_params)

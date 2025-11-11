@@ -5,7 +5,8 @@ library(ggplot2)
 
 #setwd("~/GitHub/EB_Ch1/analysis")
 
-thing <- read_csv("eb_results_summary_wide.csv")
+thing0 <- read_csv("eb_results_summary_wide.csv") #read_csv("eb_results_summary_wide_tpc_normalized.csv")
+#read_csv("eb_results_summary_wide.csv")
 
 #######################################################
 # Using the real data "thing" instead of simulated data
@@ -169,13 +170,15 @@ thing <- read_csv("eb_results_summary_wide.csv")
 # thing <- create_sample_real_data()
 
 # Print a preview of the data structure
-head(thing)
+head(thing0)
 #thing <- 
 # read this in ^ write_csv(results$wide, "eb_results_summary_wide.csv")
 pops <- readRDS("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/data/pops.rds")
+head(pops)
 
 by <- join_by(species==spp, site_orig==site, sex)
-thing <- left_join(thing, pops, by)
+thing <- left_join(thing0, pops, by)
+head(thing)
 #######################################################
 # FIGURE 1: Female Reciprocal Transplant - contemporary Only
 #######################################################
@@ -527,33 +530,7 @@ create_Male_reciprocal_transplant_boxplot <- function(data) {
       population_label = factor(population_label, 
                                 levels = paste0(site_order, " pop"))
     )
-  
-  # # Create a column to identify home vs transplanted climate
-  # filter_data_mb <- filter_data_mb %>%
-  #   mutate(climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"))
-  # 
-  # filter_data_ms <- filter_data_ms %>%
-  #   mutate(climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"))
-  # 
-  # # Factor site variables for proper ordering
-  # filter_data_mb <- filter_data_mb %>%
-  #   mutate(
-  #     site_orig = factor(site_orig, levels = site_order),
-  #     site_clim = factor(site_clim, levels = site_order)
-  #   )
-  # 
-  # filter_data_ms <- filter_data_ms %>%
-  #   mutate(
-  #     site_orig = factor(site_orig, levels = site_order),
-  #     site_clim = factor(site_clim, levels = site_order)
-  #   )
-  # 
-  # # Create population label for x-axis
-  # filter_data_mb <- filter_data_mb %>%
-  #   mutate(population_label = paste0(site_orig, " pop"))
-  # 
-  # filter_data_ms <- filter_data_ms %>%
-  #   mutate(population_label = paste0(site_orig, " pop"))
+
   
   
   # Create a box plot for MB
@@ -922,7 +899,7 @@ create_sex_adjusted_data <- function(data) {
 
 # Create sex-adjusted data for historical vs. contemporary comparison
 # Note: This is commented out because lme4 and emmeans might not be available
-# adj_data <- create_sex_adjusted_data(thing)
+adj_data <- create_sex_adjusted_data(thing)
 
 # Function to plot the sex-adjusted data
 plot_sex_adjusted_data <- function(adj_data) {
@@ -955,8 +932,1104 @@ plot_sex_adjusted_data <- function(adj_data) {
     )
 }
 
+plot_sex_adjusted_data(adj_data)
+
 # To use with your real data:
 # 1. Replace create_sample_real_data() with your actual data loading
 # 2. Run the code as is to generate both figures
 # 3. Verify consistency with the consistency check
 # 4. If you want to adjust for sex differences, uncomment and run the mixed model section
+
+
+#thinking more about including sex in the model... how should I do that? Rn it's as a RE,
+#but aside from visualization, I also want to do stats, and maybe a FE is more appropriate?
+
+
+#instead for visualization (and perhaps modeling) purposes, just averaging
+library(tidyverse)
+library(ggplot2)
+
+#######################################################
+# FIGURE 1: Sex-Averaged Reciprocal Transplant - Contemporary Only
+#######################################################
+
+# Function to create the first figure as box plots with points using sex averages
+create_sex_averaged_reciprocal_transplant_boxplot <- function(data) {
+  # Define site order
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  
+  # First, calculate the average between males and females for each year/condition
+  # This creates one data point per year per condition (instead of separate M/F points)
+  
+  # For MB species
+  averaged_data_mb <- data %>%
+    filter(
+      year_period == "contemporary",
+      species == "MB"
+    ) %>%
+    group_by(species, year, site_orig, site_clim) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      # First factor both site_orig and site_clim
+      site_orig = factor(site_orig, levels = site_order),
+      site_clim = factor(site_clim, levels = site_order),
+      climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"),
+      # Then create the population label
+      population_label = paste0(site_orig, " pop"),
+      # Finally factor the population_label to maintain the proper order
+      population_label = factor(population_label, 
+                                levels = paste0(site_order, " pop"))
+    )
+  
+  # For MS species
+  averaged_data_ms <- data %>%
+    filter(
+      year_period == "contemporary",
+      species == "MS"
+    ) %>%
+    group_by(species, year, site_orig, site_clim) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      # First factor both site_orig and site_clim
+      site_orig = factor(site_orig, levels = site_order),
+      site_clim = factor(site_clim, levels = site_order),
+      climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"),
+      # Then create the population label
+      population_label = paste0(site_orig, " pop"),
+      # Finally factor the population_label to maintain the proper order
+      population_label = factor(population_label, 
+                                levels = paste0(site_order, " pop"))
+    )
+  
+  # Create a box plot for MB
+  mb_plot <- ggplot(averaged_data_mb, 
+                    aes(x = population_label, 
+                        y = avg_energy_per_mass, 
+                        fill = climate_type)) +
+    facet_wrap(~ site_clim, scales = "fixed", nrow = 1,
+               labeller = labeller(site_clim = function(x) paste0(x, " climate"))) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = climate_type), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("Home climate" = "#4477AA", "Transplanted climate" = "#CCCCCC"),
+                      name = "") +
+    scale_color_manual(values = c("Home climate" = "#225588", "Transplanted climate" = "#777777"),
+                       guide = "none") +
+    scale_x_discrete(drop = FALSE, limits = levels(averaged_data_mb$population_label)) +
+    labs(
+      title = "MB - Discretionary Energy in Virtual Reciprocal Transplants (Sex-Averaged)",
+      subtitle = "MB occurs only at A1, B1, C1, and D1 sites. Each point = yearly average of males and females",
+      x = "Population",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold"),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Create a box plot for MS
+  ms_plot <- ggplot(averaged_data_ms, 
+                    aes(x = population_label, 
+                        y = avg_energy_per_mass, 
+                        fill = climate_type)) +
+    facet_wrap(~ site_clim, scales = "fixed", 
+               labeller = labeller(site_clim = function(x) paste0(x, " climate"))) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = climate_type), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("Home climate" = "#4477AA", "Transplanted climate" = "#CCCCCC"),
+                      name = "") +
+    scale_color_manual(values = c("Home climate" = "#225588", "Transplanted climate" = "#777777"),
+                       guide = "none") +
+    scale_x_discrete(drop = FALSE, limits = levels(averaged_data_ms$population_label)) +
+    labs(
+      title = "MS - Discretionary Energy in Virtual Reciprocal Transplants (Sex-Averaged)",
+      subtitle = "MS occurs only at Eldo, A1, and B1 sites. Each point = yearly average of males and females",
+      x = "Population",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold"),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Return both plots
+  return(list(mb_plot = mb_plot, ms_plot = ms_plot))
+}
+
+#######################################################
+# FIGURE 2: Historical vs Contemporary Comparison - Sex-Averaged, No Transplant
+#######################################################
+
+# Function to create the second figure as box plots with points using sex averages
+create_sex_averaged_historical_contemporary_boxplot <- function(data) {
+  # Define site order
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  
+  # Calculate sex averages for the historical vs contemporary comparison
+  # Only include data where site_orig == site_clim (no transplant)
+  
+  # For MB species
+  averaged_data_mb <- data %>%
+    filter(
+      site_orig == site_clim,  # No transplant
+      species == "MB"
+    ) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,  # Create site column for plotting
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary"))
+    )
+  
+  # For MS species
+  averaged_data_ms <- data %>%
+    filter(
+      site_orig == site_clim,  # No transplant
+      species == "MS"
+    ) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,  # Create site column for plotting
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary"))
+    )
+  
+  # Combined data for the faceted plot
+  averaged_data_combined <- data %>%
+    filter(
+      site_orig == site_clim  # No transplant
+    ) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,  # Create site column for plotting
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary"))
+    )
+  
+  # Create a box plot for MB
+  mb_plot <- ggplot(averaged_data_mb, 
+                    aes(x = site, 
+                        y = avg_energy_per_mass, 
+                        fill = year_period)) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1950-1959)", "Contemporary (2015-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_order) +
+    labs(
+      title = "MB - Discretionary Energy Changes Over Time (Sex-Averaged)",
+      subtitle = "MB occurs only at A1, B1, C1, and D1 sites. Each point = yearly average of males and females",
+      x = "Site",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Create a box plot for MS
+  ms_plot <- ggplot(averaged_data_ms, 
+                    aes(x = site, 
+                        y = avg_energy_per_mass, 
+                        fill = year_period)) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1945-1964)", "Contemporary (2005-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_order) +
+    labs(
+      title = "MS - Discretionary Energy Changes Over Time (Sex-Averaged)",
+      subtitle = "MS occurs only at Eldo, A1, and B1 sites. Each point = yearly average of males and females",
+      x = "Site",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Create a combined plot with facet_grid: species ~ .
+  combined_plot <- ggplot(averaged_data_combined, 
+                          aes(x = site, 
+                              y = avg_energy_per_mass, 
+                              fill = year_period)) +
+    facet_grid(species ~ .) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1945-1964)", "Contemporary (2005-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_order) +
+    labs(
+      title = "Discretionary Energy Changes Over Time (Sex-Averaged)",
+      subtitle = "MB: A1-D1 sites, MS: Eldo-B1 sites. Each point = yearly average of males and females",
+      x = "Site",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank(),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold")
+    )
+  
+  # Return all plots
+  return(list(mb_plot = mb_plot, ms_plot = ms_plot, combined_plot = combined_plot))
+}
+
+#######################################################
+# Function to create sample data for demonstration
+#######################################################
+
+# create_sample_data_with_mass <- function() {
+#   # Define site constraints for each species
+#   mb_sites <- c("A1", "B1", "C1", "D1")
+#   ms_sites <- c("Eldo", "A1", "B1")
+#   all_sites <- c("Eldo", "A1", "B1", "C1", "D1")
+#   
+#   # Create years vectors
+#   historical_years <- c(1945:1964) # 20 years of "historical" data
+#   contemporary_years <- c(2005:2024)     # 20 years of "contemporary" data
+#   all_years <- c(historical_years, contemporary_years)
+#   
+#   # Set a consistent seed for reproducibility
+#   set.seed(42)
+#   
+#   # Base values that decrease with elevation
+#   base_values <- data.frame(
+#     site = c("Eldo", "A1", "B1", "C1", "D1"),
+#     base_value = c(80, 60, 50, 40, 30)
+#   )
+#   
+#   # Mass values (females typically larger)
+#   mass_values <- data.frame(
+#     species = c("MB", "MB", "MS", "MS"),
+#     sex = c("M", "F", "M", "F"),
+#     avg_mass = c(0.25, 0.35, 0.30, 0.40)  # grams
+#   )
+#   
+#   # Create MB combinations for both periods
+#   mb_historical <- expand.grid(
+#     species = "MB",
+#     year = historical_years,
+#     site_orig = mb_sites,
+#     site_clim = all_sites,
+#     sex = c("F", "M"),
+#     stringsAsFactors = FALSE
+#   ) %>% mutate(year_period = "historical")
+#   
+#   mb_contemporary <- expand.grid(
+#     species = "MB",
+#     year = contemporary_years,
+#     site_orig = mb_sites,
+#     site_clim = all_sites,
+#     sex = c("F", "M"),
+#     stringsAsFactors = FALSE
+#   ) %>% mutate(year_period = "contemporary")
+#   
+#   # Create MS combinations for both periods
+#   ms_historical <- expand.grid(
+#     species = "MS",
+#     year = historical_years,
+#     site_orig = ms_sites,
+#     site_clim = all_sites,
+#     sex = c("F", "M"),
+#     stringsAsFactors = FALSE
+#   ) %>% mutate(year_period = "historical")
+#   
+#   ms_contemporary <- expand.grid(
+#     species = "MS",
+#     year = contemporary_years,
+#     site_orig = ms_sites,
+#     site_clim = all_sites,
+#     sex = c("F", "M"),
+#     stringsAsFactors = FALSE
+#   ) %>% mutate(year_period = "contemporary")
+#   
+#   # Combine all data
+#   all_data <- bind_rows(mb_historical, mb_contemporary, ms_historical, ms_contemporary)
+#   
+#   # Join with base values and mass values
+#   all_data <- all_data %>%
+#     left_join(base_values, by = c("site_orig" = "site")) %>%
+#     rename(orig_base = base_value) %>%
+#     left_join(base_values, by = c("site_clim" = "site")) %>%
+#     rename(clim_base = base_value) %>%
+#     left_join(mass_values, by = c("species", "sex"))
+#   
+#   # Generate consistent energy values
+#   all_data <- all_data %>%
+#     mutate(
+#       # Add some variation to mass
+#       mass = avg_mass + rnorm(n(), mean = 0, sd = 0.05),
+#       mass = pmax(mass, 0.1),  # Ensure positive mass
+#       
+#       # Species factor
+#       species_factor = case_when(
+#         species == "MB" ~ 0.9,
+#         species == "MS" ~ 1.1
+#       ),
+#       
+#       # Sex factor (females have higher total energy but we'll divide by mass later)
+#       sex_factor = ifelse(sex == "M", 0.85, 1.0),
+#       
+#       # Climate effect (organisms perform better in their home climate)
+#       climate_match = abs(as.numeric(factor(site_orig, levels = all_sites)) - 
+#                             as.numeric(factor(site_clim, levels = all_sites))),
+#       climate_penalty = climate_match * 5,
+#       
+#       # Add home climate bonus
+#       home_bonus = ifelse(site_orig == site_clim, 15, 0),
+#       
+#       # Climate warming effect - historical has lower performance
+#       period_factor = ifelse(year_period == "historical", 0.8, 1.0),
+#       
+#       # Calculate energy values consistently
+#       partial_shade_low_veg = (orig_base * species_factor * sex_factor * period_factor - 
+#                                  climate_penalty + home_bonus) * mass + 
+#         rnorm(n(), mean = 0, sd = 3),
+#       
+#       # Ensure no negative values
+#       partial_shade_low_veg = pmax(partial_shade_low_veg, 5)
+#     ) %>%
+#     select(-orig_base, -clim_base, -avg_mass, -species_factor, -sex_factor, -climate_match, 
+#            -climate_penalty, -home_bonus, -period_factor)
+#   
+#   return(all_data)
+# }
+# 
+# # Create sample data
+# thing <- create_sample_data_with_mass()
+
+# Create the sex-averaged plots
+fig1_sex_averaged <- create_sex_averaged_reciprocal_transplant_boxplot(thing)
+fig2_sex_averaged <- create_sex_averaged_historical_contemporary_boxplot(thing)
+
+# Display the plots
+print(fig1_sex_averaged$mb_plot)
+print(fig1_sex_averaged$ms_plot)
+
+print(fig2_sex_averaged$combined_plot)
+print(fig2_sex_averaged$mb_plot)
+print(fig2_sex_averaged$ms_plot)
+
+# Verification: Check how many data points we have per condition
+verification_data <- thing %>%
+  filter(year_period == "contemporary", species == "MB", site_orig == "A1", site_clim == "A1") %>%
+  group_by(year) %>%
+  summarize(
+    n_sex_obs = n(),
+    avg_energy_per_mass = mean(partial_shade_low_veg / mass),
+    .groups = "drop"
+  )
+
+print("Verification - A1 MB population in A1 climate (contemporary):")
+print(verification_data)
+print(paste("Total years:", nrow(verification_data)))
+
+# If you want to save the plots, uncomment these lines:
+# ggsave("MB_reciprocal_transplant_sex_averaged.png", fig1_sex_averaged$mb_plot, width = 12, height = 6)
+# ggsave("MS_reciprocal_transplant_sex_averaged.png", fig1_sex_averaged$ms_plot, width = 10, height = 7)
+# ggsave("historical_vs_contemporary_combined_sex_averaged.png", fig2_sex_averaged$combined_plot, width = 10, height = 7)
+# ggsave("MB_historical_vs_contemporary_sex_averaged.png", fig2_sex_averaged$mb_plot, width = 8, height = 5)
+# ggsave("MS_historical_vs_contemporary_sex_averaged.png", fig2_sex_averaged$ms_plot, width = 8, height = 5)
+
+
+
+
+
+#now working with PBT:
+#instead for visualization (and perhaps modeling) purposes, just averaging
+library(tidyverse)
+library(ggplot2)
+
+#######################################################
+# FIGURE 1: Sex-Averaged Reciprocal Transplant - Contemporary Only
+#######################################################
+
+# Function to create the first figure as box plots with points using sex averages
+create_sex_averaged_reciprocal_transplant_boxplot <- function(data) {
+  # Define site order
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  
+  # First, calculate the average between males and females for each year/condition
+  # This creates one data point per year per condition (instead of separate M/F points)
+  
+  # For MB species
+  averaged_data_mb <- data %>%
+    filter(
+      year_period == "contemporary",
+      species == "MB"
+    ) %>%
+    group_by(species, year, site_orig, site_clim) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(shade_NA_h_NA / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      # First factor both site_orig and site_clim
+      site_orig = factor(site_orig, levels = site_order),
+      site_clim = factor(site_clim, levels = site_order),
+      climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"),
+      # Then create the population label
+      population_label = paste0(site_orig, " pop"),
+      # Finally factor the population_label to maintain the proper order
+      population_label = factor(population_label, 
+                                levels = paste0(site_order, " pop"))
+    )
+  
+  # For MS species
+  averaged_data_ms <- data %>%
+    filter(
+      year_period == "contemporary",
+      species == "MS"
+    ) %>%
+    group_by(species, year, site_orig, site_clim) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(shade_NA_h_NA / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      # First factor both site_orig and site_clim
+      site_orig = factor(site_orig, levels = site_order),
+      site_clim = factor(site_clim, levels = site_order),
+      climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"),
+      # Then create the population label
+      population_label = paste0(site_orig, " pop"),
+      # Finally factor the population_label to maintain the proper order
+      population_label = factor(population_label, 
+                                levels = paste0(site_order, " pop"))
+    )
+  
+  # Create a box plot for MB
+  mb_plot <- ggplot(averaged_data_mb, 
+                    aes(x = population_label, 
+                        y = avg_energy_per_mass, 
+                        fill = climate_type)) +
+    facet_wrap(~ site_clim, scales = "fixed", nrow = 1,
+               labeller = labeller(site_clim = function(x) paste0(x, " climate"))) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = climate_type), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("Home climate" = "#4477AA", "Transplanted climate" = "#CCCCCC"),
+                      name = "") +
+    scale_color_manual(values = c("Home climate" = "#225588", "Transplanted climate" = "#777777"),
+                       guide = "none") +
+    scale_x_discrete(drop = FALSE, limits = levels(averaged_data_mb$population_label)) +
+    labs(
+      title = "MB - Discretionary Energy in Virtual Reciprocal Transplants (Sex-Averaged)",
+      subtitle = "MB occurs only at A1, B1, C1, and D1 sites. Each point = yearly average of males and females",
+      x = "Population",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold"),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Create a box plot for MS
+  ms_plot <- ggplot(averaged_data_ms, 
+                    aes(x = population_label, 
+                        y = avg_energy_per_mass, 
+                        fill = climate_type)) +
+    facet_wrap(~ site_clim, scales = "fixed", 
+               labeller = labeller(site_clim = function(x) paste0(x, " climate"))) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = climate_type), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("Home climate" = "#4477AA", "Transplanted climate" = "#CCCCCC"),
+                      name = "") +
+    scale_color_manual(values = c("Home climate" = "#225588", "Transplanted climate" = "#777777"),
+                       guide = "none") +
+    scale_x_discrete(drop = FALSE, limits = levels(averaged_data_ms$population_label)) +
+    labs(
+      title = "MS - Discretionary Energy in Virtual Reciprocal Transplants (Sex-Averaged)",
+      subtitle = "MS occurs only at Eldo, A1, and B1 sites. Each point = yearly average of males and females",
+      x = "Population",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold"),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Return both plots
+  return(list(mb_plot = mb_plot, ms_plot = ms_plot))
+}
+
+#######################################################
+# FIGURE 2: Historical vs Contemporary Comparison - Sex-Averaged, No Transplant
+#######################################################
+
+# Function to create the second figure as box plots with points using sex averages
+create_sex_averaged_historical_contemporary_boxplot <- function(data) {
+  # Define site order
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  
+  # Calculate sex averages for the historical vs contemporary comparison
+  # Only include data where site_orig == site_clim (no transplant)
+  
+  # For MB species
+  averaged_data_mb <- data %>%
+    filter(
+      site_orig == site_clim,  # No transplant
+      species == "MB"
+    ) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(shade_NA_h_NA / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,  # Create site column for plotting
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary"))
+    )
+  
+  # For MS species
+  averaged_data_ms <- data %>%
+    filter(
+      site_orig == site_clim,  # No transplant
+      species == "MS"
+    ) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(shade_NA_h_NA / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,  # Create site column for plotting
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary"))
+    )
+  
+  # Combined data for the faceted plot
+  averaged_data_combined <- data %>%
+    filter(
+      site_orig == site_clim  # No transplant
+    ) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      # Calculate the average energy per mass between males and females
+      avg_energy_per_mass = mean(shade_NA_h_NA / mass, na.rm = TRUE),
+      # Keep track of how many sex observations went into this average
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,  # Create site column for plotting
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary"))
+    )
+  
+  # Create a box plot for MB
+  mb_plot <- ggplot(averaged_data_mb, 
+                    aes(x = site, 
+                        y = avg_energy_per_mass, 
+                        fill = year_period)) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1950-1959)", "Contemporary (2015-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_order) +
+    labs(
+      title = "MB - Discretionary Energy Changes Over Time (Sex-Averaged)",
+      subtitle = "MB occurs only at A1, B1, C1, and D1 sites. Each point = yearly average of males and females",
+      x = "Site",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Create a box plot for MS
+  ms_plot <- ggplot(averaged_data_ms, 
+                    aes(x = site, 
+                        y = avg_energy_per_mass, 
+                        fill = year_period)) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1945-1964)", "Contemporary (2005-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_order) +
+    labs(
+      title = "MS - Discretionary Energy Changes Over Time (Sex-Averaged)",
+      subtitle = "MS occurs only at Eldo, A1, and B1 sites. Each point = yearly average of males and females",
+      x = "Site",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank()
+    )
+  
+  # Create a combined plot with facet_grid: species ~ .
+  combined_plot <- ggplot(averaged_data_combined, 
+                          aes(x = site, 
+                              y = avg_energy_per_mass, 
+                              fill = year_period)) +
+    facet_grid(species ~ .) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1945-1964)", "Contemporary (2005-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_order) +
+    labs(
+      title = "Discretionary Energy Changes Over Time (Sex-Averaged)",
+      subtitle = "MB: A1-D1 sites, MS: Eldo-B1 sites. Each point = yearly average of males and females",
+      x = "Site",
+      y = "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank(),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold")
+    )
+  
+  # Return all plots
+  return(list(mb_plot = mb_plot, ms_plot = ms_plot, combined_plot = combined_plot))
+}
+
+
+# Create the sex-averaged plots
+fig1_sex_averaged <- create_sex_averaged_reciprocal_transplant_boxplot(thing)
+fig2_sex_averaged <- create_sex_averaged_historical_contemporary_boxplot(thing)
+
+# Display the plots
+print(fig1_sex_averaged$mb_plot)
+print(fig1_sex_averaged$ms_plot)
+
+print(fig2_sex_averaged$combined_plot)
+print(fig2_sex_averaged$mb_plot)
+print(fig2_sex_averaged$ms_plot)
+
+
+
+
+
+
+
+
+
+#brand new
+library(tidyverse)
+library(ggplot2)
+
+#######################################################
+# FIGURE 1: Sex-Averaged Reciprocal Transplant - Contemporary Only
+#######################################################
+
+create_sex_averaged_reciprocal_transplant_boxplot <- function(data, use_log_scale = FALSE) {
+  # Define site order
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  
+  # Filter and prepare data for both species
+  averaged_data_combined <- data %>%
+    filter(year_period == "contemporary") %>%
+    group_by(species, year, site_orig, site_clim) %>%
+    summarize(
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site_orig = factor(site_orig, levels = site_order),
+      site_clim = factor(site_clim, levels = site_order),
+      climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"),
+      population_label = paste0(site_orig, " pop"),
+      population_label = factor(population_label, levels = paste0(site_order, " pop"))
+    )
+  
+  # Apply log transformation if requested
+  if (use_log_scale) {
+    averaged_data_combined <- averaged_data_combined %>%
+      mutate(avg_energy_per_mass = log(avg_energy_per_mass))
+  }
+  
+  # Create combined plot with free y-axis scales
+  combined_plot <- ggplot(averaged_data_combined, 
+                          aes(x = population_label, 
+                              y = avg_energy_per_mass, 
+                              fill = climate_type)) +
+    facet_grid(species ~ site_clim, scales = "free_y",
+               labeller = labeller(site_clim = function(x) paste0(x, " climate"))) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = climate_type), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("Home climate" = "#4477AA", "Transplanted climate" = "#CCCCCC"),
+                      name = "") +
+    scale_color_manual(values = c("Home climate" = "#225588", "Transplanted climate" = "#777777"),
+                       guide = "none") +
+    scale_x_discrete(drop = FALSE, limits = paste0(site_order, " pop")) +
+    labs(
+      x = "Population",
+      y = if(use_log_scale) "log(Total Net Energy Gained (kJ/g))" else "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold"),
+      panel.grid.minor = element_blank()
+    )
+  
+  return(combined_plot)
+}
+
+#######################################################
+# FIGURE 2: Historical vs Contemporary Comparison - Sex-Averaged, No Transplant
+#######################################################
+
+create_sex_averaged_historical_contemporary_boxplot <- function(data, use_log_scale = FALSE) {
+  # Define site order
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  
+  # Combined data for the faceted plot
+  averaged_data_combined <- data %>%
+    filter(site_orig == site_clim) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary"))
+    )
+  
+  # Apply log transformation if requested
+  if (use_log_scale) {
+    averaged_data_combined <- averaged_data_combined %>%
+      mutate(avg_energy_per_mass = log(avg_energy_per_mass))
+  }
+  
+  # Create combined plot with free y-axis scales
+  combined_plot <- ggplot(averaged_data_combined, 
+                          aes(x = site, 
+                              y = avg_energy_per_mass, 
+                              fill = year_period)) +
+    facet_grid(species ~ ., scales = "free_y") +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1945-1964)", "Contemporary (2005-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_order) +
+    labs(
+      x = "Site",
+      y = if(use_log_scale) "log(Total Net Energy Gained (kJ/g))" else "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = "top",
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank(),
+      strip.background = element_rect(fill = "white"),
+      strip.text = element_text(face = "bold")
+    )
+  
+  return(combined_plot)
+}
+
+# Example usage:
+plot1 <- create_sex_averaged_reciprocal_transplant_boxplot(thing, use_log_scale = FALSE)
+#plot1_log <- create_sex_averaged_reciprocal_transplant_boxplot(thing, use_log_scale = TRUE)
+# 
+plot2 <- create_sex_averaged_historical_contemporary_boxplot(thing, use_log_scale = FALSE)
+#plot2_log <- create_sex_averaged_historical_contemporary_boxplot(thing, use_log_scale = TRUE)
+
+
+
+#hopefully actually final?
+library(tidyverse)
+library(ggplot2)
+library(grid)
+library(gtable)
+
+#######################################################
+# FIGURE 1: Sex-Averaged Reciprocal Transplant - Contemporary Only
+#######################################################
+
+create_sex_averaged_reciprocal_transplant_boxplot <- function(data, use_log_scale = FALSE) {
+  # Define site order and elevation mapping
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  site_elev <- c("Eldo" = "1740m", "A1" = "2195m", "B1" = "2591m", 
+                 "C1" = "3048m", "D1" = "3515m")
+  
+  # Filter and prepare data for both species
+  averaged_data_combined <- data %>%
+    filter(year_period == "contemporary") %>%
+    group_by(species, year, site_orig, site_clim) %>%
+    summarize(
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE), #shade_NA_h_NA
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site_orig = factor(site_orig, levels = site_order),
+      site_clim = factor(site_clim, levels = site_order),
+      climate_type = ifelse(site_orig == site_clim, "Home climate", "Transplanted climate"),
+      population_label = site_elev[as.character(site_orig)],
+      population_label = factor(population_label, levels = site_elev),
+      site_clim_label = site_elev[as.character(site_clim)],
+      site_clim_label = factor(site_clim_label, levels = site_elev)
+    )
+  
+  # Apply log transformation if requested
+  if (use_log_scale) {
+    averaged_data_combined <- averaged_data_combined %>%
+      mutate(avg_energy_per_mass = log(avg_energy_per_mass))
+  }
+  
+  # Create combined plot with free y-axis scales
+  p <- ggplot(averaged_data_combined, 
+              aes(x = population_label, 
+                  y = avg_energy_per_mass, 
+                  fill = climate_type)) +
+    facet_grid(species ~ site_clim_label, scales = "free_y",
+               labeller = labeller(site_clim_label = as_labeller(site_elev),
+                                   species = as_labeller(c("MB" = "bolditalic('M. boulderensis')", 
+                                                           "MS" = "bolditalic('M. sanguinipes')"), 
+                                                         label_parsed))) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = climate_type), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("Home climate" = "#90EE90", "Transplanted climate" = "#CCCCCC"),
+                      name = NULL) +
+    scale_color_manual(values = c("Home climate" = "#228B22", "Transplanted climate" = "#777777"),
+                       guide = "none") +
+    scale_x_discrete(drop = FALSE, limits = site_elev) +
+    labs(
+      x = "Population",
+      y = if(use_log_scale) "log(Total Net Energy Gained (kJ/g))" else "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = c(0.90, 0.25),
+      legend.justification = c(0.5, 0.5),
+      legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5),
+      legend.margin = margin(t = 1, r = 4, b = 1, l = 4),
+      legend.key.size = unit(0.8, "lines"),
+      legend.text = element_text(size = 9, margin = margin(t = 0, b = 0)),
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.background = element_rect(fill = "#D2B48C"),
+      strip.text = element_text(face = "bold", color = "black"),
+      panel.grid.minor = element_blank()
+    ) +
+    guides(fill = guide_legend(keyheight = unit(0.8, "lines"),
+                               keywidth = unit(1, "lines")))
+  
+  # Convert to grob for manipulation
+  g <- ggplotGrob(p)
+  
+  # Add "Climate" label at the top
+  climate_label <- textGrob("Climate", gp = gpar(fontsize = 12, fontface = "bold", col = "#8B4513"))
+  g <- gtable_add_rows(g, heights = unit(0.6, "cm"), pos = 0)
+  panel_cols <- which(grepl("panel", g$layout$name))  # Match all panels
+  g <- gtable_add_grob(g, climate_label, t = 1, 
+                       l = min(g$layout$l[panel_cols]),  # Leftmost panel column
+                       r = max(g$layout$r[panel_cols]))  # Rightmost panel column
+  
+  # Add "Species" label on the right
+  species_label <- textGrob("Species", rot = 270, gp = gpar(fontsize = 12, fontface = "bold", col = "#8B4513"))
+  g <- gtable_add_cols(g, widths = unit(0.6, "cm"), pos = -1)
+  panel_rows <- range(which(grepl("panel", g$layout$name)))
+  g <- gtable_add_grob(g, species_label, 
+                       t = min(g$layout$t[panel_rows]),  # Top of first panel
+                       b = max(g$layout$b[panel_rows]),  # Bottom of last panel 
+                       l = ncol(g), r = ncol(g))
+
+  
+  return(g)
+}
+
+#######################################################
+# FIGURE 2: Historical vs Contemporary Comparison - Sex-Averaged, No Transplant
+#######################################################
+
+create_sex_averaged_historical_contemporary_boxplot <- function(data, use_log_scale = FALSE) {
+  # Define site order and elevation mapping
+  site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+  site_elev <- c("Eldo" = "1740m", "A1" = "2195m", "B1" = "2591m", 
+                 "C1" = "3048m", "D1" = "3515m")
+  
+  # Combined data for the faceted plot
+  averaged_data_combined <- data %>%
+    filter(site_orig == site_clim) %>%
+    group_by(species, year, year_period, site_orig) %>%
+    summarize(
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      n_sex = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      site = site_orig,
+      site = factor(site, levels = site_order),
+      year_period = factor(year_period, levels = c("historical", "contemporary")),
+      site_label = site_elev[as.character(site)],
+      site_label = factor(site_label, levels = site_elev)
+    )
+  
+  # Apply log transformation if requested
+  if (use_log_scale) {
+    averaged_data_combined <- averaged_data_combined %>%
+      mutate(avg_energy_per_mass = log(avg_energy_per_mass))
+  }
+  
+  # Create combined plot with free y-axis scales and species faceting
+  p <- ggplot(averaged_data_combined, 
+              aes(x = site_label, 
+                  y = avg_energy_per_mass, 
+                  fill = year_period)) +
+    facet_grid(species ~ ., scales = "free_y",
+               labeller = labeller(
+                 species = as_labeller(c("MB" = "bolditalic('M. boulderensis')", 
+                                         "MS" = "bolditalic('M. sanguinipes')"), 
+                                       label_parsed)
+               )) +
+    geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+    geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
+    scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
+                      labels = c("Historical (1950-1959)", "Contemporary (2014-2024)"),
+                      name = "Time Period") +
+    scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
+                       guide = "none") +
+    scale_x_discrete(limits = site_elev) +
+    labs(
+      x = "Site",
+      y = if(use_log_scale) "log(Total Net Energy Gained (kJ/g))" else "Total Net Energy Gained (kJ/g)"
+    ) +
+    theme_bw() +
+    theme(
+      legend.position = c(0.98, 0.02),
+      legend.justification = c(1, 0),
+      legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5),
+      legend.box.margin = margin(6, 6, 6, 6),
+      legend.key.size = unit(0.8, "lines"),
+      legend.text = element_text(size = 9),
+      axis.text.x = element_text(angle = 0, hjust = 0.5),
+      panel.grid.minor = element_blank(),
+      strip.background = element_rect(fill = "#D2B48C"),
+      strip.text = element_text(face = "bold", color = "black")
+    ) +
+    guides(fill = guide_legend(keyheight = unit(0.8, "lines"),
+                               keywidth = unit(1, "lines")))
+  
+  # Convert to grob for manipulation
+  g <- ggplotGrob(p)
+  
+  # Add "Species" label on the right
+  species_label <- textGrob("Species", rot = 270, 
+                            gp = gpar(fontsize = 12, fontface = "bold", col = "#8B4513"))
+  g <- gtable_add_cols(g, widths = unit(0.6, "cm"), pos = -1)
+  panel_rows <- which(grepl("panel", g$layout$name))
+  g <- gtable_add_grob(g, species_label, 
+                       t = min(g$layout$t[panel_rows]),
+                       b = max(g$layout$b[panel_rows]),
+                       l = ncol(g), r = ncol(g))
+  
+  return(g)
+}
+
+# Example usage:
+plot1 <- create_sex_averaged_reciprocal_transplant_boxplot(thing, use_log_scale = FALSE)
+grid.draw(plot1)  # Note: use grid.draw() to display the gtable object
+# 
+# plot1_log <- create_sex_averaged_reciprocal_transplant_boxplot(my_data, use_log_scale = TRUE)
+# grid.draw(plot1_log)
+# 
+plot2 <- create_sex_averaged_historical_contemporary_boxplot(thing, use_log_scale = FALSE)
+grid.draw(plot2)
+# 
