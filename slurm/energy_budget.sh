@@ -14,6 +14,6 @@ cd $WORKDIR
 module load apptainer/1.1.5
 apptainer exec \
   --bind $WORKDIR:$WORKDIR \
-  --bind /mmfs1/gscratch/biology/jmsmith/targeted_microclimate:/mmfs1/gscratch/biology/jmsmith/targeted_microclimate \
+  --bind /mmfs1/gscratch/biology/jmsmith/targeted_microclimate:/mmfs1/gscratch/biology/jmsmith/targeted_microclimate3 \
   tidyverse_latest.sif \
   Rscript $WORKDIR/scripts/calculate_energy_budget.R {SPECIES} {YEAR} {SITE_ORIG} {SITE_CLIM} {SEX} {OUTPUT_DIR}

@@ -8,7 +8,7 @@ site_orig <- args[3]            # Original site, e.g., "A1"
 site_clim <- args[4]            # Climate site, e.g., "B1" 
 sex <- args[5]                  # Sex, e.g., "F" or "M"
 output_dir <- args[6]           # Output directory
-microclim_path <- if(length(args) > 6) args[7] else "/mmfs1/gscratch/biology/jmsmith/targeted_microclimate"
+microclim_path <- if(length(args) > 6) args[7] else "/mmfs1/gscratch/biology/jmsmith/targeted_microclimate3"
 
 # Print arguments for debugging
 cat("Arguments received:\n")

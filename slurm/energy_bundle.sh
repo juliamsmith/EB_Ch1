@@ -15,6 +15,6 @@ module load apptainer/1.1.5
 apptainer exec \
   --bind $WORKDIR:$WORKDIR \
   --bind /gscratch/biology/jmsmith/R:/gscratch/biology/jmsmith/R \
-  --bind /mmfs1/gscratch/biology/jmsmith/targeted_microclimate:/mmfs1/gscratch/biology/jmsmith/targeted_microclimate \
+  --bind /mmfs1/gscratch/biology/jmsmith/targeted_microclimate3:/mmfs1/gscratch/biology/jmsmith/targeted_microclimate3 \
   tidyverse_latest.sif \
   Rscript $WORKDIR/scripts/calculate_energy_bundle.R {SPECIES} "{YEARS}" {SITE_ORIG} {SITE_CLIM} {SEX} {OUTPUT_DIR}
