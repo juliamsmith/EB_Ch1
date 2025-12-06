@@ -3,6 +3,7 @@
 library(tidyverse)
 library(lme4)
 library(car)
+library(MuMIn)
 #library(whatever it is for AICc)
 
 
@@ -102,28 +103,32 @@ r2(mod_physiol_only)  # How much variance does physiology explain?
 r2(mod_rt)           # How much does the full model explain?
 
 
+
+
+
+#THIS
 #a more sophisticated approach
 library(glmm.hp)
 
 # For MB contemporary
 mb_data <- df_contemporary %>% filter(species == "MB")
-mod_rt <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), data = mb_data)
-
-# Partition variance
-hp_result <- glmm.hp(mod_rt)
-print(hp_result)
-plot(hp_result)
+# mod_rt <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), data = mb_data)
+# 
+# # Partition variance
+# hp_result <- glmm.hp(mod_rt)
+# print(hp_result)
+# plot(hp_result)
 
 
 
 # For MB contemporary
 ms_data <- df_contemporary %>% filter(species == "MS")
-mod_rt <- lmer(log_energy_gain ~ site_orig + site_clim  + (1|year), data = ms_data)
-
-# Partition variance
-hp_result <- glmm.hp(mod_rt)
-print(hp_result)
-plot(hp_result)
+# mod_rt <- lmer(log_energy_gain ~ site_orig + site_clim  + (1|year), data = ms_data)
+# 
+# # Partition variance
+# hp_result <- glmm.hp(mod_rt)
+# print(hp_result)
+# plot(hp_result)
 
 #including the interaction term might actually be bad? (for hierarchical partitioning)
 
@@ -138,37 +143,37 @@ anova(mod_with_int, mod_without_int)  # Is interaction significant?
 AIC(mod_with_int, mod_without_int)
 
 #MB
-# Log-transform for proportional (multiplicative) effects
-df_contemporary <- df_contemporary %>%
-  mutate(log_energy_gain = log(energy_gain))
-
-mb_data <- df_contemporary %>% filter(species == "MB")
-
-mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
-                   data = mb_data, REML=FALSE)
-
-mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
-                       data = mb_data, REML=FALSE)
-
-
-anova(mod_int_log, mod_no_int_log)  # Is interaction significant?
-
-AICc(mod_int_log, mod_no_int_log)
-
-#refitting with REML (since we've already done the interaction vs. no interaction comparison)
-mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
-                       data = mb_data)
-
-mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
-                    data = mb_data)
-
-summary(mod_no_int_log)
-
-summary(mod_int_log)
-
-# Partition variance
-hp_result <- glmm.hp(mod_no_int_log)
-print(hp_result)
+# # Log-transform for proportional (multiplicative) effects
+# df_contemporary <- df_contemporary %>%
+#   mutate(log_energy_gain = log(energy_gain))
+# 
+# mb_data <- df_contemporary %>% filter(species == "MB")
+# 
+# mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
+#                    data = mb_data, REML=FALSE)
+# 
+# mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
+#                        data = mb_data, REML=FALSE)
+# 
+# 
+# anova(mod_int_log, mod_no_int_log)  # Is interaction significant?
+# 
+# AICc(mod_int_log, mod_no_int_log)
+# 
+# #refitting with REML (since we've already done the interaction vs. no interaction comparison)
+# mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
+#                        data = mb_data)
+# 
+# mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
+#                     data = mb_data)
+# 
+# summary(mod_no_int_log)
+# 
+# summary(mod_int_log)
+# 
+# # Partition variance
+# hp_result <- glmm.hp(mod_no_int_log)
+# print(hp_result)
 
 #and no log
 mod_no_int <- lmer(energy_gain ~ site_orig + site_clim + (1|year), 
@@ -193,6 +198,8 @@ summary(mod_no_int)
 
 summary(mod_int)
 
+Anova(mod_int, type="III")
+
 # Partition variance
 hp_result <- glmm.hp(mod_no_int)
 print(hp_result)
@@ -200,37 +207,37 @@ print(hp_result)
 
 
 #MS
-# Log-transform for proportional (multiplicative) effects
-df_contemporary <- df_contemporary %>%
-  mutate(log_energy_gain = log(energy_gain))
-
-ms_data <- df_contemporary %>% filter(species == "MS")
-
-mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
-                       data = ms_data, REML=FALSE)
-
-mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
-                    data = ms_data, REML=FALSE)
-
-
-anova(mod_int_log, mod_no_int_log)  # Is interaction significant?
-
-AICc(mod_int_log, mod_no_int_log)
-
-#refitting with REML (since we've already done the interaction vs. no interaction comparison)
-mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
-                       data = ms_data)
-
-mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
-                    data = ms_data)
-
-summary(mod_no_int_log)
-
-summary(mod_int_log)
-
-# Partition variance
-hp_result <- glmm.hp(mod_no_int_log)
-print(hp_result)
+# # Log-transform for proportional (multiplicative) effects
+# df_contemporary <- df_contemporary %>%
+#   mutate(log_energy_gain = log(energy_gain))
+# 
+# ms_data <- df_contemporary %>% filter(species == "MS")
+# 
+# mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
+#                        data = ms_data, REML=FALSE)
+# 
+# mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
+#                     data = ms_data, REML=FALSE)
+# 
+# 
+# anova(mod_int_log, mod_no_int_log)  # Is interaction significant?
+# 
+# AICc(mod_int_log, mod_no_int_log)
+# 
+# #refitting with REML (since we've already done the interaction vs. no interaction comparison)
+# mod_no_int_log <- lmer(log_energy_gain ~ site_orig + site_clim + (1|year), 
+#                        data = ms_data)
+# 
+# mod_int_log <- lmer(log_energy_gain ~ site_orig * site_clim + (1|year), 
+#                     data = ms_data)
+# 
+# summary(mod_no_int_log)
+# 
+# summary(mod_int_log)
+# 
+# # Partition variance
+# hp_result <- glmm.hp(mod_no_int_log)
+# print(hp_result)
 
 #and no log
 mod_no_int <- lmer(energy_gain ~ site_orig + site_clim + (1|year), 
@@ -242,7 +249,7 @@ mod_int <- lmer(energy_gain ~ site_orig * site_clim + (1|year),
 
 anova(mod_int, mod_no_int)  # Is interaction significant?
 
-AICc(mod_int, mod_no_int)
+AICc(mod_int, mod_no_int) #76
 
 #refitting with REML (since we've already done the interaction vs. no interaction comparison)
 mod_no_int <- lmer(energy_gain ~ site_orig + site_clim + (1|year), 
@@ -255,6 +262,8 @@ summary(mod_no_int)
 
 summary(mod_int)
 
+Anova(mod_int, type="III")
+
 # Partition variance
 hp_result <- glmm.hp(mod_no_int)
 print(hp_result)
@@ -262,27 +271,27 @@ print(hp_result)
 
 #moving this up for ease, but first the shorter version
 
-#MB log
+# #MB log
 df_temporal <- df_avg %>%
   filter(site_orig == site_clim) %>%
   mutate(log_energy_gain = log(energy_gain))
-
-mod_temp_log_MB <- lmer(log_energy_gain ~ 
-                      year_period * site_orig +  # Period × site interaction
-                      (1|year),                   # Random year effect
-                    data = df_temporal %>% filter(species == "MB"))
-summary(mod_temp_log_MB)
-
-#specific hypotheses to test
-# 1. Overall temporal change (across all sites)
-emm_period <- emmeans(mod_temp_log_MB, ~ year_period)
-pairs(emm_period)
-
-
-# 2. Site-specific temporal changes
-emm_site_period <- emmeans(mod_temp_log_MB, ~ year_period | site_orig)
-contrasts_temporal <- pairs(emm_site_period, adjust = "none")
-summary(contrasts_temporal)
+# 
+# mod_temp_log_MB <- lmer(log_energy_gain ~ 
+#                       year_period * site_orig +  # Period × site interaction
+#                       (1|year),                   # Random year effect
+#                     data = df_temporal %>% filter(species == "MB"))
+# summary(mod_temp_log_MB)
+# 
+# #specific hypotheses to test
+# # 1. Overall temporal change (across all sites)
+# emm_period <- emmeans(mod_temp_log_MB, ~ year_period)
+# pairs(emm_period)
+# 
+# 
+# # 2. Site-specific temporal changes
+# emm_site_period <- emmeans(mod_temp_log_MB, ~ year_period | site_orig)
+# contrasts_temporal <- pairs(emm_site_period, adjust = "none")
+# summary(contrasts_temporal)
 
 
 #MB no log
@@ -303,24 +312,8 @@ emm_site_period <- emmeans(mod_temp_MB, ~ year_period | site_orig)
 contrasts_temporal <- pairs(emm_site_period, adjust = "none")
 summary(contrasts_temporal)
 
+Anova(mod_temp_MB, type="III")
 
-#MS log
-mod_temp_log_MS <- lmer(log_energy_gain ~ 
-                          year_period * site_orig +  # Period × site interaction
-                          (1|year),                   # Random year effect
-                        data = df_temporal %>% filter(species == "MS"))
-summary(mod_temp_log_MS)
-
-#specific hypotheses to test
-# 1. Overall temporal change (across all sites)
-emm_period <- emmeans(mod_temp_log_MS, ~ year_period)
-pairs(emm_period)
-
-
-# 2. Site-specific temporal changes
-emm_site_period <- emmeans(mod_temp_log_MS, ~ year_period | site_orig)
-contrasts_temporal <- pairs(emm_site_period, adjust = "none")
-summary(contrasts_temporal)
 
 
 #MS no log
@@ -329,6 +322,8 @@ mod_temp_MS <- lmer(energy_gain ~
                       (1|year),                   # Random year effect
                     data = df_temporal %>% filter(species == "MS"))
 summary(mod_temp_MS)
+
+Anova(mod_temp_MS, type="III")
 
 #specific hypotheses to test
 # 1. Overall temporal change (across all sites)
@@ -340,6 +335,8 @@ pairs(emm_period)
 emm_site_period <- emmeans(mod_temp_MS, ~ year_period | site_orig)
 contrasts_temporal <- pairs(emm_site_period, adjust = "none")
 summary(contrasts_temporal)
+
+#End of THIS
 
 
 
