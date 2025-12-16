@@ -5,6 +5,7 @@ library(grid)
 library(gtable)
 
 #directory is output/results/
+setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output/results")
 
 pops <- readRDS("../../data/pops.rds")
 
@@ -69,10 +70,12 @@ valid_combinations <- list(
   MB = c("A1", "B1", "C1", "D1")
 )
 
-# Site order for plotting and elevation mapping
-site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+# Site order for plotting and elevation mapping - REVERSED (high to low elevation)
+site_order <- c("D1", "C1", "B1", "A1", "Eldo")
 site_elev <- c("Eldo" = "1740m", "A1" = "2195m", "B1" = "2591m", 
                "C1" = "3048m", "D1" = "3515m")
+# Reversed order for factor levels
+site_elev_order <- c("3515m", "3048m", "2591m", "2195m", "1740m")
 
 # Function to load RDS files and filter to specific microclimate condition
 load_and_process_direct <- function(base_dir = ".", pattern = "^eb_results_", 
@@ -369,14 +372,14 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
   
   message("After daylight filtering: ", nrow(filtered_temps), " rows")
   
-  # Continue with remaining processing
+  # Continue with remaining processing - use reversed site order
   filtered_temps <- filtered_temps %>%
     mutate(
       site_clim = factor(site_clim, levels = site_order),
       species = factor(species, levels = c("MB", "MS")),
-      # Add elevation labels
+      # Add elevation labels with reversed order
       site_label = site_elev[as.character(site_clim)],
-      site_label = factor(site_label, levels = site_elev)
+      site_label = factor(site_label, levels = site_elev_order)
     )
   
   message("Filtered temperature data. Number of rows:", nrow(filtered_temps))
@@ -429,7 +432,7 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
       site_clim = factor(site_clim, levels = site_order),
       species = factor(spp, levels = c("MB", "MS")),
       site_label = site_elev[as.character(site_clim)],
-      site_label = factor(site_label, levels = site_elev)
+      site_label = factor(site_label, levels = site_elev_order)
     )
   
   # Verify we have the correct combinations
@@ -453,12 +456,15 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
     scale_fill_manual(
       values = c("historical" = "#8DA0CB", "recent" = "#FC8D62"),
       labels = c("historical" = "Historical (1950-1959)", "recent" = "Contemporary (2015-2024)"),
-      name = "Period",
+      name = "Period:",
       drop = FALSE
     ) +
-    scale_linetype_manual(values = c("Gains" = "solid", 
-                                     "Losses" = "dashed", 
-                                     "Net" = "dotted")) +
+    scale_linetype_manual(
+      name = "Rate:",  # Changed from "type" to "Rate"
+      values = c("Gains" = "solid", 
+                 "Losses" = "dashed", 
+                 "Net" = "dotted")
+    ) +
     scale_y_continuous(
       name = "Temperature Density",
       sec.axis = sec_axis(~./scaling_factor, name = "Energy Rate (kJ/hr/g)")
@@ -467,8 +473,8 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
     facet_grid(site_label ~ species, scales = "free_y",
                labeller = labeller(
                  species = as_labeller(c("MB" = "bolditalic('M. boulderensis')", 
-                                     "MS" = "bolditalic('M. sanguinipes')"), 
-                                   label_parsed))) +
+                                         "MS" = "bolditalic('M. sanguinipes')"), 
+                                       label_parsed))) +
     labs(x = "Body Temperature (°C)") +
     theme_minimal() +
     theme(
@@ -477,9 +483,22 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
       panel.grid.minor = element_blank(),
       panel.spacing = unit(1, "lines"),
       axis.title.y.right = element_text(color = "darkgreen"),
-      legend.position = "bottom"
+      legend.position = "bottom",
+      legend.box = "horizontal",
+      # Moderate key width - enough to show dashes but not too wide
+      legend.key.width = unit(1.5, "cm"),
+      legend.key.height = unit(0.5, "cm"),
+      # Add spacing between legend items
+      legend.spacing.x = unit(0.8, "cm"),
+      legend.box.spacing = unit(0.8, "cm"),
+      # Add margin to prevent clipping
+      legend.margin = margin(t = 10, r = 20, b = 10, l = 20)
     ) +
-    guides(fill = guide_legend(override.aes = list(alpha = 0.7)))
+    guides(
+      # Period legend first (order = 1), Rate second (order = 2)
+      fill = guide_legend(order = 1, override.aes = list(alpha = 0.7)),
+      linetype = guide_legend(order = 2, override.aes = list(linewidth = 1))
+    )
   
   # Convert to grob for adding labels
   g <- ggplotGrob(p)
@@ -506,6 +525,28 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
 
 # Example usage:
 plot_partial_shade <- process_energy_plot(".", pops, use_condition = "partial_shade_low_veg")
+
+# Save with good dimensions (matching the uploaded figure proportions)
+# The uploaded figure appears to be roughly 8x10 inches (width x height)
+ggsave(
+  filename = "fig2_energy_budgets.png",
+  plot = plot_partial_shade,
+  width = 8,
+  height = 10,
+  dpi = 300,
+  bg = "white"
+)
+
+# Also save as PDF for publication
+ggsave(
+  filename = "fig2_energy_budgets.pdf",
+  plot = plot_partial_shade,
+  width = 8,
+  height = 10,
+  bg = "white"
+)
+
+# Display
 grid.newpage()
 grid.draw(plot_partial_shade)
 

@@ -3,7 +3,7 @@
 library(tidyverse)
 library(ggplot2)
 
-#setwd("~/GitHub/EB_Ch1/analysis")
+setwd("~/GitHub/EB_Ch1/analysis")
 
 thing0 <- read_csv("eb_results_summary_wide.csv") 
 #thing0 <- read_csv("eb_results_summary_wide_tpc_normalized.csv")
