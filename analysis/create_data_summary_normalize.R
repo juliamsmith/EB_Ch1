@@ -191,7 +191,7 @@ create_wide_format <- function(summary_df) {
 
 # Main function to run the analysis with TPC normalization
 summarize_eb_results <- function(pops_df, 
-                                 base_dir = "C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output/results") {
+                                 base_dir = "C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output_old/results") {
   # Calculate species-specific average TPC areas
   cat("Calculating species-specific average TPC areas...\n")
   species_avg_tpc <- calculate_species_avg_tpc(pops_df)
@@ -223,7 +223,7 @@ summarize_eb_results <- function(pops_df,
 
 # Run the analysis
 results <- summarize_eb_results(pops_df = pops)
-write_csv(results$wide, "eb_results_summary_wide_tpc_normalized.csv")
+write_csv(results$wide, "eb_results_summary_wide_tpc_normalized_old.csv")
 
 
 

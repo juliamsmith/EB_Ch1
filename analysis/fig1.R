@@ -1,22 +1,33 @@
-# Load required libraries
+# plot_tpc_figures_modified.R
+# Script to create TPC figures using MAP+HDI parameters from pops.rds
+
 library(tidyverse)
 library(ggplot2)
-library(patchwork)  # For combining plots
+library(patchwork)
+library(grid)
+library(gtable)
 
-# Implement LRF function exactly as shown in the pasted code
+setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/analysis")
+
+# Load the pops data
+pops <- readRDS("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/data/pops.rds")
+
+# Load the raw data for plotting points
+ad_data <- read_csv("C:/Users/jmsmi/OneDrive/Documents/GitHub/thermal_perf/data/ad.csv")
+
+# ===== HELPER FUNCTIONS =====
+
+# Implement LRF function
 lrf_1991_exact <- function(temp, rmax, topt, tmin, tmax) {
-  # Return 0 for temps outside valid range
   if (temp <= tmin || temp >= tmax) {
     return(0)
   }
   
-  # Implement the exact equation as shown in the image
   numerator <- (temp - tmax) * (temp - tmin)^2
   denominator <- (topt - tmin) * ((topt - tmin) * (temp - topt) - (topt - tmax) * (topt + tmin - 2 * temp))
   
   rate <- rmax * numerator / denominator
   
-  # Handle NaN or negative values
   if (is.na(rate) || rate < 0) {
     return(0)
   }
@@ -24,83 +35,63 @@ lrf_1991_exact <- function(temp, rmax, topt, tmin, tmax) {
   return(rate)
 }
 
-# Function to calculate feeding rate for MS using exact LRF model (averaged across sexes)
-get_ms_feeding_rate <- function(temp, site) {
-  # Parameters for MS from the model output
-  site_params <- list(
-    Eldo = list(Tmin = 14.74, Topt = 39.88, Above = 9.56, Ropt = 3.50),
-    A1 = list(Tmin = 11.67, Topt = 39.89, Above = 6.68, Ropt = 3.63),
-    B1 = list(Tmin = 10.96, Topt = 39.78, Above = 8.20, Ropt = 4.30)
-  )
+# Site coordinates with elevations
+site_coords <- data.frame(
+  name = c("Eldo", "A1", "B1", "C1", "D1"),
+  lat = c(39.944, 40.015, 40.023, 40.036, 40.059),
+  lon = c(-105.262, -105.377, -105.430, -105.547, -105.617),
+  elev = c(1740, 2195, 2591, 3048, 3515)
+)
+site_coords$elev_label <- paste0(site_coords$elev, "m")
+
+# Site order: low to high for data/legend, but we'll reverse for facet display in A
+site_order <- c("Eldo", "A1", "B1", "C1", "D1")
+site_order_reversed <- rev(site_order)  # High to low for panel A facets
+
+site_colors <- c(
+  "Eldo" = "#FF4500",
+  "A1" = "#FF8C00",
+  "B1" = "#FFD700",
+  "C1" = "#4682B4",
+  "D1" = "#0000CD"
+)
+site_elevations <- c(
+  "Eldo" = "1740m",
+  "A1" = "2195m",
+  "B1" = "2591m",
+  "C1" = "3048m",
+  "D1" = "3515m"
+)
+
+# ===== FIGURE A: DATA WITH FITTED CURVES =====
+
+# Extract unique TPC parameters from pops (one row per site/species combination)
+tpc_params <- pops %>%
+  select(spp, site, Tmin, Topt, Above, Ropt, Tmax) %>%
+  distinct()
+
+# Function to calculate feeding rate using parameters from pops
+get_feeding_rate <- function(temp, site, spp, params_df) {
+  params <- params_df %>% filter(site == !!site, spp == !!spp)
   
-  # For D1, use A1 parameters as a placeholder
-  if (site == "D1") {
-    site_params$D1 <- site_params$A1
-  }
+  if (nrow(params) == 0) return(0)
   
-  # Get parameters for this site
-  params <- site_params[[site]]
-  
-  # Calculate Tmax (Topt + Above)
-  Tmax <- params$Topt + params$Above
-  
-  # Calculate base feeding rate using exact LRF
   base_rate <- tryCatch({
-    lrf_1991_exact(temp, params$Ropt, params$Topt, params$Tmin, Tmax)
+    lrf_1991_exact(temp, params$Ropt, params$Topt, params$Tmin, params$Topt + params$Above)
   }, error = function(e) {
-    # Return zero for any errors
     return(0)
   })
   
-  # We're not applying sex effects anymore as we're averaging across sexes
   return(base_rate)
 }
-
-# Function to calculate feeding rate for MB using exact LRF model (averaged across sexes)
-get_mb_feeding_rate <- function(temp, site) {
-  # Parameters for MB from the model output
-  site_params <- list(
-    A1 = list(Tmin = 13.57, Topt = 37.54, Above = 11.70, Ropt = 2.64),
-    B1 = list(Tmin = 12.80, Topt = 41.76, Above = 10.74, Ropt = 3.29),
-    C1 = list(Tmin = 13.79, Topt = 41.03, Above = 11.77, Ropt = 3.93)
-  )
-  
-  # For Eldo and D1, use A1 and C1 parameters respectively as placeholders
-  site_params$Eldo <- site_params$A1
-  site_params$D1 <- list(Tmin = 14.0, Topt = 42.0, Above = 12.0, Ropt = 4.0)  # Made-up values for D1
-  
-  # Get parameters for this site
-  params <- site_params[[site]]
-  
-  # Calculate Tmax (Topt + Above)
-  Tmax <- params$Topt + params$Above
-  
-  # Calculate base feeding rate using exact LRF
-  base_rate <- tryCatch({
-    lrf_1991_exact(temp, params$Ropt, params$Topt, params$Tmin, Tmax)
-  }, error = function(e) {
-    # Return zero for any errors
-    return(0)
-  })
-  
-  # We're not applying sex effects anymore as we're averaging across sexes
-  return(base_rate)
-}
-
-# Read the data
-# Assuming the ad.csv file is in the working directory
-#ad_data <- read.csv("ad.csv")
 
 # Generate curve data
-generate_curve_data <- function() {
-  # Temperature range for curves - use fine-grained steps for smoother curves
+generate_curve_data <- function(params_df) {
   temp_range <- seq(15, 45, by = 0.1)
   
-  # Define which sites to use for each species
   mb_sites <- c("A1", "B1", "C1", "D1")
   ms_sites <- c("Eldo", "A1", "B1")
   
-  # Create empty dataframe to store results
   curve_data <- data.frame()
   
   # Generate data for MB
@@ -109,7 +100,7 @@ generate_curve_data <- function() {
       spp = "MB",
       site = site,
       temp = temp_range,
-      rate = sapply(temp_range, function(t) get_mb_feeding_rate(t, site)),
+      rate = sapply(temp_range, function(t) get_feeding_rate(t, site, "MB", params_df)),
       type = "curve"
     )
     curve_data <- rbind(curve_data, site_curve)
@@ -121,7 +112,7 @@ generate_curve_data <- function() {
       spp = "MS",
       site = site,
       temp = temp_range,
-      rate = sapply(temp_range, function(t) get_ms_feeding_rate(t, site)),
+      rate = sapply(temp_range, function(t) get_feeding_rate(t, site, "MS", params_df)),
       type = "curve"
     )
     curve_data <- rbind(curve_data, site_curve)
@@ -131,381 +122,210 @@ generate_curve_data <- function() {
 }
 
 # Generate the curve data
-curve_data <- generate_curve_data()
+curve_data <- generate_curve_data(tpc_params)
 
 # Add type column to the original data
 ad_data$type <- "point"
 
-# Combine original data with curve data (dropping sex from curve data since we're ignoring it)
+# Combine original data with curve data
 combined_data <- rbind(
   ad_data[, c("spp", "site", "sex", "temp", "rate", "type")],
-  transform(curve_data, sex = NA)  # Add NA for sex in curve data
+  transform(curve_data, sex = NA)
 )
 
-# Set the site order based on elevation (low to high)
-site_order <- c("Eldo", "A1", "B1", "C1", "D1")
-combined_data$site <- factor(combined_data$site, levels = site_order)
+# Map site names to elevation labels
+site_name_to_elev <- setNames(site_coords$elev_label, site_coords$name)
+combined_data$site_label <- site_name_to_elev[as.character(combined_data$site)]
 
-# Define colors for sites (cooler as elevation increases)
-site_colors <- c(
-  "Eldo" = "#FF4500",  # Red-orange
-  "A1" = "#FF8C00",    # Dark orange
-  "B1" = "#FFD700",    # Gold/yellow
-  "C1" = "#4682B4",    # Steel blue
-  "D1" = "#0000CD"     # Medium blue
+combined_data$site <- factor(combined_data$site, levels = site_order_reversed)
+elev_order_reversed <- site_coords$elev_label[match(site_order_reversed, site_coords$name)]
+combined_data$site_label <- factor(combined_data$site_label, levels = elev_order_reversed)
+
+# Create color mapping for elevation labels
+elev_colors <- setNames(site_colors, site_name_to_elev[names(site_colors)])
+
+# Filter points and curves
+point_data <- combined_data %>% filter(type == "point")
+curve_data_plot <- combined_data %>% filter(type == "curve")
+
+legend_data_a <- data.frame(
+  site = factor(names(site_elevations), levels = site_order_reversed),
+  elev = site_elevations,
+  y = 5.5,  # Moved down to create space from title
+  x = c(17, 22, 27, 32, 37),  # Spaced out to allow room for text
+  spp = "MB",
+  site_label = factor("1740m", levels = elev_order_reversed)  # 1740m is empty for MB
 )
 
-# Create the plot
-create_tpc_plot <- function(data) {
-  # Filter for just the point data for the plot
-  point_data <- data %>% 
-    filter(type == "point")
-  
-  # Filter for just the curve data
-  curve_data <- data %>% filter(type == "curve")
-  
-  # Create a plot for each species and site
-  p <- ggplot() +
-    # Add the curves first (so points appear on top)
-    geom_line(
-      data = curve_data,
-      aes(x = temp, y = rate, color = site),
-      size = 1.2
-    ) +
-    # Add the scatter points with jitter
-    geom_jitter(
-      data = point_data,
-      aes(x = temp, y = rate, color = site),
-      width = 0.5, height = 0, alpha = 0.6, size = 1.8, shape = 16
-    ) +
-    # Set up faceting by species and site
-    facet_grid(site ~ spp) +
-    # Set axis labels
-    labs(
-      x = "Temperature (°C)",
-      y = "Mass-adjusted feces production rate (mg/g hopper/hr)",
-      title = "Thermal Performance Curves for Grasshopper Species"
-    ) +
-    # Customize the color scheme
-    scale_color_manual(
-      values = site_colors,
-      name = "Site"
-    ) +
-    # Set the x-axis range
-    scale_x_continuous(limits = c(15, 45), breaks = seq(15, 45, by = 5)) +
-    # Set the y-axis range
-    scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 2)) +
-    # Theme customization
-    theme_bw() +
-    theme(
-      plot.title = element_text(hjust = 0.5, size = 16),
-      strip.background = element_rect(fill = "lightgrey"),
-      strip.text = element_text(size = 12, face = "bold"),
-      axis.title = element_text(size = 12),
-      axis.text = element_text(size = 10),
-      legend.position = "bottom",
-      legend.title = element_text(size = 12),
-      legend.text = element_text(size = 10),
-      panel.grid.minor = element_blank()
-    )
-  
-  return(p)
-}
+legend_box_a <- data.frame(
+  xmin = 15.5,
+  xmax = 44.5,  # Wide box
+  ymin = 3.5,
+  ymax = 10,
+  spp = "MB",
+  site_label = factor("1740m", levels = elev_order_reversed)
+)
 
-# Create the plot
-tpc_plot <- create_tpc_plot(combined_data)
+legend_title_a <- data.frame(
+  x = 30,  # Centered
+  y = 8.5,
+  label = "Population",
+  spp = "MB",
+  site_label = factor("1740m", levels = elev_order_reversed)
+)
 
-# Display the plot
-print(tpc_plot)
+y_axis_label <- "Feces mass / hopper mass / hour (mg/g/hr)"
 
-# Save the plot
-#ggsave("grasshopper_tpc_plot_simplified.png", tpc_plot, width = 12, height = 8, dpi = 300)
-
-# Function to create a more compact multi-panel plot (alternative layout)
-create_compact_tpc_plot <- function(data) {
-  # Filter points and curves
-  point_data <- data %>% filter(type == "point")
-  curve_data <- data %>% filter(type == "curve")
-  
-  # Create a separate plot for each species
-  plots <- list()
-  
-  for (species in c("MB", "MS")) {
-    # Determine which sites to include based on species
-    if (species == "MB") {
-      relevant_sites <- c("A1", "B1", "C1", "D1")
-    } else {
-      relevant_sites <- c("Eldo", "A1", "B1")
-    }
-    
-    # Filter data for this species
-    species_points <- point_data %>% 
-      filter(spp == species, site %in% relevant_sites)
-    
-    species_curves <- curve_data %>% 
-      filter(spp == species, site %in% relevant_sites)
-    
-    # Create the plot
-    p <- ggplot() +
-      # Add curves
-      geom_line(
-        data = species_curves,
-        aes(x = temp, y = rate, color = site),
-        size = 1.2
-      ) +
-      # Add points with jitter
-      geom_jitter(
-        data = species_points,
-        aes(x = temp, y = rate, color = site),
-        width = 0.5, height = 0, alpha = 0.6, size = 1.8, shape = 16
-      ) +
-      # Facet by site only (since we're making separate plots for each species)
-      facet_wrap(~ site, ncol = 1) +
-      # Labels
-      labs(
-        x = "Temperature (°C)",
-        y = "Mass-adjusted feces production rate",
-        title = species
-      ) +
-      # Colors
-      scale_color_manual(values = site_colors) +
-      # Axis ranges
-      scale_x_continuous(limits = c(15, 45), breaks = seq(15, 45, by = 10)) +
-      scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 5)) +
-      # Theme
-      theme_bw() +
-      theme(
-        strip.background = element_rect(fill = "lightgrey"),
-        strip.text = element_text(size = 12, face = "bold"),
-        axis.title = element_text(size = 10),
-        axis.text = element_text(size = 8),
-        legend.position = "none",
-        panel.grid.minor = element_blank(),
-        plot.title = element_text(hjust = 0.5, size = 14)
-      )
-    
-    plots[[species]] <- p
-  }
-  
-  # Create a legend-only plot
-  legend_data <- data.frame(
-    site = site_order,
-    x = 1,
-    y = 1
+# Create Figure A
+fig_a <- ggplot() +
+  geom_line(
+    data = curve_data_plot,
+    aes(x = temp, y = rate, color = site_label),
+    size = 1.2
+  ) +
+  geom_jitter(
+    data = point_data,
+    aes(x = temp, y = rate, color = site_label),
+    width = 0.5, height = 0, alpha = 0.6, size = 1.8, shape = 16
+  ) +
+  # Add legend box (single facet, horizontal layout)
+  geom_rect(data = legend_box_a,
+            aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+            fill = "white", color = "black", linewidth = 0.5,
+            inherit.aes = FALSE) +
+  # Legend title (centered above)
+  geom_text(data = legend_title_a,
+            aes(x = x, y = y, label = label),
+            fontface = "bold", size = 3, hjust = 0.5,
+            inherit.aes = FALSE) +
+  # Legend points (horizontal)
+  geom_point(data = legend_data_a, 
+             aes(x = x, y = y, color = site),
+             size = 2, inherit.aes = FALSE) +
+  # Legend text (to the right of each point)
+  geom_text(data = legend_data_a,
+            aes(x = x + 0.8, y = y, label = elev),
+            hjust = 0, size = 2.2, inherit.aes = FALSE) +
+  facet_grid(site_label ~ spp,
+             labeller = labeller(
+               spp = as_labeller(c("MB" = "bolditalic('M. boulderensis')", 
+                                   "MS" = "bolditalic('M. sanguinipes')"), 
+                                 label_parsed))) +
+  labs(
+    x = "Temperature (°C)",
+    y = y_axis_label
+  ) +
+  scale_color_manual(
+    values = c(elev_colors, site_colors),  # Include both mappings
+    name = "Population"
+  ) +
+  scale_x_continuous(limits = c(15, 45), breaks = seq(15, 45, by = 5)) +
+  scale_y_continuous(limits = c(0, 13), breaks = seq(0, 12, by = 2), 
+                     labels = c("0", "", "4", "", "8", "", "12")) +
+  theme_minimal() +
+  theme(
+    strip.background.x = element_rect(fill = "#D2B48C", color = NA),
+    strip.background.y = element_rect(fill = "#D2B48C", color = NA),
+    strip.text.x = element_text(size = 12, face = "bold", color = "black"),
+    strip.text.y = element_text(size = 9, face = "bold", color = "black"),  
+    axis.title = element_text(size = 11),
+    axis.text = element_text(size = 9),
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    panel.spacing = unit(0.5, "lines"),
+    plot.margin = margin(5, 5, 5, 25, "pt")  
   )
-  
-  legend_plot <- ggplot(legend_data, aes(x = x, y = y, color = site)) +
-    geom_point() +
-    scale_color_manual(values = site_colors, name = "Site") +
-    theme_void() +
-    theme(legend.position = "bottom")
-  
-  # Extract the legend
-  legend <- cowplot::get_legend(legend_plot)
-  
-  # Combine plots with patchwork
-  combined_plot <- plots$MB + plots$MS + 
-    plot_layout(ncol = 2, widths = c(1, 1)) +
-    plot_annotation(
-      title = "Thermal Performance Curves for Grasshopper Species",
-      theme = theme(plot.title = element_text(hjust = 0.5, size = 16))
-    )
-  
-  # Add legend at the bottom
-  final_plot <- combined_plot / legend
-  
-  return(final_plot)
+
+# Convert to grob for adding labels
+g_a <- ggplotGrob(fig_a)
+
+# Add "Species" label at the top
+species_label <- textGrob("Species", gp = gpar(fontface = "bold", col = "#8B4513"))
+g_a <- gtable_add_rows(g_a, heights = unit(0.6, "cm"), pos = 0)
+panel_cols <- which(grepl("panel", g_a$layout$name))
+g_a <- gtable_add_grob(g_a, species_label, t = 1, 
+                       l = min(g_a$layout$l[panel_cols]),
+                       r = max(g_a$layout$r[panel_cols]))
+
+# Add "Population" label on the right
+site_label_grob <- textGrob("Population", rot = 270, gp = gpar(fontface = "bold", col = "#8B4513"))
+g_a <- gtable_add_cols(g_a, widths = unit(0.6, "cm"), pos = -1)
+panel_rows <- which(grepl("panel", g_a$layout$name))
+g_a <- gtable_add_grob(g_a, site_label_grob, 
+                       t = min(g_a$layout$t[panel_rows]),
+                       b = max(g_a$layout$b[panel_rows]),
+                       l = ncol(g_a), r = ncol(g_a))
+
+# ===== FIGURE B: PARAMETER ESTIMATES WITH CREDIBLE INTERVALS =====
+
+# Extract parameters with credible intervals from pops
+mb_params_df <- pops %>%
+  filter(spp == "MB") %>%
+  select(site, Tmin, Tmin_lower, Tmin_upper, Topt, Topt_lower, Topt_upper,
+         Above, Above_lower, Above_upper, Ropt, Ropt_lower, Ropt_upper,
+         Tmax, Tmax_lower, Tmax_upper) %>%
+  distinct()
+
+ms_params_df <- pops %>%
+  filter(spp == "MS") %>%
+  select(site, Tmin, Tmin_lower, Tmin_upper, Topt, Topt_lower, Topt_upper,
+         Above, Above_lower, Above_upper, Ropt, Ropt_lower, Ropt_upper,
+         Tmax, Tmax_lower, Tmax_upper) %>%
+  distinct()
+
+# Convert to list format expected by plotting functions
+mb_params <- list()
+for (i in 1:nrow(mb_params_df)) {
+  site_name <- mb_params_df$site[i]
+  mb_params[[site_name]] <- as.list(mb_params_df[i, ])
 }
 
-# Create the alternative compact plot
-compact_plot <- create_compact_tpc_plot(combined_data)
-
-# Save the compact plot
-#ggsave("grasshopper_tpc_compact_plot_simplified.png", compact_plot, width = 10, height = 12, dpi = 300)
-
-# Test function to visualize a single curve
-test_curve <- function() {
-  # Parameters for one example
-  tmin <- 11.67   # A1 MS
-  topt <- 39.89
-  tmax <- topt + 6.68
-  rmax <- 3.63
-  
-  # Generate curve
-  temps <- seq(5, 50, by=0.1)
-  rates <- sapply(temps, function(t) lrf_1991_exact(t, rmax, topt, tmin, tmax))
-  
-  # Plot
-  df <- data.frame(temp = temps, rate = rates)
-  p <- ggplot(df, aes(x = temp, y = rate)) +
-    geom_line(color = "#FF8C00", size = 1.2) +
-    labs(title = "Example LRF Curve (MS at A1)", 
-         x = "Temperature (°C)", 
-         y = "Rate") +
-    theme_bw()
-  
-  print(p)
-  #ggsave("test_curve.png", p, width = 8, height = 6, dpi = 300)
+ms_params <- list()
+for (i in 1:nrow(ms_params_df)) {
+  site_name <- ms_params_df$site[i]
+  ms_params[[site_name]] <- as.list(ms_params_df[i, ])
 }
-
-# Run the test curve visualization
-test_curve()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Load required libraries
-library(tidyverse)
-library(ggplot2)
-library(patchwork)  # For combining plots
-
-# Implement LRF function
-lrf_1991_exact <- function(temp, rmax, topt, tmin, tmax) {
-  # Return 0 for temps outside valid range
-  if (temp <= tmin || temp >= tmax) {
-    return(0)
-  }
-  
-  # Implement the exact equation
-  numerator <- (temp - tmax) * (temp - tmin)^2
-  denominator <- (topt - tmin) * ((topt - tmin) * (temp - topt) - (topt - tmax) * (topt + tmin - 2 * temp))
-  
-  rate <- rmax * numerator / denominator
-  
-  # Handle NaN or negative values
-  if (is.na(rate) || rate < 0) {
-    return(0)
-  }
-  
-  return(rate)
-}
-
-# Define the parameters and credible intervals from the models
-# For MS (from feed_mod3)
-ms_params <- list(
-  Eldo = list(
-    Tmin = 14.74, Tmin_lower = 14.17, Tmin_upper = 15.20,
-    Topt = 39.88, Topt_lower = 37.60, Topt_upper = 43.36,
-    Above = 9.56, Above_lower = 4.15, Above_upper = 17.40,
-    Ropt = 3.50, Ropt_lower = 2.73, Ropt_upper = 4.42
-  ),
-  A1 = list(
-    Tmin = 11.67, Tmin_lower = 9.69, Tmin_upper = 13.22,
-    Topt = 39.89, Topt_lower = 37.63, Topt_upper = 42.79,
-    Above = 6.68, Above_lower = 2.67, Above_upper = 13.54,
-    Ropt = 3.63, Ropt_lower = 2.84, Ropt_upper = 4.57
-  ),
-  B1 = list(
-    Tmin = 10.96, Tmin_lower = 8.32, Tmin_upper = 13.09,
-    Topt = 39.78, Topt_lower = 37.20, Topt_upper = 43.21,
-    Above = 8.20, Above_lower = 3.06, Above_upper = 16.26,
-    Ropt = 4.30, Ropt_lower = 3.41, Ropt_upper = 5.29
-  )
-)
-
-# For MB (from feed_modMB)
-mb_params <- list(
-  A1 = list(
-    Tmin = 13.57, Tmin_lower = 11.28, Tmin_upper = 15.10,
-    Topt = 37.54, Topt_lower = 33.39, Topt_upper = 45.12,
-    Above = 11.70, Above_lower = 4.09, Above_upper = 23.70,
-    Ropt = 2.64, Ropt_lower = 1.61, Ropt_upper = 4.12
-  ),
-  B1 = list(
-    Tmin = 12.80, Tmin_lower = 10.29, Tmin_upper = 14.84,
-    Topt = 41.76, Topt_lower = 35.73, Topt_upper = 51.37,
-    Above = 10.74, Above_lower = 1.56, Above_upper = 23.92,
-    Ropt = 3.29, Ropt_lower = 2.02, Ropt_upper = 5.93
-  ),
-  C1 = list(
-    Tmin = 13.79, Tmin_lower = 12.03, Tmin_upper = 15.08,
-    Topt = 41.03, Topt_lower = 35.81, Topt_upper = 50.23,
-    Above = 11.77, Above_lower = 2.44, Above_upper = 25.60,
-    Ropt = 3.93, Ropt_lower = 2.52, Ropt_upper = 6.12
-  )
-)
-
-# Add D1 parameters (made-up with reasonable credible intervals)
-# Using values similar to our previous script but with credible intervals
-mb_params$D1 <- list(
-  Tmin = 14.00, Tmin_lower = 12.50, Tmin_upper = 15.50,
-  Topt = 42.00, Topt_lower = 37.00, Topt_upper = 47.00,
-  Above = 12.00, Above_lower = 5.00, Above_upper = 20.00,
-  Ropt = 4.00, Ropt_lower = 2.80, Ropt_upper = 5.20
-)
-
-# Set site order and colors
-site_order <- c("Eldo", "A1", "B1", "C1", "D1")
-site_colors <- c(
-  "Eldo" = "#FF4500",  # Red-orange
-  "A1" = "#FF8C00",    # Dark orange
-  "B1" = "#FFD700",    # Gold/yellow
-  "C1" = "#4682B4",    # Steel blue
-  "D1" = "#0000CD"     # Medium blue
-)
 
 # Function to calculate the curve
 calculate_curve <- function(params, temp_range) {
-  # For each temperature, calculate the rate
   result <- data.frame(
     temp = temp_range,
     rate = sapply(temp_range, function(t) {
       lrf_1991_exact(t, params$Ropt, params$Topt, params$Tmin, params$Topt + params$Above)
     })
   )
-  
   return(result)
 }
 
 # Generate curve data for MS
 generate_ms_curves <- function() {
-  # Temperature range
-  temp_range <- seq(5, 60, by = 0.1)
-  
-  # Create empty list to store results
+  temp_range <- seq(5, 70, by = 0.1)
   curves <- list()
   
-  # Generate curves for each site
   for (site in names(ms_params)) {
     curves[[site]] <- calculate_curve(ms_params[[site]], temp_range)
     curves[[site]]$site <- site
+    curves[[site]]$species <- "MS"
   }
   
-  # Combine all curves
   result <- bind_rows(curves)
   result$site <- factor(result$site, levels = site_order)
-  
   return(result)
 }
 
 # Generate curve data for MB
 generate_mb_curves <- function() {
-  # Temperature range
-  temp_range <- seq(5, 60, by = 0.1)
-  
-  # Create empty list to store results
+  temp_range <- seq(5, 70, by = 0.1)
   curves <- list()
   
-  # Generate curves for each site
   for (site in names(mb_params)) {
     curves[[site]] <- calculate_curve(mb_params[[site]], temp_range)
     curves[[site]]$site <- site
+    curves[[site]]$species <- "MB"
   }
   
-  # Combine all curves
   result <- bind_rows(curves)
   result$site <- factor(result$site, levels = site_order)
-  
   return(result)
 }
 
@@ -513,14 +333,12 @@ generate_mb_curves <- function() {
 ms_curves <- generate_ms_curves()
 mb_curves <- generate_mb_curves()
 
-# Calculate the maximum rate value in both datasets for consistent scaling
-max_rate_ms <- max(ms_curves$rate)
-max_rate_mb <- max(mb_curves$rate)
-max_rate <- max(max_rate_ms, max_rate_mb)
+# Combine both datasets
+all_curves <- bind_rows(mb_curves, ms_curves)
+all_curves$species <- factor(all_curves$species, levels = c("MB", "MS"))
 
 # Create parameter summary points for plot
 create_param_summary <- function(params, species) {
-  # Create a dataframe with all necessary columns
   summary_points <- data.frame(
     parameter = character(),
     site = character(),
@@ -537,63 +355,58 @@ create_param_summary <- function(params, species) {
   for (site_name in names(params)) {
     site <- params[[site_name]]
     
-    # Add Tmin point with error bars
     tmin_point <- data.frame(
       parameter = "Tmin",
       site = site_name,
-      x = site$Tmin,
-      x_lower = site$Tmin_lower,
-      x_upper = site$Tmin_upper,
-      y = 0,  # Base position (will be offset later)
-      y_lower = NA,  # Add these for consistency
-      y_upper = NA,  # Add these for consistency
+      x = as.numeric(site$Tmin),
+      x_lower = as.numeric(site$Tmin_lower),
+      x_upper = as.numeric(site$Tmin_upper),
+      y = 0,
+      y_lower = NA,
+      y_upper = NA,
       species = species,
       stringsAsFactors = FALSE
     )
     
-    # Add Topt point with error bars
     topt_point <- data.frame(
       parameter = "Topt",
       site = site_name,
-      x = site$Topt,
-      x_lower = site$Topt_lower,
-      x_upper = site$Topt_upper,
-      y = site$Ropt,  # At y=Ropt for Topt
-      y_lower = NA,  # Add these for consistency
-      y_upper = NA,  # Add these for consistency
+      x = as.numeric(site$Topt),
+      x_lower = as.numeric(site$Topt_lower),
+      x_upper = as.numeric(site$Topt_upper),
+      y = as.numeric(site$Ropt),
+      y_lower = NA,
+      y_upper = NA,
       species = species,
       stringsAsFactors = FALSE
     )
     
-    # Add Tmax point with error bars
     tmax_point <- data.frame(
       parameter = "Tmax",
       site = site_name,
-      x = site$Topt + site$Above,
-      x_lower = site$Topt_lower + site$Above_lower,
-      x_upper = site$Topt_upper + site$Above_upper,
-      y = 0,  # Base position (will be offset later)
-      y_lower = NA,  # Add these for consistency
-      y_upper = NA,  # Add these for consistency
+      x = as.numeric(site$Tmax),
+      x_lower = as.numeric(site$Tmax_lower),
+      x_upper = as.numeric(site$Tmax_upper),
+      y = 0,
+      y_lower = NA,
+      y_upper = NA,
       species = species,
       stringsAsFactors = FALSE
     )
     
-    # Add Ropt point with vertical error bars
     ropt_point <- data.frame(
       parameter = "Ropt",
       site = site_name,
-      x = 65,  # Fixed position on the right side
-      x_lower = NA,  # Add these for consistency
-      x_upper = NA,  # Add these for consistency
-      y = site$Ropt,
-      y_lower = site$Ropt_lower,
-      y_upper = site$Ropt_upper,
+      x = 65,
+      x_lower = NA,
+      x_upper = NA,
+      y = as.numeric(site$Ropt),
+      y_lower = as.numeric(site$Ropt_lower),
+      y_upper = as.numeric(site$Ropt_upper),
       species = species,
       stringsAsFactors = FALSE
     )
     
-    # Bind rows to the main dataframe
     summary_points <- rbind(summary_points, tmin_point, topt_point, tmax_point, ropt_point)
   }
   
@@ -605,160 +418,240 @@ create_param_summary <- function(params, species) {
 ms_param_summary <- create_param_summary(ms_params, "MS")
 mb_param_summary <- create_param_summary(mb_params, "MB")
 
-# Function to create a TPC plot with improved offset credible intervals
-create_tpc_plot <- function(curves, param_summary, title, max_y) {
-  # Get numerical site indices (to help with ordered offsets)
-  site_indices <- setNames(1:length(site_order), site_order)
-  
-  # Find the maximum rate in the curves to place Topt points above
-  curve_max <- max(curves$rate)
-  
-  # Create a modified parameter summary with better offset y-positions
-  modified_param_summary <- param_summary %>%
-    mutate(
-      # Set position index by site (ordered by elevation)
-      site_idx = as.integer(site_indices[as.character(site)]),
-      
-      # Create different offsets for different parameter types
-      y_display = case_when(
-        # Tmin parameters go below the x-axis, ordered by site elevation with more spacing
-        parameter == "Tmin" ~ -2.0 - (site_idx * 0.8),
-        
-        # Topt parameters now all above the curves with proper spacing
-        parameter == "Topt" ~ curve_max + 1 + (site_idx * 0.8),
-        
-        # Tmax parameters go below the x-axis, but at different positions than Tmin
-        parameter == "Tmax" ~ -2.0 - (site_idx * 0.8),
-        
-        # Ropt parameters go on the right side with horizontal spacing
-        parameter == "Ropt" ~ y,
-        
-        TRUE ~ y
-      ),
-      
-      # For Ropt, use a horizontal offset
-      x_display = case_when(
-        parameter == "Ropt" ~ 60 + (site_idx * 1.0),
-        TRUE ~ x
-      )
+# Combine parameter summaries
+all_param_summary <- bind_rows(mb_param_summary, ms_param_summary)
+all_param_summary$species <- factor(all_param_summary$species, levels = c("MB", "MS"))
+
+# Calculate max rate for each species separately
+max_rate_mb <- max(mb_curves$rate)
+max_rate_ms <- max(ms_curves$rate)
+
+
+modified_param_summary <- all_param_summary %>%
+  group_by(species) %>%
+  mutate(
+    sites_present = list(unique(site[!is.na(x)])),
+    l_sites_pres = length(unique(site[!is.na(x)])),
+    # Original index (low elevation first)
+    site_idx_orig = match(site, unique(site[!is.na(x)])),
+    # Reversed index for Tmin, Tmax, Topt (high elevation first)
+    site_idx_rev = l_sites_pres - site_idx_orig + 1,
+    species_max_rate = ifelse(species == "MB", max_rate_mb, max_rate_ms)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    # Use reversed index for Tmin, Tmax, Topt; original for Ropt
+    # Increased spacing (0.75 to better match Pmax spacing)
+    y_display = case_when(
+      parameter == "Tmin" ~ -0.5 - (site_idx_rev * 0.75),
+      parameter == "Topt" ~ species_max_rate + 0.7 + 0.75*(l_sites_pres+1) - (site_idx_rev * 0.75),
+      parameter == "Tmax" ~ -0.5 - (site_idx_rev * 0.75),
+      parameter == "Ropt" ~ y,
+      TRUE ~ y
+    ),
+    x_display = case_when(
+      parameter == "Ropt" ~ 55 + (site_idx_orig * 2.5),  # Keep original order for Ropt
+      TRUE ~ x
     )
-  
-  # Split out Ropt points for special handling
-  ropt_points <- modified_param_summary %>% 
-    filter(parameter == "Ropt")
-  
-  # Other parameter points
-  other_points <- modified_param_summary %>% 
-    filter(parameter != "Ropt")
-  
-  p <- ggplot() +
-    # Add the curve
-    geom_line(
-      data = curves,
-      aes(x = temp, y = rate, color = site),
-      size = 1.5
-    ) +
-    # Add points for parameters (except Ropt)
-    geom_point(
-      data = other_points,
-      aes(x = x, y = y_display, color = site),
-      size = 3
-    ) +
-    # Add horizontal error bars for parameters (except Ropt)
-    geom_errorbarh(
-      data = other_points,
-      aes(x = x, y = y_display, xmin = x_lower, xmax = x_upper, color = site),
-      height = 0.2,
-      size = 1
-    ) +
-    # Add Ropt points at the side with vertical error bars
-    geom_point(
-      data = ropt_points,
-      aes(x = x_display, y = y, color = site),
-      size = 3
-    ) +
-    # Add vertical error bars for Ropt
-    geom_errorbar(
-      data = ropt_points,
-      aes(x = x_display, ymin = y_lower, ymax = y_upper, color = site),
-      width = 0.5,
-      size = 1
-    ) +
-    # Add dotted line at y=0
-    geom_hline(yintercept = 0, linetype = "dotted", color = "darkgray") +
-    # Set axis labels
-    labs(
-      x = "Temperature (°C)",
-      y = "Feces mass / hopper mass / hour (mg/g/hr)",
-      title = title
-    ) +
-    # Customize the color scheme
-    scale_color_manual(values = site_colors) +
-    # Set the x-axis range
-    scale_x_continuous(limits = c(5, 65), breaks = seq(10, 60, by = 10)) +
-    # Set the y-axis range, allowing space for the offset parameter points
-    scale_y_continuous(limits = c(-6, max_y), breaks = seq(0, max_y, by = 2)) +
-    # Theme customization
-    theme_bw() +
-    theme(
-      plot.title = element_text(hjust = 0.5, size = 16),
-      axis.title = element_text(size = 14),
-      axis.text = element_text(size = 12),
-      legend.position = "none",
-      panel.grid.minor = element_blank()
-    )
-  
-  return(p)
-}
-
-# Create the plots
-ms_plot <- create_tpc_plot(
-  ms_curves, 
-  ms_param_summary, 
-  "MS Thermal Performance Curves",
-  max_y = 13  # Maximum y-axis value
-)
-
-mb_plot <- create_tpc_plot(
-  mb_curves, 
-  mb_param_summary, 
-  "MB Thermal Performance Curves",
-  max_y = 13  # Maximum y-axis value
-)
-
-# Combine plots
-combined_plot <- ms_plot + mb_plot + 
-  plot_layout(ncol = 2) +
-  plot_annotation(
-    title = "Thermal Performance Curves for Grasshopper Species",
-    theme = theme(plot.title = element_text(hjust = 0.5, size = 18))
   )
 
-# Create a legend-only plot for documentation
+# Split out Ropt points
+ropt_points <- modified_param_summary %>% 
+  filter(parameter == "Ropt")
+
+# Other parameter points
+other_points <- modified_param_summary %>% 
+  filter(parameter != "Ropt")
+
+
+tmin_labels <- modified_param_summary %>%
+  filter(parameter == "Tmin") %>%
+  group_by(species) %>%
+  summarize(
+    x = max(x_upper, na.rm = TRUE) + 4,  # More buffer space
+    y = mean(y_display, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+tmax_labels <- modified_param_summary %>%
+  filter(parameter == "Tmax") %>%
+  group_by(species) %>%
+  summarize(
+    x = min(x_lower, na.rm = TRUE) - 4,  # More buffer space
+    y = mean(y_display, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+topt_labels <- modified_param_summary %>%
+  filter(parameter == "Topt") %>%
+  group_by(species) %>%
+  summarize(
+    x = min(x_lower, na.rm = TRUE) - 4,  # More buffer space
+    y = mean(y_display, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+pmax_labels <- modified_param_summary %>%
+  filter(parameter == "Ropt") %>%
+  group_by(species) %>%
+  summarize(
+    x = mean(x_display, na.rm = TRUE),
+    y = max(y_upper, na.rm = TRUE) + 0.7,  # More buffer space
+    .groups = "drop"
+  )
+
+# Create Figure B
+fig_b <- ggplot() +
+  geom_line(
+    data = all_curves,
+    aes(x = temp, y = rate, color = site),
+    size = 1.5
+  ) +
+  geom_point(
+    data = other_points,
+    aes(x = x, y = y_display, color = site),
+    size = 3
+  ) +
+  geom_errorbarh(
+    data = other_points,
+    aes(x = x, y = y_display, xmin = x_lower, xmax = x_upper, color = site),
+    height = 0.5,  # Larger feet/brackets
+    size = 1
+  ) +
+  geom_point(
+    data = ropt_points,
+    aes(x = x_display, y = y, color = site),
+    size = 3
+  ) +
+  geom_errorbar(
+    data = ropt_points,
+    aes(x = x_display, ymin = y_lower, ymax = y_upper, color = site),
+    width = 2,
+    size = 1
+  ) +
+  geom_hline(yintercept = 0, linetype = "dotted", color = "darkgray") +
+  geom_text(data = tmin_labels,
+            aes(x = x, y = y),
+            label = "Tmin",
+            size = 3.5, color = "black") +
+  geom_text(data = tmax_labels,
+            aes(x = x, y = y),
+            label = "Tmax",
+            size = 3.5, color = "black") +
+  geom_text(data = topt_labels,
+            aes(x = x, y = y),
+            label = "Topt",
+            size = 3.5, color = "black") +
+  geom_text(data = pmax_labels,
+            aes(x = x, y = y),
+            label = "Pmax",
+            size = 3.5, color = "black") +
+  facet_wrap(~ species, ncol = 2,
+             labeller = labeller(
+               species = as_labeller(c("MB" = "bolditalic('M. boulderensis')", 
+                                       "MS" = "bolditalic('M. sanguinipes')"), 
+                                     label_parsed))) +
+  labs(
+    x = "Temperature (°C)",
+    y = y_axis_label,  
+    color = "Population"
+  ) +
+  scale_color_manual(
+    values = site_colors,
+    labels = site_elevations,
+    breaks = names(site_elevations)
+  ) +
+  scale_x_continuous(limits = c(5, 70), breaks = seq(10, 70, by = 10)) +
+  scale_y_continuous(limits = c(-4, 8.5), breaks = seq(0, 8, by = 2)) +  # Expanded y limits
+  theme_minimal() +
+  theme(
+    strip.background = element_rect(fill = "#D2B48C", color = NA),
+    strip.text = element_text(size = 12, face = "bold", color = "black"),
+    panel.grid.minor = element_blank(),
+    panel.spacing = unit(1, "lines"),
+    legend.position = "none",
+    axis.title = element_text(size = 10),  # Smaller axis title
+    axis.title.y = element_text(margin = margin(r = 2)),  # Reduce y-axis title margin
+    axis.text = element_text(size = 8),  # Smaller axis text
+    plot.margin = margin(5, 5, 5, 5, "pt")
+  )
+
+# Add custom legend in top left of MS panel only - with better spacing
 legend_data <- data.frame(
-  site = site_order,
-  x = rep(1, length(site_order)),
-  y = 1:length(site_order)
+  site = factor(names(site_elevations), levels = names(site_elevations)),
+  elev = site_elevations,
+  y = seq(7, 3.5, length.out = 5),  # Moved down to create space from title
+  x = 9.75,
+  species = "MS"
 )
 
-legend_plot <- ggplot(legend_data, aes(x = x, y = y, color = site)) +
-  geom_point(size = 3) +
-  scale_color_manual(values = site_colors, name = "Site") +
-  theme_void() +
-  theme(legend.position = "bottom")
+legend_box <- data.frame(
+  xmin = 6,
+  xmax = 22,
+  ymin = 2.8,
+  ymax = 8.3,
+  species = "MS"
+)
 
-# Save just the legend
-legend_only <- cowplot::get_legend(legend_plot)
-ggsave("site_legend.png", plot = cowplot::ggdraw(legend_only), width = 6, height = 2, dpi = 300)
+legend_title <- data.frame(
+  x = 7,
+  y = 8,
+  label = "Population",
+  species = "MS"
+)
 
-# Save the plots
-#ggsave("ms_thermal_performance_final.png", ms_plot, width = 8, height = 6, dpi = 300)
-#ggsave("mb_thermal_performance_final.png", mb_plot, width = 8, height = 6, dpi = 300)
-#ggsave("combined_thermal_performance_final.png", combined_plot, width = 16, height = 8, dpi = 300)
+fig_b <- fig_b +
+  geom_rect(data = legend_box,
+            aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+            fill = "white", color = "black", linewidth = 0.5,
+            inherit.aes = FALSE) +
+  geom_text(data = legend_title,
+            aes(x = x, y = y, label = label),
+            fontface = "bold", size = 3.5, hjust = 0,
+            inherit.aes = FALSE) +
+  geom_point(data = legend_data, 
+             aes(x = x, y = y, color = site),
+             size = 2.5, inherit.aes = FALSE) +
+  geom_text(data = legend_data,
+            aes(x = x + 1, y = y, label = elev),
+            hjust = 0, size = 3, inherit.aes = FALSE)
 
-# Display the plots
-print(ms_plot)
-print(mb_plot)
-print(combined_plot)
+# Convert to grob for adding "Species" label
+g_b <- ggplotGrob(fig_b)
 
+# Add "Species" label at the top
+species_label_b <- textGrob("Species", gp = gpar(fontface = "bold", col = "#8B4513"))
+g_b <- gtable_add_rows(g_b, heights = unit(0.6, "cm"), pos = 0)
+panel_cols_b <- which(grepl("panel", g_b$layout$name))
+g_b <- gtable_add_grob(g_b, species_label_b, t = 1, 
+                       l = min(g_b$layout$l[panel_cols_b]),
+                       r = max(g_b$layout$r[panel_cols_b]))
 
+# ===== COMBINE FIGURES A AND B =====
+
+# Convert grobs to ggplot objects for patchwork
+fig_a_gg <- wrap_elements(g_a)
+fig_b_gg <- wrap_elements(g_b)
+
+# Combine with patchwork
+combined_figure <- fig_a_gg / fig_b_gg +
+  plot_layout(heights = c(4, 3)) +
+  plot_annotation(tag_levels = 'A') &
+  theme(plot.tag = element_text(size = 16, face = "bold"))
+
+# Display the combined figure
+print(combined_figure)
+
+ggsave("figure1_tpc.png", 
+       plot = combined_figure, 
+       width = 8,      # inches
+       height = 8.3,   # inches (slightly taller than wide, matching original)
+       dpi = 300,
+       bg = "white")
+
+# Also save as PDF for publication
+ggsave("figure1_tpc.pdf", 
+       plot = combined_figure, 
+       width = 8, 
+       height = 8.3,
+       bg = "white")

@@ -105,7 +105,7 @@ create_wide_format <- function(summary_df) {
 #sorry for hardcoding of my own folder locations
 
 # Main function to run the analysis
-summarize_eb_results <- function(base_dir = "C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output/results") {
+summarize_eb_results <- function(base_dir = "C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output_old/results") {
   # Find all RDS files
   rds_files <- list.files(base_dir, pattern = "^eb_results_.*\\.rds$", 
                           recursive = TRUE, full.names = TRUE)
@@ -140,8 +140,8 @@ summarize_eb_results <- function(base_dir = "C:/Users/jmsmi/OneDrive/Documents/G
 results <- summarize_eb_results()
 
 # # Save the outputs -- FIRST SET WD
-write_csv(results$long, "eb_results_summary_long.csv")
-write_csv(results$wide, "eb_results_summary_wide.csv") #could uncomment
+#write_csv(results$long, "eb_results_summary_long.csv")
+write_csv(results$wide, "eb_results_summary_wide_old.csv") #could uncomment
 
 # Preview the results
 cat("\nSummary of long format results:\n")

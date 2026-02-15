@@ -5,8 +5,9 @@ library(grid)
 library(gtable)
 
 #directory is output/results/
-setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output/results")
+setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output/results/") #output_lessold (no / results)
 
+#pops <- readRDS("../data/pops.rds")
 pops <- readRDS("../../data/pops.rds")
 
 # LRF function for thermal performance curves
@@ -336,8 +337,8 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
       !is.na(site_clim),
       !is.na(year_period),
       
-      # Filter to temperatures <= 65°C
-      Tb <= 65,
+      # Filter to temperatures <= 60°C
+      Tb <= 60,
       
       # Filter to valid species-site combinations
       (species == "MS" & site_clim %in% valid_combinations[["MS"]]) |
@@ -400,7 +401,7 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
   
   # Filter energy curves by temperature
   energy_curves_long <- energy_curves %>%
-    filter(temperature <= 65) %>%
+    filter(temperature <= 60) %>%
     pivot_longer(cols = c(Gains, Losses, Net), 
                  names_to = "type", 
                  values_to = "value") %>%
@@ -469,7 +470,7 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
       name = "Temperature Density",
       sec.axis = sec_axis(~./scaling_factor, name = "Energy Rate (kJ/hr/g)")
     ) +
-    scale_x_continuous(limits = c(-5, 65)) +
+    scale_x_continuous(limits = c(-5, 60)) +
     facet_grid(site_label ~ species, scales = "free_y",
                labeller = labeller(
                  species = as_labeller(c("MB" = "bolditalic('M. boulderensis')", 
@@ -526,25 +527,28 @@ process_energy_plot <- function(base_dir = ".", pops_data, use_condition = "part
 # Example usage:
 plot_partial_shade <- process_energy_plot(".", pops, use_condition = "partial_shade_low_veg")
 
-# Save with good dimensions (matching the uploaded figure proportions)
-# The uploaded figure appears to be roughly 8x10 inches (width x height)
-ggsave(
-  filename = "fig2_energy_budgets.png",
-  plot = plot_partial_shade,
-  width = 8,
-  height = 10,
-  dpi = 300,
-  bg = "white"
-)
 
-# Also save as PDF for publication
-ggsave(
-  filename = "fig2_energy_budgets.pdf",
-  plot = plot_partial_shade,
-  width = 8,
-  height = 10,
-  bg = "white"
-)
+setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/analysis")
+
+# Save with good dimensions (matching the uploaded figure proportions)
+# # The uploaded figure appears to be roughly 8x10 inches (width x height)
+# ggsave(
+#   filename = "fig2_energy_budgets.png",
+#   plot = plot_partial_shade,
+#   width = 10,
+#   height = 7,
+#   dpi = 300,
+#   bg = "white"
+# )
+# 
+# # Also save as PDF for publication
+# ggsave(
+#   filename = "fig2_energy_budgets.pdf",
+#   plot = plot_partial_shade,
+#   width = 10,
+#   height = 7,
+#   bg = "white"
+# )
 
 # Display
 grid.newpage()

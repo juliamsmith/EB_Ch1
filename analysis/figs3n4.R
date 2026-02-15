@@ -5,7 +5,7 @@ library(gtable)
 
 setwd("~/GitHub/EB_Ch1/analysis")
 
-thing0 <- read_csv("eb_results_summary_wide.csv") 
+thing0 <- read_csv("eb_results_summary_wide_tpc_normalized_old.csv") 
 pops <- readRDS("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/data/pops.rds")
 
 by <- join_by(species==spp, site_orig==site, sex)
@@ -40,7 +40,7 @@ create_sex_averaged_reciprocal_transplant_boxplot <- function(data, use_log_scal
     filter(year_period == "contemporary") %>%
     group_by(species, year, site_orig, site_clim) %>%
     summarize(
-      avg_energy_per_mass = mean(shade_NA_h_NA / mass, na.rm = TRUE),
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
       n_sex = n(),
       .groups = "drop"
     ) %>%
@@ -157,7 +157,7 @@ create_sex_averaged_historical_contemporary_boxplot <- function(data, use_log_sc
     filter(site_orig == site_clim) %>%
     group_by(species, year, year_period, site_orig) %>%
     summarize(
-      avg_energy_per_mass = mean(shade_NA_h_NA / mass, na.rm = TRUE),
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
       n_sex = n(),
       .groups = "drop"
     ) %>%
@@ -238,8 +238,8 @@ grid.newpage()
 grid.draw(plot2)
 
 # Save plots
-ggsave("fig3_reciprocal_transplant.png", plot1, width = 12, height = 7, dpi = 300)
-ggsave("fig3_reciprocal_transplant.pdf", plot1, width = 12, height = 7)
+ggsave("figs1_reciprocal_transplant_norm.png", plot1, width = 12, height = 7, dpi = 300)
+ggsave("figs1_reciprocal_transplant_norm.pdf", plot1, width = 12, height = 7)
 
-ggsave("fig4_historical_contemporary.png", plot2, width = 8, height = 6, dpi = 300)
-ggsave("fig4_historical_contemporary.pdf", plot2, width = 8, height = 6)
+ggsave("figs2_historical_contemporary_norm.png", plot2, width = 8, height = 6, dpi = 300)
+ggsave("figs2_historical_contemporary_norm.pdf", plot2, width = 8, height = 6)
