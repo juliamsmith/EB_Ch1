@@ -1,3 +1,4 @@
 output/results/
+output_lessold/
 bundle_job_*.sh
 submit_all_*_bundles.sh

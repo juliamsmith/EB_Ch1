@@ -13,7 +13,7 @@ setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/analysis")
 pops <- readRDS("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/data/pops.rds")
 
 # Load the raw data for plotting points
-ad_data <- read_csv("C:/Users/jmsmi/OneDrive/Documents/GitHub/thermal_perf/data/ad.csv")
+ad_data <- read_csv("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/data/ad.csv")
 
 # ===== HELPER FUNCTIONS =====
 
@@ -633,16 +633,19 @@ g_b <- gtable_add_grob(g_b, species_label_b, t = 1,
 fig_a_gg <- wrap_elements(g_a)
 fig_b_gg <- wrap_elements(g_b)
 
-# Combine with patchwork
 combined_figure <- fig_a_gg / fig_b_gg +
   plot_layout(heights = c(4, 3)) +
-  plot_annotation(tag_levels = 'A') &
-  theme(plot.tag = element_text(size = 16, face = "bold"))
+  plot_annotation(
+    tag_levels = 'A',
+    theme = theme(
+      plot.tag = element_text(size = 16, face = "bold")
+    )
+  )
 
 # Display the combined figure
 print(combined_figure)
 
-ggsave("figure1_tpc.png", 
+ggsave("figures/fig1_tpc.png", 
        plot = combined_figure, 
        width = 8,      # inches
        height = 8.3,   # inches (slightly taller than wide, matching original)
@@ -650,7 +653,7 @@ ggsave("figure1_tpc.png",
        bg = "white")
 
 # Also save as PDF for publication
-ggsave("figure1_tpc.pdf", 
+ggsave("figures/fig1_tpc.pdf", 
        plot = combined_figure, 
        width = 8, 
        height = 8.3,

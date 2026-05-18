@@ -6,8 +6,8 @@ library(bayestestR)
 library(coda)
 
 # Load the model fits
-ms_fit <- readRDS("~/GitHub/thermal_perf/ms_improved7_betterprior.rds")
-mb_fit <- readRDS("~/GitHub/thermal_perf/mb_both_years_with_yeareffect3betterpriors.rds")
+ms_fit <- readRDS("~/GitHub/EB_Ch1/analysis/tpc_brms_fits/ms_improved7_betterprior.rds")
+mb_fit <- readRDS("~/GitHub/EB_Ch1/analysis/tpc_brms_fits/mb_both_years_with_yeareffect3betterpriors.rds")
 
 # ===== SET METHOD =====
 method <- "MAP"

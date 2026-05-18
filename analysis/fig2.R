@@ -531,24 +531,24 @@ plot_partial_shade <- process_energy_plot(".", pops, use_condition = "partial_sh
 setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/analysis")
 
 # Save with good dimensions (matching the uploaded figure proportions)
-# # The uploaded figure appears to be roughly 8x10 inches (width x height)
-# ggsave(
-#   filename = "fig2_energy_budgets.png",
-#   plot = plot_partial_shade,
-#   width = 10,
-#   height = 7,
-#   dpi = 300,
-#   bg = "white"
-# )
-# 
-# # Also save as PDF for publication
-# ggsave(
-#   filename = "fig2_energy_budgets.pdf",
-#   plot = plot_partial_shade,
-#   width = 10,
-#   height = 7,
-#   bg = "white"
-# )
+# The uploaded figure appears to be roughly 8x10 inches (width x height)
+ggsave(
+  filename = "figures/fig2_energy_budgets.png",
+  plot = plot_partial_shade,
+  width = 10,
+  height = 7,
+  dpi = 300,
+  bg = "white"
+)
+
+# Also save as PDF for publication
+ggsave(
+  filename = "figures/fig2_energy_budgets.pdf",
+  plot = plot_partial_shade,
+  width = 10,
+  height = 7,
+  bg = "white"
+)
 
 # Display
 grid.newpage()

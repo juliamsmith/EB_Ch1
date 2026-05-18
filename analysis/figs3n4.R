@@ -239,8 +239,8 @@ grid.newpage()
 grid.draw(plot2)
 
 # Save plots
-ggsave("fig3_reciprocal_transplant.png", plot1, width = 12, height = 7, dpi = 300)
-ggsave("fig3_reciprocal_transplant.pdf", plot1, width = 12, height = 7)
+ggsave("figures/fig3_reciprocal_transplant.png", plot1, width = 12, height = 7, dpi = 300)
+ggsave("figures/fig3_reciprocal_transplant.pdf", plot1, width = 12, height = 7)
 
-ggsave("fig4_historical_contemporary.png", plot2, width = 8, height = 6, dpi = 300)
-ggsave("fig4_historical_contemporary.pdf", plot2, width = 8, height = 6)
+ggsave("figures/fig4_historical_contemporary.png", plot2, width = 8, height = 6, dpi = 300)
+ggsave("figures/fig4_historical_contemporary.pdf", plot2, width = 8, height = 6)
