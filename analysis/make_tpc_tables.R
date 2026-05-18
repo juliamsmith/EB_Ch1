@@ -276,7 +276,7 @@ ms_table_complete <- rbind(
 # MB Table
 mb_kable <- mb_table_complete %>%
   kbl(
-    col.names = c("Population", "T<sub>min</sub> (°C)", "T<sub>opt</sub> (°C)", "T<sub>max</sub> (°C)", "R<sub>opt</sub> (mg/g/hr)"),
+    col.names = c("Population", "T<sub>min</sub> (°C)", "T<sub>opt</sub> (°C)", "T<sub>max</sub> (°C)", "P<sub>max</sub> (mg/g/hr)"),
     align = c("l", "c", "c", "c", "c"),
     escape = FALSE,
     row.names = FALSE  # Remove row numbers
@@ -292,7 +292,7 @@ mb_kable <- mb_table_complete %>%
 # MS Table
 ms_kable <- ms_table_complete %>%
   kbl(
-    col.names = c("Population", "T<sub>min</sub> (°C)", "T<sub>opt</sub> (°C)", "T<sub>max</sub> (°C)", "R<sub>opt</sub> (mg/g/hr)"),
+    col.names = c("Population", "T<sub>min</sub> (°C)", "T<sub>opt</sub> (°C)", "T<sub>max</sub> (°C)", "P<sub>max</sub> (mg/g/hr)"),
     align = c("l", "c", "c", "c", "c"),
     escape = FALSE,
     row.names = FALSE  # Remove row numbers

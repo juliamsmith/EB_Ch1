@@ -5,7 +5,8 @@ library(gtable)
 
 setwd("~/GitHub/EB_Ch1/analysis")
 
-thing0 <- read_csv("eb_results_summary_wide_tpc_normalized_old.csv") 
+thing0 <- read_csv("eb_results_summary_wide_old.csv")
+#thing0 <- read_csv("eb_results_summary_wide_tpc_normalized_old.csv") 
 pops <- readRDS("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/data/pops.rds")
 
 by <- join_by(species==spp, site_orig==site, sex)
@@ -40,7 +41,7 @@ create_sex_averaged_reciprocal_transplant_boxplot <- function(data, use_log_scal
     filter(year_period == "contemporary") %>%
     group_by(species, year, site_orig, site_clim) %>%
     summarize(
-      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE), #shade_NA_h_NA
       n_sex = n(),
       .groups = "drop"
     ) %>%
@@ -97,7 +98,7 @@ create_sex_averaged_reciprocal_transplant_boxplot <- function(data, use_log_scal
     scale_fill_manual(values = elev_colors, name = "Population") +
     scale_shape_manual(values = c("Home" = 16, "Transplanted" = 4),
                        name = "Climate type") +
-    scale_x_discrete(drop = FALSE, limits = site_elevations) +
+    scale_x_discrete(drop = FALSE, limits = unname(site_elevations)) +
     labs(
       x = "Population",
       y = if(use_log_scale) "log(Total Net Energy Gained (kJ/g))" else "Total Net Energy Gained (kJ/g)"
@@ -157,7 +158,7 @@ create_sex_averaged_historical_contemporary_boxplot <- function(data, use_log_sc
     filter(site_orig == site_clim) %>%
     group_by(species, year, year_period, site_orig) %>%
     summarize(
-      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE),
+      avg_energy_per_mass = mean(partial_shade_low_veg / mass, na.rm = TRUE), #shade_NA_h_NA
       n_sex = n(),
       .groups = "drop"
     ) %>%
@@ -189,9 +190,9 @@ create_sex_averaged_historical_contemporary_boxplot <- function(data, use_log_sc
                alpha = 0.5, 
                size = 1) +
     scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
-                      labels = c("Historical (1950-1959)", "Contemporary (2014-2024)"),
+                      labels = c("Historical (1950-1959)", "Contemporary (2015-2024)"),
                       name = "Time Period") +
-    scale_x_discrete(limits = site_elevations) +
+    scale_x_discrete(limits = unname(site_elevations)) +
     labs(
       x = "Site",
       y = if(use_log_scale) "log(Total Net Energy Gained (kJ/g))" else "Total Net Energy Gained (kJ/g)"
@@ -238,8 +239,8 @@ grid.newpage()
 grid.draw(plot2)
 
 # Save plots
-ggsave("figs1_reciprocal_transplant_norm.png", plot1, width = 12, height = 7, dpi = 300)
-ggsave("figs1_reciprocal_transplant_norm.pdf", plot1, width = 12, height = 7)
+ggsave("fig3_reciprocal_transplant.png", plot1, width = 12, height = 7, dpi = 300)
+ggsave("fig3_reciprocal_transplant.pdf", plot1, width = 12, height = 7)
 
-ggsave("figs2_historical_contemporary_norm.png", plot2, width = 8, height = 6, dpi = 300)
-ggsave("figs2_historical_contemporary_norm.pdf", plot2, width = 8, height = 6)
+ggsave("fig4_historical_contemporary.png", plot2, width = 8, height = 6, dpi = 300)
+ggsave("fig4_historical_contemporary.pdf", plot2, width = 8, height = 6)

@@ -5,7 +5,7 @@ library(grid)
 library(gtable)
 
 #directory is output/results/
-setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output/results/") #output_lessold (no / results)
+setwd("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/output_old/results/") #output_lessold (no / results)
 
 #pops <- readRDS("../data/pops.rds")
 pops <- readRDS("../../data/pops.rds")

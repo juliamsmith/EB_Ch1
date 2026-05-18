@@ -5,10 +5,9 @@ library(ggplot2)
 
 setwd("~/GitHub/EB_Ch1/analysis")
 
-thing0 <- read_csv("eb_results_summary_wide.csv") 
+thing0 <- read_csv("eb_results_summary_wide_old.csv") 
 #thing0 <- read_csv("eb_results_summary_wide_tpc_normalized.csv")
 #thing0 <- read_csv("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/eb_results_summary_wide_tpc_normalized.csv")
-
 
 # Print a preview of the data structure
 head(thing0)
@@ -931,7 +930,7 @@ create_sex_averaged_historical_contemporary_boxplot <- function(data, use_log_sc
     geom_boxplot(alpha = 0.7, outlier.shape = NA) +
     geom_jitter(aes(color = year_period), width = 0.2, alpha = 0.6, size = 1) +
     scale_fill_manual(values = c("historical" = "#8DA0CB", "contemporary" = "#FC8D62"),
-                      labels = c("Historical (1950-1959)", "Contemporary (2014-2024)"),
+                      labels = c("Historical (1950-1959)", "Contemporary (2015-2024)"),
                       name = "Time Period") +
     scale_color_manual(values = c("historical" = "#5570A0", "contemporary" = "#D05030"),
                        guide = "none") +

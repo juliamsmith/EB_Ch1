@@ -10,7 +10,7 @@ library(MuMIn)
 setwd("~/GitHub/EB_Ch1/analysis")
 
 
-df <- read_csv("eb_results_summary_wide.csv")
+df <- read_csv("eb_results_summary_wide_old.csv")
 
 pops <- readRDS("C:/Users/jmsmi/OneDrive/Documents/GitHub/EB_Ch1/data/pops.rds")
 
