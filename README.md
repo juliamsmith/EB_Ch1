@@ -28,7 +28,11 @@ Following the methods of Siemers et al. 2024 (https://doi.org/10.1002/ecs2.4842)
 ## Guide to running the energy budget ##
 
 This code calculates discretionary energy for two grasshopper species (*M. boulderensis* = MB and *M. sanguinipes* = MS) across different sites at varying elevations. The energy budget simulations account for:
-1) Different populations (site/elevation origins), 2) Different climate conditions (site variables) 3) Different years 4) Different thermoregulation scenarios (varying height and shade levels), 5) Different sexes (though they are ultimately combined in the analysis)
+1) Different populations (site/elevation origins)
+2) Different climate conditions (site variables)
+3) Different years
+4) Different thermoregulation scenarios (varying height and shade levels)
+5) Different sexes (though they are ultimately combined in the analysis)
 
 The code uses biophysical models to calculate body temperatures based on climate data, and then uses these temperatures to estimate energy gains from feeding and energy losses from metabolism.
 
