@@ -180,13 +180,12 @@ add_psi_to_climate <- function(climate_data) {
 get_psi <- function(dt, site) {
   # Site coordinates lookup with error handling
   sites <- list(
-    Eldo = list(lat = 39.9436, lon = -105.262),
-    A1 = list(lat = 40.015, lon = -105.376),
-    B1 = list(lat = 40.019, lon = -105.455),
-    C1 = list(lat = 40.0301, lon = -105.541),
-    D1 = list(lat = 40.0401, lon = -105.600)
+    Eldo = list(lat = 39.944, lon = -105.262),
+    A1 = list(lat = 40.015, lon = -105.377),
+    B1 = list(lat = 40.023, lon = -105.430),
+    C1 = list(lat = 40.036, lon = -105.547),
+    D1 = list(lat = 40.059, lon = -105.617)
   )
-  
   if (!site %in% names(sites)) {
     stop(paste("Unknown site:", site))
   }
