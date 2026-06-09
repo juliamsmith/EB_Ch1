@@ -18,7 +18,7 @@ recent_years <- c(2005:2024)
 ms_sites <- c("Eldo", "A1", "B1")
 
 # Base output directory
-output_base_dir <- "output/results"
+output_base_dir <- "output_old/results"
 
 # Read the Slurm template
 template <- readLines("slurm/energy_budget.sh")

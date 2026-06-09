@@ -36,7 +36,7 @@ ms_sites <- c("Eldo", "A1", "B1")
 mb_sites <- c("A1", "B1", "C1", "D1")
 
 # Base output directory
-output_base_dir <- "output/results"
+output_base_dir <- "output_old/results"
 
 # Read the Slurm template
 template <- readLines("slurm/energy_bundle.sh")

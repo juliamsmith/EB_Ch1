@@ -1,7 +1,7 @@
 # R/data_functions.R
 
 # Load climate data from RDS files
-load_climate_data <- function(site, year, base_path = "../targeted_microclimate") {
+load_climate_data <- function(site, year, base_path = "../targeted_microclimate_06082026") {
   # Construct file path
   file_path <- file.path(base_path, site, sprintf("simplified_%s_%d.rds", site, year))
   
